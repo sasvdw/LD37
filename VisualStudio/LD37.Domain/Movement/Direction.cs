@@ -4,7 +4,7 @@
         North = 0,
         East = 1,
         South = 2,
-        West = 4
+        West = 3
     }
 
     public struct Direction
