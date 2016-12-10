@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour {
     public Transform playerPrefab;
     public Transform roomPrefab;
 
+    private Dictionary<Room, Transform> rooms = new Dictionary<Room, Transform>();
+    private Dictionary<Cousin, Transform> players = new Dictionary<Cousin, Transform>();
+
     private Transform playerContainer;
     private Transform roomContainer;
 
@@ -21,16 +24,10 @@ public class GameController : MonoBehaviour {
         List<Cousin> cousins = CreateCousinsForPlayers();
         CousinsToAddToBuilding cousinsToAdd = new CousinsToAddToBuilding(cousins);
         Building building = new Building(cousinsToAdd);
+        CreateRooms(building);
 
-        int x = 100;
-        int y = 100;
-        foreach (Room room in building.roomList) {
-            CreateRoom(room, new Vector2(x, y));
-
-            x += 30;
-        }
 	}
-
+    
     private List<Cousin> CreateCousinsForPlayers() {
         List<Cousin> cousins = new List<Cousin>();
         for (int i = 0; i < NumPlayers; i++) {
@@ -52,6 +49,8 @@ public class GameController : MonoBehaviour {
 
         PlayerControl playerControl = player.GetComponent<PlayerControl>();
         playerControl.SetCousin(cousin, playerNumber);
+
+        players.Add(cousin, player);
     }
 
     private void CreateRoom(Room room, Vector2 position) {
@@ -63,6 +62,18 @@ public class GameController : MonoBehaviour {
         );
 
         roomInstance.GetComponent<TileFloors>().room = room;
+
+        rooms.Add(room, roomInstance);
+    }
+
+    private void CreateRooms(Building building) {
+        int x = 100;
+        int y = 100;
+        foreach (Room room in building.roomList) {
+            CreateRoom(room, new Vector2(x, y));
+
+            x += 30;
+        }
     }
 
     void Update () {

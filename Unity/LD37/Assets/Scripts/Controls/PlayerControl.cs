@@ -12,6 +12,8 @@ public class PlayerControl : MonoBehaviour {
 
     public Cousin cousin { get; private set; }
 
+    public Transform camera { get; private set; }
+
     private Player rewiredPlayer;
     private Rigidbody2D character;
     private Vector2 moveVector;
@@ -23,6 +25,12 @@ public class PlayerControl : MonoBehaviour {
 
 	void Start () {
         character = GetComponent<Rigidbody2D>();
+
+        foreach (Camera camera in FindObjectsOfType<Camera>()) {
+            if (camera.gameObject.name.Equals("Camera Player" + rewiredPlayerId)) {
+                this.camera = camera.gameObject.transform;
+            }
+        }
 	}
 	
 	void Update () {
