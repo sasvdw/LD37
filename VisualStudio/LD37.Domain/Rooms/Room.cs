@@ -17,22 +17,25 @@ namespace LD37.Domain.Rooms
             this.items = new HashSet<Item>();
         }
 
-        internal void ConnectRoom(Room room, Direction directionToRoom)
+        public void ConnectRoom(Room room, Direction directionToRoom) // TODO: Make internal again
         {
-            if(this.doors[directionToRoom].ToRoom == room)
-            {
-                return;
-            }
-
-            if(this.doors.ContainsKey(directionToRoom))
+            if (this.doors.ContainsKey(directionToRoom) && this.doors[directionToRoom].ToRoom != room)
             {
                 throw new InvalidOperationException($"Door to {directionToRoom} direction has already been added");
+            }
+
+            if (this.doors.ContainsKey(directionToRoom) && (this.doors[directionToRoom].ToRoom == room)) {
+                return;
             }
 
             var door = new Door(room);
             this.doors.Add(directionToRoom, door);
 
             room.ConnectRoom(this, directionToRoom.Opposite);
+        }
+
+        public bool HasDoor(Direction direction) {
+            return doors.ContainsKey(direction);
         }
     }
 }

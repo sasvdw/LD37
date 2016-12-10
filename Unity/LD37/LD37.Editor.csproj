@@ -115,6 +115,12 @@
     <Reference Include="TexturePackerImporter">
       <HintPath>Assets\codeandweb.com\Editor\TexturePackerImporter.dll</HintPath>
     </Reference>
+    <Reference Include="LD37.Domain">
+      <HintPath>Assets\lib\LD37.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>Assets\lib\System.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="Rewired_Editor">
       <HintPath>Assets\Rewired\Internal\Libraries\Editor\Rewired_Editor.dll</HintPath>
     </Reference>
@@ -123,12 +129,6 @@
     </Reference>
     <Reference Include="Rewired_Windows_Lib">
       <HintPath>Assets\Rewired\Internal\Libraries\Runtime\Rewired_Windows_Lib.dll</HintPath>
-    </Reference>
-    <Reference Include="LD37.Domain">
-      <HintPath>Assets\lib\LD37.Domain.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing">
-      <HintPath>Assets\lib\System.Drawing.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

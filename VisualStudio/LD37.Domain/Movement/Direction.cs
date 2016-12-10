@@ -1,5 +1,12 @@
 ﻿namespace LD37.Domain.Movement
 {
+    public enum DirectionEnum {
+        North,
+        East,
+        South,
+        West
+    }
+
     public struct Direction
     {
         private readonly DirectionEnum direction;
@@ -10,8 +17,8 @@
         }
         public static Direction North => new Direction(DirectionEnum.North);
         public static Direction East => new Direction(DirectionEnum.East);
-        public static Direction West => new Direction(DirectionEnum.South);
-        public static Direction South => new Direction(DirectionEnum.West);
+        public static Direction South => new Direction(DirectionEnum.South);
+        public static Direction West => new Direction(DirectionEnum.West);
 
         public Direction Opposite
         {
@@ -29,15 +36,7 @@
                 return new Direction((DirectionEnum)opposite);
             }
         }
-
-        private enum DirectionEnum
-        {
-            North,
-            East,
-            South,
-            West
-        }
-
+        
         public override bool Equals(object obj)
         {
             return obj is Direction && this == (Direction)obj;
