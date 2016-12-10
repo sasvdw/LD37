@@ -12,7 +12,6 @@ public class TileFloors : MonoBehaviour
     private readonly int minY;
     private readonly int maxY;
 
-    private SpriteRenderer spriteRenderer;
     private Transform tilesParent;
     private Transform wallsParent;
     private bool built;
@@ -92,7 +91,7 @@ public class TileFloors : MonoBehaviour
 
     private void Start()
     {
-        this.spriteRenderer = this.FloorTile.GetComponent<SpriteRenderer>();
+        this.FloorTile.GetComponent<SpriteRenderer>();
         this.tilesParent = transform.Find("Tiles");
         this.wallsParent = transform.Find("Walls");
     }

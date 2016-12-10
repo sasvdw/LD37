@@ -41,15 +41,16 @@ public class GameController : MonoBehaviour
 
     private IEnumerable<Cousin> CreateCousinsForPlayers()
     {
-        var cousins = new List<Cousin>();
+        var cousinsForPlayers = new List<Cousin>();
+        var allCousins = Cousin.All.ToList();
         for(var i = 0; i < NumPlayers; i++)
         {
-            var cousin = Cousin.All[i];
-            cousins.Add(cousin);
+            var cousin = allCousins[i];
+            cousinsForPlayers.Add(cousin);
 
             this.CreatePlayer(cousin, i);
         }
-        return cousins;
+        return cousinsForPlayers;
     }
 
     private void CreatePlayer(Cousin cousin, int playerNumber)

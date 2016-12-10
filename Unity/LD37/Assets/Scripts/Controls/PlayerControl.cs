@@ -40,6 +40,10 @@ public class PlayerControl : MonoBehaviour
     private void Update()
     {
         this.GetInput();
+    }
+
+    private void FixedUpdate()
+    {
         this.ProcessInput();
     }
 

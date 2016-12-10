@@ -2,6 +2,7 @@
 using LD37.Domain.Movement;
 using LD37.Domain.Rooms;
 using System;
+using System.Collections.Generic;
 
 namespace LD37.Domain.Cousins
 {
@@ -14,15 +15,15 @@ namespace LD37.Domain.Cousins
 
         public EventHandler<RoomChangedEventArgs> RoomChanged;
 
-        public static Cousin Sas => new Cousin("Sas");
-        public static Cousin Matt => new Cousin("Matt");
-        public static Cousin Lida => new Cousin("Lida");
-        public static Cousin Tharina => new Cousin("Tharina");
-        public static Cousin Gallie => new Cousin("Gallie");
-        public static Cousin Sias => new Cousin("Sias");
-        public static Cousin Pieter => new Cousin("Pieter");
+        public static Cousin Sas = new Cousin("Sas");
+        public static Cousin Matt = new Cousin("Matt");
+        public static Cousin Lida = new Cousin("Lida");
+        public static Cousin Tharina = new Cousin("Tharina");
+        public static Cousin Gallie = new Cousin("Gallie");
+        public static Cousin Sias = new Cousin("Sias");
+        public static Cousin Pieter = new Cousin("Pieter");
 
-        public static Cousin[] All = { Sas, Matt, Lida, Tharina, Gallie, Sias, Pieter };
+        public static IEnumerable<Cousin> All = new List<Cousin>{ Sas, Matt, Lida, Tharina, Gallie, Sias, Pieter };
 
         public Room SpawnRoom => this.spawnRoom;
 
