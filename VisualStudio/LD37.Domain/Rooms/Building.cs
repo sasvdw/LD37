@@ -146,28 +146,14 @@ namespace LD37.Domain.Rooms
 
                 for(var x = 0; x <= edgeCoordinate; x++)
                 {
-                    for(var y = 0; y <= edgeCoordinate; y++)
+                    for(var y = 0; y <= edgeCoordinate - x; y++)
                     {
-                        if(x == edgeCoordinate && y != 0)
-                        {
-                            continue;
-                        }
-                        if(x != 0 && y == edgeCoordinate)
-                        {
-                            continue;
-                        }
-
-                        if((x > 1 && y > 2) || (x > 2 && y > 1))
-                        {
-                            continue;
-                        }
-
-                        if(x == 0 && y != 0)
+                        if(y != 0)
                         {
                             var point2 = new Point(x, -y);
                             points.Add(point2);
                         }
-                        if(x != 0 && y == 0)
+                        if(x != 0)
                         {
                             var point3 = new Point(-x, y);
                             points.Add(point3);
