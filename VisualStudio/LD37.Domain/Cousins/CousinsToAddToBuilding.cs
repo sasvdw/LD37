@@ -13,17 +13,7 @@ namespace LD37.Domain.Cousins
         internal IEnumerable<Cousin> Cousins => this.cousins;
         internal int CousinsLeftCount => this.cousins.Count;
 
-        public bool CanSpawnCousin
-        {
-            get
-            {
-                var randomNum = this.random.Next(0, this.cousinSpawnChanceModifier - this.cousins.Count + 1);
-
-                return randomNum == 0;
-            }
-        }
-
-        public CousinsToAddToBuilding()
+        private CousinsToAddToBuilding()
         {
             this.random = new Random();
             this.cousinSpawnChanceModifier = 4;

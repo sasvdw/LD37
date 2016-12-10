@@ -47,6 +47,11 @@ namespace LD37.Domain.Rooms
                 this.rooms[coordinate] = new Room();
             }
 
+            if(cousinsToAddToBuilding.CousinsLeftCount > 0)
+            {
+                throw new Exception("Not all cousins have been placed inside the building!");
+            }
+
             foreach(var roomCoordinate in this.rooms.Keys)
             {
                 var coordinatesAroundRoom = this.GetPointsAround(roomCoordinate);

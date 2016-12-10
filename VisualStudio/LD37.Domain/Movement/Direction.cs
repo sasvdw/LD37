@@ -32,10 +32,10 @@
 
         private enum DirectionEnum
         {
-            North,
-            East,
-            South,
-            West
+            North = 0,
+            East = 1,
+            South = 2,
+            West = 4
         }
 
         public override bool Equals(object obj)
