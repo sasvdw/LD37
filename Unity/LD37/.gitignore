@@ -17,6 +17,8 @@ ExportedObj/
 *.pidb
 *.booproj
 *.svd
+*.orig
+*.Editor.csproj
 
 
 # Unity3D generated meta files
@@ -34,3 +36,6 @@ Assets/Rewired*
 
 # BrokenVector tiling
 Assets/BrokenVector*
+
+#Texture Packer
+Assets/codeandweb.com*
