@@ -16,6 +16,7 @@ TextureImporter:
     21300018: Actors-Placeholder-Up
     21300020: Rooms-Floors-PlaceholderTile
     21300022: Rooms-Walls-Wall
+    21300024: Items-DieBeker
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -143,6 +144,19 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Items-DieBeker
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 126
+        width: 64
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5, y: 0.50793654}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1

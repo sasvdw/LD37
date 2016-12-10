@@ -4,7 +4,7 @@
 # To import these sprites into your Unity project, download "TexturePackerImporter":
 # http://www.codeandweb.com/texturepacker/unity
 #
-# $TexturePacker:SmartUpdate:130e5002722cf6a72c1f7d3957efe82e:3c0a7d1491da68b2b1269008581eedf5:8ab4c75ff4b1bbcb67e3b6e53ae23d58$
+# $TexturePacker:SmartUpdate:8a287b66271e88aac30abdc85f2e9057:d3d65f59ec00c47f94ef847c02e78416:8ab4c75ff4b1bbcb67e3b6e53ae23d58$
 #
 :format=40300
 :texture=Sprites.png
@@ -17,5 +17,6 @@ Actors/Placeholder/Left;1;125;64;64; 0.5;0.5; 0;0;0;0; 4;64;0;0;0;0;64;64;64; 2;
 Actors/Placeholder/Right;1;59;64;64; 0.5;0.5; 0;0;0;0; 4;64;0;0;0;0;64;64;64; 2;1;2;3;0;1;3
 Actors/Placeholder/Standing;67;191;64;64; 0.5;0.5; 0;0;0;0; 4;64;0;0;0;0;64;64;64; 2;1;2;3;0;1;3
 Actors/Placeholder/Up;133;191;64;64; 0.5;0.5; 0;0;0;0; 4;64;0;0;0;0;64;64;64; 2;1;2;3;0;1;3
+Items/DieBeker;133;126;64;63; 0.5;0.5079365079365079; 0;0;0;0; 6;64;43;46;0;18;0;0;43;0;63;64;63; 4;3;4;5;0;3;5;1;2;3;0;1;3
 Rooms/Floors/PlaceholderTile;67;125;64;64; 0.5;0.5; 0;0;0;0; 4;64;0;0;0;0;64;64;64; 2;1;2;3;0;1;3
 Rooms/Walls/Wall;67;59;64;64; 0.5;0.5; 0;0;0;0; 4;64;0;0;0;0;64;64;64; 2;1;2;3;0;1;3
