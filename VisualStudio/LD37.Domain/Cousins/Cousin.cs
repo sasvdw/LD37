@@ -1,20 +1,13 @@
-﻿using LD37.Domain.Items;
+﻿using System;
+using System.Collections.Generic;
+using LD37.Domain.Items;
 using LD37.Domain.Movement;
 using LD37.Domain.Rooms;
-using System;
-using System.Collections.Generic;
 
 namespace LD37.Domain.Cousins
 {
     public class Cousin
     {
-        private readonly SpawnRoom spawnRoom;
-        private readonly Fists fists;
-        private Room currentRoom;
-        private Item currentItem;
-
-        public EventHandler<RoomChangedEventArgs> RoomChanged;
-
         public static Cousin Sas = new Cousin("Sas");
         public static Cousin Matt = new Cousin("Matt");
         public static Cousin Lida = new Cousin("Lida");
@@ -23,11 +16,16 @@ namespace LD37.Domain.Cousins
         public static Cousin Sias = new Cousin("Sias");
         public static Cousin Pieter = new Cousin("Pieter");
 
-        public static IEnumerable<Cousin> All = new List<Cousin>{ Sas, Matt, Lida, Tharina, Gallie, Sias, Pieter };
+        public static IEnumerable<Cousin> All = new List<Cousin> { Sas, Matt, Lida, Tharina, Gallie, Sias, Pieter };
+        private readonly SpawnRoom spawnRoom;
+        private readonly Fists fists;
+        private Item currentItem;
+
+        public EventHandler<RoomChangedEventArgs> RoomChanged;
 
         public Room SpawnRoom => this.spawnRoom;
 
-        public Room CurrentRoom => this.currentRoom;
+        public Room CurrentRoom { get; private set; }
 
         public string Name { get; }
 
@@ -41,16 +39,17 @@ namespace LD37.Domain.Cousins
         {
             this.Name = name;
             this.spawnRoom = new SpawnRoom(this);
-            this.currentRoom = this.spawnRoom;
+            this.CurrentRoom = this.spawnRoom;
         }
 
         public void Move(Direction direction)
         {
-            RoomChangedEventArgs args = new RoomChangedEventArgs(this, this.currentRoom, direction.Opposite);
+            var oldRoom = this.CurrentRoom;
+            this.CurrentRoom.MoveCousin(this, direction);
 
-            this.currentRoom.MoveCousin(this, direction);
-
-            if (RoomChanged != null) {
+            var args = new RoomChangedEventArgs(this, oldRoom, this.CurrentRoom, direction.Opposite);
+            if(RoomChanged != null)
+            {
                 RoomChanged(this, args);
             }
         }
@@ -62,7 +61,7 @@ namespace LD37.Domain.Cousins
                 this.DropItem();
             }
 
-            this.currentRoom.CousinPickUpItem(this, item);
+            this.CurrentRoom.CousinPickUpItem(this, item);
 
             this.currentItem = item;
         }
@@ -74,7 +73,7 @@ namespace LD37.Domain.Cousins
                 return;
             }
 
-            this.currentRoom.DropItem(this, this.currentItem);
+            this.CurrentRoom.DropItem(this, this.currentItem);
 
             this.currentItem = this.fists;
         }
@@ -82,20 +81,23 @@ namespace LD37.Domain.Cousins
         internal void SetCurrentRoom(Room room)
         {
             room.MoveInto(this);
-            this.currentRoom = room;
+            this.CurrentRoom = room;
         }
     }
 
-    public class RoomChangedEventArgs : EventArgs {
-
+    public class RoomChangedEventArgs : EventArgs
+    {
         public Cousin Cousin { get; }
         public Room OldRoom { get; }
+        public Room NewRoom { get; }
         public Direction SpawnDirection { get; }
 
-        public RoomChangedEventArgs(Cousin cousin, Room oldRoom, Direction spawnDirection) {
+        public RoomChangedEventArgs(Cousin cousin, Room oldRoom, Room newRoom, Direction spawnDirection)
+        {
             this.Cousin = cousin;
             this.OldRoom = oldRoom;
             this.SpawnDirection = spawnDirection;
+            this.NewRoom = newRoom;
         }
     }
 }
