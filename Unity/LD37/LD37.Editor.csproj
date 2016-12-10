@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{138A0C40-A030-78D7-2E8B-86CCE14B44E0}</ProjectGuid>
+    <ProjectGuid>{6DC186F4-8BE0-D150-0145-D890DA21A797}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.5.0f3</UnityVersion>
     <RootNamespace>LD37.Unity</RootNamespace>
@@ -52,26 +52,68 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.EditorTestsRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.EditorTestsRunner.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.PlaymodeTestsRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.PlaymodeTestsRunner.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.PlaymodeTestsRunner">
       <HintPath>Library\UnityAssemblies\UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEditor.HoloLens.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="TexturePackerImporter">
+      <HintPath>Assets\codeandweb.com\Editor\TexturePackerImporter.dll</HintPath>
     </Reference>
     <Reference Include="LD37.Domain">
       <HintPath>Assets\lib\LD37.Domain.dll</HintPath>
@@ -85,58 +127,28 @@
     <Reference Include="Rewired_Windows_Lib">
       <HintPath>Assets\Rewired\Internal\Libraries\Runtime\Rewired_Windows_Lib.dll</HintPath>
     </Reference>
+    <Reference Include="Rewired_Editor">
+      <HintPath>Assets\Rewired\Internal\Libraries\Editor\Rewired_Editor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Rewired\Examples\ControlRemapping1\Scripts\ControlRemappingDemo1.cs" />
-    <Compile Include="Assets\Rewired\Examples\CustomControllersTilt\Scripts\CustomControllersTiltDemo.cs" />
-    <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\CustomControllerDemo.cs" />
-    <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\CustomControllerDemo_Player.cs" />
-    <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\TouchButtonExample.cs" />
-    <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\TouchControllerExample.cs" />
-    <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\TouchJoystickExample.cs" />
-    <Compile Include="Assets\Rewired\Examples\EightPlayers\Scripts\EightPlayersExample_Player.cs" />
-    <Compile Include="Assets\Rewired\Examples\FallbackJoystickIdentification\Scripts\FallbackJoystickIdentificationDemo.cs" />
-    <Compile Include="Assets\Rewired\Examples\Shared\Scripts\Bullet.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Examples\ControlMapperDemo\Scripts\ControlMapperDemoMessage.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ButtonInfo.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CalibrationWindow.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CanvasScalerExt.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CanvasScalerFitter.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ControlMapper.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ControlMapper_Classes.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ControlMapper_Enums.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ControlMapper_InputGrid.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ControlMapper_WindowManager.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CustomButton.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CustomSlider.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\CustomToggle.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ICustomSelectable.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\InputBehaviorWindow.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\InputFieldInfo.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\InputRow.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\LanguageData.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ScrollRectSelectableChild.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ScrollbarVisibilityHelper.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ThemeSettings.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ThemedElement.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\ToggleInfo.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UIControl.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UIControlSet.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UIElementInfo.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UIGroup.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UIImageHelper.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UISelectionUtility.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UISliderControl.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\UITools.cs" />
-    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Window.cs" />
-    <Compile Include="Assets\Rewired\Integration\UnityUI\RewiredStandaloneInputModule.cs" />
-    <Compile Include="Assets\Rewired\Internal\Scripts\DataStorage\UserDataStore_PlayerPrefs.cs" />
-    <Compile Include="Assets\Rewired\Internal\Scripts\InputManager.cs" />
-    <Compile Include="Assets\Rewired\Internal\Scripts\Misc\ExternalTools.cs" />
-    <Compile Include="Assets\Rewired\Internal\Scripts\Platforms\Ouya\OuyaInputSource.cs" />
-    <Compile Include="Assets\Scripts\Controls\PlayerControl.cs" />
-    <Compile Include="Assets\Scripts\Controls\RewiredConsts.cs" />
-    <Compile Include="Assets\Scripts\Test.cs" />
+    <ProjectReference Include="LD37.csproj">
+      <Project>{138A0C40-A030-78D7-2E8B-86CCE14B44E0}</Project>
+      <Name>LD37</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\ControlMapperInspector.cs" />
+    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomButtonInspector.cs" />
+    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomSliderInspector.cs" />
+    <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomToggleInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\ControllerDataFilesInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\CustomInspector_External.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\HardwareJoystickMapInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\HardwareJoystickTemplateMapInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\InputManagerInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\CustomInspectors\UserDataStore_PlayerPrefsInspector.cs" />
+    <Compile Include="Assets\Rewired\Internal\Scripts\Editor\UnityEditorBridge.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
