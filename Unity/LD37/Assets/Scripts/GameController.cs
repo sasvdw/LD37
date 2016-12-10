@@ -1,122 +1,133 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
 using LD37.Domain.Cousins;
-using LD37.Domain.Rooms;
-using System;
 using LD37.Domain.Items;
+using LD37.Domain.Rooms;
+using UnityEngine;
 
-public class GameController : MonoBehaviour {
-
-    public int NumPlayers;
-    public Transform playerPrefab;
-    public Transform roomPrefab;
-
-    private Dictionary<Room, Transform> rooms = new Dictionary<Room, Transform>();
-    private Dictionary<Cousin, Transform> players = new Dictionary<Cousin, Transform>();
-    private List<Cousin> cousins;
+public class GameController : MonoBehaviour
+{
+    private readonly Dictionary<Room, Transform> rooms;
+    private readonly Dictionary<Cousin, Transform> players;
+    private readonly List<Cousin> cousins;
 
     private Transform playerContainer;
     private Transform roomContainer;
 
     private bool initialSpawnCompleted = false;
 
-    internal void UpdateLocation(Cousin cousin) {
-        throw new NotImplementedException();
+    public int NumPlayers;
+    public Transform PlayerPrefab;
+    public Transform RoomPrefab;
+
+    public GameController()
+    {
+        this.rooms = new Dictionary<Room, Transform>();
+        this.players = new Dictionary<Cousin, Transform>();
+        this.cousins = new List<Cousin>();
     }
 
-    void Awake() {
-        playerContainer = transform.Find("Players");
-        roomContainer = transform.Find("Rooms");
+    private void Awake()
+    {
+        this.playerContainer = transform.Find("Players");
+        this.roomContainer = transform.Find("Rooms");
 
-        cousins = CreateCousinsForPlayers();
-        CousinsToAddToBuilding cousinsToAdd = new CousinsToAddToBuilding(cousins);
-        Building building = new Building(cousinsToAdd, new ItemToSpawnSelector());
-        CreateRooms(building);
+        this.cousins.AddRange(this.CreateCousinsForPlayers());
+        var building = new Building(this.cousins, new ItemToSpawnSelector());
+        this.CreateRooms(building);
     }
 
-    void Start() {
-    }
+    private void Start() {}
 
-    private List<Cousin> CreateCousinsForPlayers() {
-        List<Cousin> cousins = new List<Cousin>();
-        for (int i = 0; i < NumPlayers; i++) {
-            Cousin cousin = Cousin.all[i];
+    private IEnumerable<Cousin> CreateCousinsForPlayers()
+    {
+        var cousins = new List<Cousin>();
+        for(var i = 0; i < NumPlayers; i++)
+        {
+            var cousin = Cousin.All[i];
             cousins.Add(cousin);
 
-            CreatePlayer(cousin, i);
+            this.CreatePlayer(cousin, i);
         }
         return cousins;
     }
 
-    private void CreatePlayer(Cousin cousin, int playerNumber) {
-        Transform player = Instantiate(
-            playerPrefab,
+    private void CreatePlayer(Cousin cousin, int playerNumber)
+    {
+        var player = Instantiate(
+            this.PlayerPrefab,
             new Vector2(playerNumber * 2, 0),
             Quaternion.identity,
             playerContainer
         );
 
-        PlayerControl playerControl = player.GetComponent<PlayerControl>();
+        var playerControl = player.GetComponent<PlayerControl>();
         playerControl.SetCousin(cousin, playerNumber);
-        playerControl.rewiredPlayerId = playerNumber;
+        playerControl.RewiredPlayerId = playerNumber;
 
         players.Add(cousin, player);
 
         cousin.RoomChanged += this.HandleCousinRoomChanged;
     }
 
-    private void CreateRoom(Room room, Vector2 position) {
-        Transform roomInstance = Instantiate(
-            roomPrefab,
+    private void CreateRoom(Room room, Vector2 position)
+    {
+        var roomInstance = Instantiate(
+            this.RoomPrefab,
             position,
             Quaternion.identity,
             roomContainer
         );
 
-        roomInstance.GetComponent<TileFloors>().room = room;
+        roomInstance.GetComponent<TileFloors>().Room = room;
 
-        rooms.Add(room, roomInstance);
+        this.rooms.Add(room, roomInstance);
     }
 
-    private void CreateRooms(Building building) {
-        int x = 100;
-        int y = 100;
-        foreach (Room room in building.RoomList) {
-            CreateRoom(room, new Vector2(x, y));
+    private void CreateRooms(Building building)
+    {
+        var x = 100;
+        var y = 100;
+        foreach(var room in building.RoomList)
+        {
+            this.CreateRoom(room, new Vector2(x, y));
 
             x += 30;
         }
     }
 
-    void Update () {
-		if (!initialSpawnCompleted) {
-            foreach (Cousin cousin in cousins) {
-                Transform player = players[cousin];
-                Transform camera = player.GetComponent<PlayerControl>().camera;
-                Transform room = rooms[cousin.SpawnRoom];
-
-                player.position = room.position;
-                camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
-            }
-
-            initialSpawnCompleted = true;
-        }
-	}
-
-    void HandleCousinRoomChanged(object sender, RoomChangedEventArgs args) {
-        Cousin cousin = args.Cousin;
-        Transform player = players[cousin];
-        Transform camera = player.GetComponent<PlayerControl>().camera;
-        Transform room = rooms[cousin.CurrentRoom];
-        Transform entrance = null;
-        foreach (EnterRoom roomEntrance in room.GetComponentsInChildren<EnterRoom>()) {
-            if (roomEntrance.direction == args.SpawnDirection.DirectionEnum) {
-                entrance = roomEntrance.gameObject.transform;
-            }
+    private void Update()
+    {
+        if(this.initialSpawnCompleted)
+        {
+            return;
         }
 
-        player.position = entrance.position;
+        foreach(var cousin in this.cousins)
+        {
+            var player = this.players[cousin];
+            var camera = player.GetComponent<PlayerControl>().Camera;
+            var room = this.rooms[cousin.SpawnRoom];
+
+            player.position = room.position;
+            camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
+        }
+
+        this.initialSpawnCompleted = true;
+    }
+
+    private void HandleCousinRoomChanged(object sender, RoomChangedEventArgs args)
+    {
+        var cousin = args.Cousin;
+        var player = players[cousin];
+        var camera = player.GetComponent<PlayerControl>().Camera;
+        var room = rooms[cousin.CurrentRoom];
+
+        var entrance = room
+            .GetComponentsInChildren<EnterRoom>()
+            .Single(x => x.Direction == args.SpawnDirection.DirectionEnum);
+
+        player.position = entrance.gameObject.transform.position;
         camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
     }
 }

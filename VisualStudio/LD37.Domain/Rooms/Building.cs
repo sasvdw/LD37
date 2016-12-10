@@ -30,10 +30,11 @@ namespace LD37.Domain.Rooms
         }
 
         public Building(
-            CousinsToAddToBuilding cousinsToAddToBuilding,
+            IEnumerable<Cousin> cousins,
             ItemToSpawnSelector itemToSpawnSelector)
             : this()
         {
+            var cousinsToAddToBuilding = new CousinsToAddToBuilding(cousins);
             this.itemToSpawnSelector = itemToSpawnSelector;
             var chance = 4;
 
@@ -42,7 +43,7 @@ namespace LD37.Domain.Rooms
             var coordinates = RoomCoordinates.Coordinates.ToList();
             foreach(var coordinate in coordinates)
             {
-                if(spawnCoordinates.Contains(coordinate))
+                if(spawnCoordinates.Contains(coordinate) && cousinsToAddToBuilding.CousinsLeftCount > 0)
                 {
                     var randomNum = this.random.Next(0, chance + 1 - cousinsToAddToBuilding.CousinsLeftCount);
                     var shouldSpawn = randomNum == 0;

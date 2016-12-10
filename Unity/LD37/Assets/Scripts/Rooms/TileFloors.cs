@@ -1,101 +1,107 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using LD37.Domain.Movement;
+﻿using LD37.Domain.Movement;
 using LD37.Domain.Rooms;
-using System;
+using UnityEngine;
 
 // Actually builds the whole room now...
-public class TileFloors : MonoBehaviour {
-
-    public Transform floorTile;
-    public Transform wallTile;
-
-    public Room room { get; set; }
-
-    private const int WIDTH = 18;
-    private const int HEIGHT = 10;
+public class TileFloors : MonoBehaviour
+{
+    private const int width = 18;
+    private const int height = 10;
+    private readonly int minX;
+    private readonly int maxX;
+    private readonly int minY;
+    private readonly int maxY;
 
     private SpriteRenderer spriteRenderer;
     private Transform tilesParent;
     private Transform wallsParent;
-    private int minX;
-    private int maxX;
-    private int minY;
-    private int maxY;
-    private bool built = false;
-    
-    public void BuildRoom() {
-        for (int x = minX; x <= maxX; x++) {
-            for (int y = minY; y <= maxY; y++) {
-                if (IsWallLocation(x, y) && !IsDoorLocation(x, y, room)) {
-                    CreateWallTile(x, y);
-                } else {
-                    CreateFloorTile(x, y);
+    private bool built;
+    public Transform FloorTile;
+    public Transform WallTile;
+
+    public Room Room { get; set; }
+
+    public TileFloors()
+    {
+        this.built = false;
+
+        minX = -width / 2;
+        maxX = width / 2 - 1;
+
+        minY = -height / 2;
+        maxY = height / 2 - 1;
+    }
+
+    public void BuildRoom()
+    {
+        for(var x = minX; x <= maxX; x++)
+        {
+            for(var y = minY; y <= maxY; y++)
+            {
+                if(this.IsWallLocation(x, y) && !this.IsDoorLocation(x, y, this.Room))
+                {
+                    this.CreateWallTile(x, y);
+                }
+                else
+                {
+                    this.CreateFloorTile(x, y);
                 }
             }
         }
 
-        built = true;
+        this.built = true;
     }
 
-    private bool IsDoorLocation(int x, int y, Room room) {
-        if ((x == minX && room.HasDoor(Direction.West)) || (x == maxX && room.HasDoor(Direction.East))) {
+    private bool IsDoorLocation(int x, int y, Room room)
+    {
+        if((x == this.minX && room.HasDoor(Direction.West)) || (x == this.maxX && room.HasDoor(Direction.East)))
+        {
             return y == -1 || y == 0;
-        } else if ((y == minY && room.HasDoor(Direction.South)) || (y == maxY && room.HasDoor(Direction.North))) {
+        }
+        if((y == this.minY && room.HasDoor(Direction.South)) || (y == this.maxY && room.HasDoor(Direction.North)))
+        {
             return x == -1 || x == 0;
-        } else {
-            return false;
         }
+        return false;
     }
 
-    private void CreateFloorTile(int x, int y) {
+    private void CreateFloorTile(int x, int y)
+    {
         Instantiate(
-            floorTile,
-            new Vector3(tilesParent.position.x + x + 1.0f, tilesParent.position.y + y + 0.6f, tilesParent.position.z),
+            this.FloorTile,
+            new Vector3(this.tilesParent.position.x + x + 0.5f, this.tilesParent.position.y + y + 0.5f, this.tilesParent.position.z),
             Quaternion.identity,
-            tilesParent
+            this.tilesParent
         );
     }
 
-    private void CreateWallTile(int x, int y) {
+    private void CreateWallTile(int x, int y)
+    {
         Instantiate(
-            wallTile,
-            new Vector3(wallsParent.position.x + x + 1.0f, wallsParent.position.y + y + 0.6f, wallsParent.position.z),
+            this.WallTile,
+            new Vector3(this.wallsParent.position.x + x + 0.5f, this.wallsParent.position.y + y + 0.5f, this.wallsParent.position.z),
             Quaternion.identity,
-            wallsParent
+            this.wallsParent
         );
     }
 
-    private bool IsWallLocation(int x, int y) {
-        return x == minX || x == maxX || y == minY || y == maxY;
+    private bool IsWallLocation(int x, int y)
+    {
+        return x == this.minX || x == this.maxX || y == this.minY || y == this.maxY;
     }
 
-    void Start () {
-        spriteRenderer = floorTile.GetComponent<SpriteRenderer>();
-        tilesParent = transform.Find("Tiles");
-        wallsParent = transform.Find("Walls");
+    private void Start()
+    {
+        this.spriteRenderer = this.FloorTile.GetComponent<SpriteRenderer>();
+        this.tilesParent = transform.Find("Tiles");
+        this.wallsParent = transform.Find("Walls");
+    }
 
-        minX = -WIDTH / 2;
-        maxX = WIDTH / 2 - 1;
-
-        minY = -HEIGHT / 2;
-        maxY = HEIGHT / 2 - 1;
-
-        Room room = new Room();
-        Room room2 = new Room();
-        Room room3 = new Room();
-        Room room4 = new Room();
-        Room room5 = new Room();
-        room.ConnectRoom(room2, Direction.North);
-        room.ConnectRoom(room3, Direction.East);
-        room.ConnectRoom(room4, Direction.South);
-        room.ConnectRoom(room5, Direction.West);
-	}
-	
-	void Update () {
-		if (!built && room != null) {
-            BuildRoom();
+    private void Update()
+    {
+        if(!this.built && this.Room != null)
+        {
+            this.BuildRoom();
         }
-	}
+    }
 }

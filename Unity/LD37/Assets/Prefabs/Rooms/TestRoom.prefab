@@ -198,7 +198,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1600992316403160}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -4.65, z: 0}
+  m_LocalPosition: {x: 0, y: -4.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4648465373526952}
@@ -237,7 +237,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1182872405490536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 4.8, z: 0}
+  m_LocalPosition: {x: 0, y: 4.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4648465373526952}
@@ -250,7 +250,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217601821360960}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 0, z: 0}
+  m_LocalPosition: {x: 7.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4648465373526952}
@@ -263,7 +263,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714941511227046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 3.6, z: 0}
+  m_LocalPosition: {x: 0, y: 3.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4648465373526952}
@@ -276,7 +276,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1859092405624170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.1, y: 0, z: 0}
+  m_LocalPosition: {x: -8.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4648465373526952}
@@ -289,7 +289,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904010276515026}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -3.6, z: 0}
+  m_LocalPosition: {x: 0, y: -3.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4648465373526952}
@@ -302,7 +302,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1136511211828680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 693.60016, y: 106.192184, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4325603806336322}
@@ -325,7 +325,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1698238709602656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.7, y: 0, z: 0}
+  m_LocalPosition: {x: 8.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4648465373526952}
@@ -338,7 +338,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1634059188363280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: -7.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4648465373526952}
@@ -355,9 +355,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0.3, y: 0.1}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 15.4, y: 8}
+  m_Size: {x: 16, y: 8}
 --- !u!61 &61405207907036500
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -411,9 +411,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0.3, y: 0.1}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 17.4, y: 10}
+  m_Size: {x: 18, y: 10}
 --- !u!61 &61970218894296804
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9201d62aa2117b044a47ed28da98febc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 3
+  Direction: 3
 --- !u!114 &114212073264987218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fcfa8059773fe94192e03f6be0c0851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 1
+  DirectionEnum: 1
 --- !u!114 &114284326794251870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fcfa8059773fe94192e03f6be0c0851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 2
+  DirectionEnum: 2
 --- !u!114 &114300670648238576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9201d62aa2117b044a47ed28da98febc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  Direction: 0
 --- !u!114 &114460413419658918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9201d62aa2117b044a47ed28da98febc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 1
+  Direction: 1
 --- !u!114 &114548800854663588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9201d62aa2117b044a47ed28da98febc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 2
+  Direction: 2
 --- !u!114 &114661109699551604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fcfa8059773fe94192e03f6be0c0851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 3
+  DirectionEnum: 3
 --- !u!114 &114937846330097806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -523,8 +523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9d061eed2e523499b414ac2b3c409d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorTile: {fileID: 4033227775254694, guid: 9604f9f3f3a7aae4faaf191ebee3d391, type: 2}
-  wallTile: {fileID: 4162186150547852, guid: f2e72cbcc0c857f4ea2cb70b20394095, type: 2}
+  FloorTile: {fileID: 4033227775254694, guid: 9604f9f3f3a7aae4faaf191ebee3d391, type: 2}
+  WallTile: {fileID: 4162186150547852, guid: f2e72cbcc0c857f4ea2cb70b20394095, type: 2}
 --- !u!114 &114942391883262650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -536,4 +536,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fcfa8059773fe94192e03f6be0c0851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  DirectionEnum: 0

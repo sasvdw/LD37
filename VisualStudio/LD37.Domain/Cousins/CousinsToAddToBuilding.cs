@@ -4,11 +4,10 @@ using System.Linq;
 
 namespace LD37.Domain.Cousins
 {
-    public class CousinsToAddToBuilding
+    internal class CousinsToAddToBuilding
     {
         private readonly List<Cousin> cousins;
         private readonly Random random;
-        private readonly int cousinSpawnChanceModifier;
 
         internal IEnumerable<Cousin> Cousins => this.cousins;
         internal int CousinsLeftCount => this.cousins.Count;
@@ -16,14 +15,13 @@ namespace LD37.Domain.Cousins
         private CousinsToAddToBuilding()
         {
             this.random = new Random();
-            this.cousinSpawnChanceModifier = 4;
         }
 
-        public CousinsToAddToBuilding(IEnumerable<Cousin> cousins) : this()
+        internal CousinsToAddToBuilding(IEnumerable<Cousin> cousins) : this()
         {
             var cousinsToAdd = cousins.ToList();
 
-            if (cousinsToAdd.Count() > 4)
+            if(cousinsToAdd.Count() > 4)
             {
                 throw new ArgumentException("Cousins can't be more than 4", nameof(cousins));
             }

@@ -13,7 +13,8 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.5.0f3</UnityVersion>
@@ -140,10 +141,8 @@
     <Compile Include="Assets\Scripts\Rooms\EnterRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\ExitRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\TileFloors.cs" />
-    <Compile Include="Assets\Scripts\Test.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\BrokenVector\FastGrid\readme.txt" />
     <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
     <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
     <None Include="Assets\Rewired\Documentation\licences.txt" />

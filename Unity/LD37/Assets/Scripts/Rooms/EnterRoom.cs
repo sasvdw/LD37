@@ -1,17 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using LD37.Domain.Movement;
 using UnityEngine;
-using LD37.Domain.Movement;
 
-public class EnterRoom : MonoBehaviour {
+public class EnterRoom : MonoBehaviour
+{
+    public DirectionEnum Direction = DirectionEnum.North;
 
-    public DirectionEnum direction = DirectionEnum.North;
+    void Start() {}
 
-    void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
+    void Update() {}
 }

@@ -22,7 +22,7 @@ namespace LD37.Domain.Cousins
         public static Cousin Sias => new Cousin("Sias");
         public static Cousin Pieter => new Cousin("Pieter");
 
-        public static Cousin[] all = { Sas, Matt, Lida, Tharina, Gallie, Sias, Pieter };
+        public static Cousin[] All = { Sas, Matt, Lida, Tharina, Gallie, Sias, Pieter };
 
         public Room SpawnRoom => this.spawnRoom;
 
