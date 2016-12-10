@@ -9,7 +9,7 @@ namespace LD37.Domain.Rooms
     public class Room
     {
         private readonly Dictionary<Direction, Door> doors;
-        private readonly HashSet<Cousin> cousinsInRoom;
+        protected readonly HashSet<Cousin> cousinsInRoom;
         protected readonly HashSet<Item> items;
         public Room()
         {

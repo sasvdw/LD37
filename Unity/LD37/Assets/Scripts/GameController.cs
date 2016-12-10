@@ -21,6 +21,10 @@ public class GameController : MonoBehaviour {
 
     private bool initialSpawnCompleted = false;
 
+    internal void UpdateLocation(Cousin cousin) {
+        throw new NotImplementedException();
+    }
+
     void Awake() {
         playerContainer = transform.Find("Players");
         roomContainer = transform.Find("Rooms");
@@ -58,6 +62,8 @@ public class GameController : MonoBehaviour {
         playerControl.rewiredPlayerId = playerNumber;
 
         players.Add(cousin, player);
+
+        cousin.RoomChanged += this.HandleCousinRoomChanged;
     }
 
     private void CreateRoom(Room room, Vector2 position) {
@@ -97,4 +103,20 @@ public class GameController : MonoBehaviour {
             initialSpawnCompleted = true;
         }
 	}
+
+    void HandleCousinRoomChanged(object sender, RoomChangedEventArgs args) {
+        Cousin cousin = args.Cousin;
+        Transform player = players[cousin];
+        Transform camera = player.GetComponent<PlayerControl>().camera;
+        Transform room = rooms[cousin.CurrentRoom];
+        Transform entrance = null;
+        foreach (EnterRoom roomEntrance in room.GetComponentsInChildren<EnterRoom>()) {
+            if (roomEntrance.direction == args.SpawnDirection.DirectionEnum) {
+                entrance = roomEntrance.gameObject.transform;
+            }
+        }
+
+        player.position = entrance.position;
+        camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
+    }
 }

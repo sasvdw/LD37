@@ -11,10 +11,17 @@
     {
         private readonly DirectionEnum direction;
 
+        public DirectionEnum DirectionEnum => this.direction;
+
         private Direction(DirectionEnum direction)
         {
             this.direction = direction;
         }
+
+        public static Direction GetDirection(DirectionEnum dir) {
+            return new Direction(dir);
+        }
+
         public static Direction North => new Direction(DirectionEnum.North);
         public static Direction East => new Direction(DirectionEnum.East);
         public static Direction South => new Direction(DirectionEnum.South);

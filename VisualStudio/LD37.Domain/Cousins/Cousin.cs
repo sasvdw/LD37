@@ -1,6 +1,7 @@
 ﻿using LD37.Domain.Items;
 using LD37.Domain.Movement;
 using LD37.Domain.Rooms;
+using System;
 
 namespace LD37.Domain.Cousins
 {
@@ -10,6 +11,8 @@ namespace LD37.Domain.Cousins
         private readonly Fists fists;
         private Room currentRoom;
         private Item currentItem;
+
+        public EventHandler<RoomChangedEventArgs> RoomChanged;
 
         public static Cousin Sas => new Cousin("Sas");
         public static Cousin Matt => new Cousin("Matt");
@@ -22,6 +25,8 @@ namespace LD37.Domain.Cousins
         public static Cousin[] all = { Sas, Matt, Lida, Tharina, Gallie, Sias, Pieter };
 
         public Room SpawnRoom => this.spawnRoom;
+
+        public Room CurrentRoom => this.currentRoom;
 
         public string Name { get; }
 
@@ -40,7 +45,13 @@ namespace LD37.Domain.Cousins
 
         public void Move(Direction direction)
         {
+            RoomChangedEventArgs args = new RoomChangedEventArgs(this, this.currentRoom, direction.Opposite);
+
             this.currentRoom.MoveCousin(this, direction);
+
+            if (RoomChanged != null) {
+                RoomChanged(this, args);
+            }
         }
 
         public void PickUp(Item item)
@@ -71,6 +82,19 @@ namespace LD37.Domain.Cousins
         {
             room.MoveInto(this);
             this.currentRoom = room;
+        }
+    }
+
+    public class RoomChangedEventArgs : EventArgs {
+
+        public Cousin Cousin { get; }
+        public Room OldRoom { get; }
+        public Direction SpawnDirection { get; }
+
+        public RoomChangedEventArgs(Cousin cousin, Room oldRoom, Direction spawnDirection) {
+            this.Cousin = cousin;
+            this.OldRoom = oldRoom;
+            this.SpawnDirection = spawnDirection;
         }
     }
 }

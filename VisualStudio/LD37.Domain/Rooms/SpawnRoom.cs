@@ -6,9 +6,10 @@ namespace LD37.Domain.Rooms
     {
         private readonly Cousin cousin;
 
-        internal SpawnRoom(Cousin cousin)
+        internal SpawnRoom(Cousin cousin) : base()
         {
             this.cousin = cousin;
+            this.cousinsInRoom.Add(this.cousin);
         }
     }
 }
