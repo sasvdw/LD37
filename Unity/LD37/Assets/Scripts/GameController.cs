@@ -4,6 +4,7 @@ using UnityEngine;
 using LD37.Domain.Cousins;
 using LD37.Domain.Rooms;
 using System;
+using LD37.Domain.Items;
 
 public class GameController : MonoBehaviour {
 
@@ -13,21 +14,26 @@ public class GameController : MonoBehaviour {
 
     private Dictionary<Room, Transform> rooms = new Dictionary<Room, Transform>();
     private Dictionary<Cousin, Transform> players = new Dictionary<Cousin, Transform>();
+    private List<Cousin> cousins;
 
     private Transform playerContainer;
     private Transform roomContainer;
 
-	void Start () {
+    private bool initialSpawnCompleted = false;
+
+    void Awake() {
         playerContainer = transform.Find("Players");
         roomContainer = transform.Find("Rooms");
 
-        List<Cousin> cousins = CreateCousinsForPlayers();
+        cousins = CreateCousinsForPlayers();
         CousinsToAddToBuilding cousinsToAdd = new CousinsToAddToBuilding(cousins);
-        Building building = new Building(cousinsToAdd);
+        Building building = new Building(cousinsToAdd, new ItemToSpawnSelector());
         CreateRooms(building);
+    }
 
-	}
-    
+    void Start() {
+    }
+
     private List<Cousin> CreateCousinsForPlayers() {
         List<Cousin> cousins = new List<Cousin>();
         for (int i = 0; i < NumPlayers; i++) {
@@ -49,6 +55,7 @@ public class GameController : MonoBehaviour {
 
         PlayerControl playerControl = player.GetComponent<PlayerControl>();
         playerControl.SetCousin(cousin, playerNumber);
+        playerControl.rewiredPlayerId = playerNumber;
 
         players.Add(cousin, player);
     }
@@ -69,7 +76,7 @@ public class GameController : MonoBehaviour {
     private void CreateRooms(Building building) {
         int x = 100;
         int y = 100;
-        foreach (Room room in building.roomList) {
+        foreach (Room room in building.RoomList) {
             CreateRoom(room, new Vector2(x, y));
 
             x += 30;
@@ -77,6 +84,17 @@ public class GameController : MonoBehaviour {
     }
 
     void Update () {
-		
+		if (!initialSpawnCompleted) {
+            foreach (Cousin cousin in cousins) {
+                Transform player = players[cousin];
+                Transform camera = player.GetComponent<PlayerControl>().camera;
+                Transform room = rooms[cousin.SpawnRoom];
+
+                player.position = room.position;
+                camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
+            }
+
+            initialSpawnCompleted = true;
+        }
 	}
 }

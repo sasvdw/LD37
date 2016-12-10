@@ -10,7 +10,11 @@ namespace LD37.Domain.Rooms
     {
         private readonly Dictionary<Direction, Door> doors;
         private readonly HashSet<Cousin> cousinsInRoom;
+<<<<<<< HEAD
+=======
         protected readonly HashSet<Item> items;
+>>>>>>> SV-CousinItemPickupDrop
+
         public Room()
         {
             this.doors = new Dictionary<Direction, Door>();
@@ -59,10 +63,10 @@ namespace LD37.Domain.Rooms
             this.cousinsInRoom.Add(cousin);
         }
 
+<<<<<<< HEAD
         public bool HasDoor(Direction direction) {
             return doors.ContainsKey(direction);
-        }
-
+=======
         internal void SpawnItem(ItemToSpawnSelector itemToSpawnSelector)
         {
             this.items.Add(itemToSpawnSelector.SpawnRandomItem());
@@ -93,6 +97,7 @@ namespace LD37.Domain.Rooms
             {
                 throw new InvalidOperationException($"Cannot pick up {item.Name} as it's not in this room");
             }
+>>>>>>> SV-CousinItemPickupDrop
         }
     }
 }

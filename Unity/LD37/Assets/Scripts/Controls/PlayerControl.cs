@@ -20,6 +20,7 @@ public class PlayerControl : MonoBehaviour {
 
     public void SetCousin(Cousin cousin, int playerNumber) {
         this.cousin = cousin;
+        this.rewiredPlayerId = playerNumber;
         rewiredPlayer = ReInput.players.GetPlayer(playerNumber);
     }
 
