@@ -1,4 +1,4 @@
-﻿namespace LD37.Domain.Rooms
+﻿namespace LD37.Domain.Movement
 {
     public struct Direction
     {
