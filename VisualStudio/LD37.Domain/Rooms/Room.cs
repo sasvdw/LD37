@@ -9,9 +9,8 @@ namespace LD37.Domain.Rooms
     public class Room
     {
         private readonly Dictionary<Direction, Door> doors;
-        protected readonly HashSet<Item> items;
         private readonly HashSet<Cousin> cousinsInRoom;
-
+        protected readonly HashSet<Item> items;
 
         public Room()
         {
@@ -60,6 +59,38 @@ namespace LD37.Domain.Rooms
         internal void MoveInto(Cousin cousin)
         {
             this.cousinsInRoom.Add(cousin);
+        }
+
+        internal void SpawnItem(ItemToSpawnSelector itemToSpawnSelector)
+        {
+            this.items.Add(itemToSpawnSelector.SpawnRandomItem());
+        }
+
+        internal void CousinPickUpItem(Cousin cousin, Item item)
+        {
+            this.GuardAgainstCousinItemOperations(cousin, item);
+
+            this.items.Remove(item);
+        }
+
+        internal void DropItem(Cousin cousin, Item item)
+        {
+            this.GuardAgainstCousinItemOperations(cousin, item);
+
+            this.items.Add(item);
+        }
+
+        private void GuardAgainstCousinItemOperations(Cousin cousin, Item item)
+        {
+            if(!this.cousinsInRoom.Contains(cousin))
+            {
+                throw new InvalidOperationException($"{cousin.Name} is not in this room");
+            }
+
+            if(!this.items.Contains(item))
+            {
+                throw new InvalidOperationException($"Cannot pick up {item.Name} as it's not in this room");
+            }
         }
     }
 }

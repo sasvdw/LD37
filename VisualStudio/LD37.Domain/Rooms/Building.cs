@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using LD37.Domain.Cousins;
+using LD37.Domain.Items;
 using LD37.Domain.Movement;
 
 namespace LD37.Domain.Rooms
@@ -10,32 +11,44 @@ namespace LD37.Domain.Rooms
     public class Building
     {
         private readonly IDictionary<Point, Room> rooms;
+        private readonly Room[] itemSpawnableRooms;
+        private readonly ItemToSpawnSelector itemToSpawnSelector;
+        private readonly Random random;
 
-        public Building(CousinsToAddToBuilding cousinsToAddToBuilding)
+        public Building()
         {
-            var chance = 4;
             this.rooms = new Dictionary<Point, Room>();
+            this.random = new Random();
+        }
+
+        public Building(
+            CousinsToAddToBuilding cousinsToAddToBuilding, 
+            ItemToSpawnSelector itemToSpawnSelector)
+            : this()
+        {
+            this.itemToSpawnSelector = itemToSpawnSelector;
+            var chance = 4;
 
             var spawnCoordinates = RoomCoordinates.SpawnCoordinates.ToList();
 
-            var random = new Random();
-
-            foreach(var coordinate in RoomCoordinates.Coordinates)
+            var coordinates = RoomCoordinates.Coordinates.ToList();
+            foreach(var coordinate in coordinates)
             {
-                var randomNum = random.Next(0, chance + 1 - cousinsToAddToBuilding.CousinsLeftCount);
-                var shouldSpawn = randomNum == 0;
-
                 if(spawnCoordinates.Contains(coordinate))
                 {
-                    if(shouldSpawn)
+                    var randomNum = this.random.Next(0, chance + 1 - cousinsToAddToBuilding.CousinsLeftCount);
+                    var shouldSpawn = randomNum == 0;
+                    chance--;
+
+                    if (shouldSpawn)
                     {
                         var cousin = cousinsToAddToBuilding.GetRandomAndRemoveCousin();
 
                         this.rooms[coordinate] = cousin.SpawnRoom;
+                        continue;
                     }
                     
                     this.rooms[coordinate] = new Room();
-                    chance--;
                     continue;
                 }
 
@@ -47,7 +60,11 @@ namespace LD37.Domain.Rooms
                 this.rooms[coordinate] = new Room();
             }
 
-            if(cousinsToAddToBuilding.CousinsLeftCount > 0)
+            this.itemSpawnableRooms = this.rooms
+                .Where(x => !(x.Value is SpawnRoom) && !(x.Value is BekerRoom))
+                .Select(x => x.Value).ToArray();
+
+            if (cousinsToAddToBuilding.CousinsLeftCount > 0)
             {
                 throw new Exception("Not all cousins have been placed inside the building!");
             }
@@ -64,6 +81,13 @@ namespace LD37.Domain.Rooms
                     room.ConnectRoom(roomToLink, coordinateToLink.Value);
                 }
             }
+        }
+
+        public void SpawnItem()
+        {
+            var index = this.random.Next(0, this.itemSpawnableRooms.Length);
+
+            this.itemSpawnableRooms[index].SpawnItem(itemToSpawnSelector);
         }
 
         private Dictionary<Point, Direction> GetPointsAround(Point point)
@@ -112,9 +136,9 @@ namespace LD37.Domain.Rooms
             {
                 var points = new HashSet<Point>();
 
-                for(var x = 0; x < edgeCoordinate; x++)
+                for(var x = 0; x <= edgeCoordinate; x++)
                 {
-                    for(var y = 0; y < edgeCoordinate; y++)
+                    for(var y = 0; y <= edgeCoordinate; y++)
                     {
                         if(x == edgeCoordinate && y != 0)
                         {

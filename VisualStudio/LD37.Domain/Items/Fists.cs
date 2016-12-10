@@ -2,6 +2,6 @@
 {
     public sealed class Fists : Item
     {
-        public Fists() : base("Fists") {}
+        internal Fists() : base("Fists") {}
     }
 }

@@ -8,7 +8,15 @@
         {
             this.Name = name;
         }
+    }
 
-        public static Item Default => new Fists();
+    public sealed class PopGun : Item
+    {
+        internal PopGun() : base("PopGun") {}
+    }
+
+    public sealed class Bomb : Item
+    {
+        internal Bomb() : base("Bomb") {}
     }
 }
