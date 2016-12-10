@@ -2,6 +2,7 @@
 using Rewired;
 using RewiredConsts;
 using System;
+using LD37.Domain.Cousins;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerControl : MonoBehaviour {
@@ -9,13 +10,18 @@ public class PlayerControl : MonoBehaviour {
     public int rewiredPlayerId = 0;
     public float moveSpeed = 3.0f;
 
+    public Cousin cousin { get; private set; }
+
     private Player rewiredPlayer;
     private Rigidbody2D character;
     private Vector2 moveVector;
 
-	void Start () {
-        rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
+    public void SetCousin(Cousin cousin, int playerNumber) {
+        this.cousin = cousin;
+        rewiredPlayer = ReInput.players.GetPlayer(playerNumber);
+    }
 
+	void Start () {
         character = GetComponent<Rigidbody2D>();
 	}
 	

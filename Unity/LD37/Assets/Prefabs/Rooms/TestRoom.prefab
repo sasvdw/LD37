@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4426489191099188}
   - component: {fileID: 61575271301542450}
+  - component: {fileID: 114942391883262650}
   m_Layer: 0
   m_Name: ExitNorth
   m_TagString: Untagged
@@ -84,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4181181539742472}
   - component: {fileID: 61405207907036500}
+  - component: {fileID: 114284326794251870}
   m_Layer: 0
   m_Name: ExitSouth
   m_TagString: Untagged
@@ -115,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4704797860350046}
   - component: {fileID: 61970218894296804}
+  - component: {fileID: 114212073264987218}
   m_Layer: 0
   m_Name: ExitEast
   m_TagString: Untagged
@@ -146,6 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4562167986978734}
   - component: {fileID: 61428984002070570}
+  - component: {fileID: 114661109699551604}
   m_Layer: 0
   m_Name: ExitWest
   m_TagString: Untagged
@@ -317,7 +321,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1698238709602656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.8, y: 0, z: 0}
+  m_LocalPosition: {x: 8.7, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4648465373526952}
@@ -420,6 +424,42 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.5, y: 2}
+--- !u!114 &114212073264987218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1698238709602656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcfa8059773fe94192e03f6be0c0851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 1
+--- !u!114 &114284326794251870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1600992316403160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcfa8059773fe94192e03f6be0c0851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 2
+--- !u!114 &114661109699551604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1859092405624170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcfa8059773fe94192e03f6be0c0851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 3
 --- !u!114 &114937846330097806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -433,3 +473,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorTile: {fileID: 4033227775254694, guid: 9604f9f3f3a7aae4faaf191ebee3d391, type: 2}
   wallTile: {fileID: 4162186150547852, guid: f2e72cbcc0c857f4ea2cb70b20394095, type: 2}
+--- !u!114 &114942391883262650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1182872405490536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcfa8059773fe94192e03f6be0c0851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 0

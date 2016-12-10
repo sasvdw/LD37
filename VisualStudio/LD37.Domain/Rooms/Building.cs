@@ -10,9 +10,11 @@ namespace LD37.Domain.Rooms
     public class Building
     {
         private readonly IDictionary<Point, Room> rooms;
+        public List<Room> roomList { get; private set; }
 
         public Building(CousinsToAddToBuilding cousinsToAddToBuilding)
         {
+            roomList = new List<Room>();
             var chance = 4;
             this.rooms = new Dictionary<Point, Room>();
 
@@ -33,7 +35,7 @@ namespace LD37.Domain.Rooms
 
                         this.rooms[coordinate] = cousin.SpawnRoom;
                     }
-                    
+
                     this.rooms[coordinate] = new Room();
                     chance--;
                     continue;
@@ -45,12 +47,14 @@ namespace LD37.Domain.Rooms
                 }
 
                 this.rooms[coordinate] = new Room();
+
+                this.roomList.Add(this.rooms[coordinate]);
             }
 
-            if(cousinsToAddToBuilding.CousinsLeftCount > 0)
+            /*if(cousinsToAddToBuilding.CousinsLeftCount > 0)
             {
                 throw new Exception("Not all cousins have been placed inside the building!");
-            }
+            }*/
 
             foreach(var roomCoordinate in this.rooms.Keys)
             {

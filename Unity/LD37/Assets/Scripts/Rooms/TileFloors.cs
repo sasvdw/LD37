@@ -11,6 +11,8 @@ public class TileFloors : MonoBehaviour {
     public Transform floorTile;
     public Transform wallTile;
 
+    public Room room { get; set; }
+
     private const int WIDTH = 18;
     private const int HEIGHT = 10;
 
@@ -21,8 +23,9 @@ public class TileFloors : MonoBehaviour {
     private int maxX;
     private int minY;
     private int maxY;
-
-    public void BuildRoom(Room room) {
+    private bool built = false;
+    
+    public void BuildRoom() {
         for (int x = minX; x <= maxX; x++) {
             for (int y = minY; y <= maxY; y++) {
                 if (IsWallLocation(x, y) && !IsDoorLocation(x, y, room)) {
@@ -32,6 +35,8 @@ public class TileFloors : MonoBehaviour {
                 }
             }
         }
+
+        built = true;
     }
 
     private bool IsDoorLocation(int x, int y, Room room) {
@@ -86,10 +91,11 @@ public class TileFloors : MonoBehaviour {
         room.ConnectRoom(room3, Direction.East);
         room.ConnectRoom(room4, Direction.South);
         room.ConnectRoom(room5, Direction.West);
-        BuildRoom(room);
 	}
 	
 	void Update () {
-		
+		if (!built && room != null) {
+            BuildRoom();
+        }
 	}
 }
