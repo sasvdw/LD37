@@ -19,7 +19,9 @@ ExportedObj/
 *.svd
 *.orig
 *.Editor.csproj
-/lib/LD37.*
+
+#Visual Studio created DLL's
+/Assets/lib/LD37.*
 
 
 # Unity3D generated meta files
