@@ -82,12 +82,12 @@ TextureImporter:
       name: turn-0001
       rect:
         serializedVersion: 2
-        x: 561
-        y: 103
-        width: 167
-        height: 302
+        x: 124
+        y: 711
+        width: 175
+        height: 311
       alignment: 9
-      pivot: {x: 0.5, y: -0.052980132}
+      pivot: {x: 0.5, y: -0.03215434}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -95,12 +95,12 @@ TextureImporter:
       name: turn-0002
       rect:
         serializedVersion: 2
-        x: 561
-        y: 103
-        width: 167
-        height: 302
+        x: 124
+        y: 711
+        width: 175
+        height: 311
       alignment: 9
-      pivot: {x: 0.5, y: -0.052980132}
+      pivot: {x: 0.5, y: -0.03215434}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -108,12 +108,12 @@ TextureImporter:
       name: turn-0003
       rect:
         serializedVersion: 2
-        x: 418
-        y: 94
-        width: 141
-        height: 306
+        x: 822
+        y: 710
+        width: 160
+        height: 312
       alignment: 9
-      pivot: {x: 0.46453902, y: -0.05882353}
+      pivot: {x: 0.490625, y: -0.05448718}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -121,12 +121,12 @@ TextureImporter:
       name: turn-0004
       rect:
         serializedVersion: 2
-        x: 418
-        y: 94
-        width: 141
-        height: 306
+        x: 822
+        y: 710
+        width: 160
+        height: 312
       alignment: 9
-      pivot: {x: 0.46453902, y: -0.05882353}
+      pivot: {x: 0.490625, y: -0.05448718}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -134,12 +134,12 @@ TextureImporter:
       name: turn-0005
       rect:
         serializedVersion: 2
-        x: 162
-        y: 389
-        width: 126
-        height: 312
+        x: 614
+        y: 288
+        width: 133
+        height: 314
       alignment: 9
-      pivot: {x: 0.5833333, y: -0.05448718}
+      pivot: {x: 0.58270675, y: -0.0477707}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -147,12 +147,12 @@ TextureImporter:
       name: turn-0006
       rect:
         serializedVersion: 2
-        x: 162
-        y: 389
-        width: 126
-        height: 312
+        x: 614
+        y: 288
+        width: 133
+        height: 314
       alignment: 9
-      pivot: {x: 0.5833333, y: -0.05448718}
+      pivot: {x: 0.58270675, y: -0.0477707}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -160,12 +160,12 @@ TextureImporter:
       name: turn-0007
       rect:
         serializedVersion: 2
-        x: 150
-        y: 69
-        width: 129
-        height: 314
+        x: 521
+        y: 402
+        width: 138
+        height: 316
       alignment: 9
-      pivot: {x: 0.75581396, y: -0.0477707}
+      pivot: {x: 0.7137681, y: -0.04113924}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -173,12 +173,12 @@ TextureImporter:
       name: turn-0008
       rect:
         serializedVersion: 2
-        x: 150
-        y: 69
-        width: 129
-        height: 314
+        x: 521
+        y: 402
+        width: 138
+        height: 316
       alignment: 9
-      pivot: {x: 0.75581396, y: -0.0477707}
+      pivot: {x: 0.7137681, y: -0.04113924}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -186,12 +186,12 @@ TextureImporter:
       name: turn-0009
       rect:
         serializedVersion: 2
-        x: 587
-        y: 417
-        width: 129
-        height: 300
+        x: 213
+        y: 282
+        width: 140
+        height: 304
       alignment: 9
-      pivot: {x: 0.71705425, y: -0.053333335}
+      pivot: {x: 0.7107143, y: -0.04276316}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -199,12 +199,12 @@ TextureImporter:
       name: turn-0010
       rect:
         serializedVersion: 2
-        x: 587
-        y: 417
-        width: 129
-        height: 300
+        x: 213
+        y: 282
+        width: 140
+        height: 304
       alignment: 9
-      pivot: {x: 0.71705425, y: -0.053333335}
+      pivot: {x: 0.7107143, y: -0.04276316}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -212,12 +212,12 @@ TextureImporter:
       name: turn-0011
       rect:
         serializedVersion: 2
-        x: 306
-        y: 715
-        width: 151
-        height: 307
+        x: 12
+        y: 403
+        width: 156
+        height: 313
       alignment: 9
-      pivot: {x: 0.68543047, y: -0.055374593}
+      pivot: {x: 0.66346157, y: -0.044728436}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -225,12 +225,12 @@ TextureImporter:
       name: turn-0012
       rect:
         serializedVersion: 2
-        x: 306
-        y: 715
-        width: 151
-        height: 307
+        x: 12
+        y: 403
+        width: 156
+        height: 313
       alignment: 9
-      pivot: {x: 0.68543047, y: -0.055374593}
+      pivot: {x: 0.66346157, y: -0.044728436}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -238,12 +238,12 @@ TextureImporter:
       name: walk-0001
       rect:
         serializedVersion: 2
-        x: 2
-        y: 385
-        width: 158
-        height: 316
+        x: 290
+        y: 702
+        width: 165
+        height: 320
       alignment: 9
-      pivot: {x: 0.49683544, y: -0.015822785}
+      pivot: {x: 0.4939394, y: -0.009375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -251,12 +251,12 @@ TextureImporter:
       name: walk-0002
       rect:
         serializedVersion: 2
-        x: 2
-        y: 385
-        width: 158
-        height: 316
+        x: 290
+        y: 702
+        width: 165
+        height: 320
       alignment: 9
-      pivot: {x: 0.49683544, y: -0.015822785}
+      pivot: {x: 0.4939394, y: -0.009375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -264,12 +264,12 @@ TextureImporter:
       name: walk-0003
       rect:
         serializedVersion: 2
-        x: 459
-        y: 719
-        width: 168
-        height: 303
+        x: 448
+        y: 710
+        width: 170
+        height: 312
       alignment: 9
-      pivot: {x: 0.55654764, y: -0.04290429}
+      pivot: {x: 0.55, y: -0.01923077}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -277,12 +277,12 @@ TextureImporter:
       name: walk-0004
       rect:
         serializedVersion: 2
-        x: 459
-        y: 719
-        width: 168
-        height: 303
+        x: 448
+        y: 710
+        width: 170
+        height: 312
       alignment: 9
-      pivot: {x: 0.55654764, y: -0.04290429}
+      pivot: {x: 0.55, y: -0.01923077}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -290,12 +290,12 @@ TextureImporter:
       name: walk-0005
       rect:
         serializedVersion: 2
-        x: 290
-        y: 402
-        width: 152
-        height: 307
+        x: 720
+        y: 713
+        width: 163
+        height: 309
       alignment: 9
-      pivot: {x: 0.44407895, y: -0.048859935}
+      pivot: {x: 0.42638037, y: -0.048543688}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -303,12 +303,12 @@ TextureImporter:
       name: walk-0006
       rect:
         serializedVersion: 2
-        x: 290
-        y: 402
-        width: 152
-        height: 307
+        x: 720
+        y: 713
+        width: 163
+        height: 309
       alignment: 9
-      pivot: {x: 0.44407895, y: -0.048859935}
+      pivot: {x: 0.42638037, y: -0.048543688}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -316,12 +316,12 @@ TextureImporter:
       name: walk-0007
       rect:
         serializedVersion: 2
-        x: 444
-        y: 407
-        width: 141
-        height: 306
+        x: 112
+        y: 79
+        width: 144
+        height: 311
       alignment: 9
-      pivot: {x: 0.36524823, y: -0.055555556}
+      pivot: {x: 0.3784722, y: -0.041800644}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -329,12 +329,12 @@ TextureImporter:
       name: walk-0008
       rect:
         serializedVersion: 2
-        x: 444
-        y: 407
-        width: 141
-        height: 306
+        x: 112
+        y: 79
+        width: 144
+        height: 311
       alignment: 9
-      pivot: {x: 0.36524823, y: -0.055555556}
+      pivot: {x: 0.3784722, y: -0.041800644}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -342,12 +342,12 @@ TextureImporter:
       name: walk-0009
       rect:
         serializedVersion: 2
-        x: 165
-        y: 711
-        width: 139
-        height: 311
+        x: 145
+        y: 400
+        width: 141
+        height: 316
       alignment: 9
-      pivot: {x: 0.4352518, y: -0.03215434}
+      pivot: {x: 0.4432624, y: -0.022151899}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -355,12 +355,12 @@ TextureImporter:
       name: walk-0010
       rect:
         serializedVersion: 2
-        x: 165
-        y: 711
-        width: 139
-        height: 311
+        x: 145
+        y: 400
+        width: 141
+        height: 316
       alignment: 9
-      pivot: {x: 0.4352518, y: -0.03215434}
+      pivot: {x: 0.4432624, y: -0.022151899}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -368,12 +368,12 @@ TextureImporter:
       name: walk-0011
       rect:
         serializedVersion: 2
-        x: 281
-        y: 76
-        width: 135
-        height: 311
+        x: 2
+        y: 88
+        width: 146
+        height: 320
       alignment: 9
-      pivot: {x: 0.47777778, y: -0.01607717}
+      pivot: {x: 0.46917808, y: -0.00625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -381,12 +381,12 @@ TextureImporter:
       name: walk-0012
       rect:
         serializedVersion: 2
-        x: 281
-        y: 76
-        width: 135
-        height: 311
+        x: 2
+        y: 88
+        width: 146
+        height: 320
       alignment: 9
-      pivot: {x: 0.47777778, y: -0.01607717}
+      pivot: {x: 0.46917808, y: -0.00625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -394,12 +394,12 @@ TextureImporter:
       name: walk-0013
       rect:
         serializedVersion: 2
-        x: 2
-        y: 69
-        width: 146
-        height: 314
+        x: 599
+        y: 701
+        width: 158
+        height: 321
       alignment: 9
-      pivot: {x: 0.42123288, y: -0.025477707}
+      pivot: {x: 0.40822786, y: -0.009345794}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -407,12 +407,12 @@ TextureImporter:
       name: walk-0014
       rect:
         serializedVersion: 2
-        x: 2
-        y: 69
-        width: 146
-        height: 314
+        x: 599
+        y: 701
+        width: 158
+        height: 321
       alignment: 9
-      pivot: {x: 0.42123288, y: -0.025477707}
+      pivot: {x: 0.40822786, y: -0.009345794}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -421,11 +421,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 703
-        width: 161
-        height: 319
+        y: 700
+        width: 165
+        height: 322
       alignment: 9
-      pivot: {x: 0.44409937, y: -0.012539185}
+      pivot: {x: 0.45757577, y: -0.0062111802}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -434,11 +434,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 703
-        width: 161
-        height: 319
+        y: 700
+        width: 165
+        height: 322
       alignment: 9
-      pivot: {x: 0.44409937, y: -0.012539185}
+      pivot: {x: 0.45757577, y: -0.0062111802}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
