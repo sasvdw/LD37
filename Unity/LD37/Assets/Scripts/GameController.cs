@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour {
 
         int x = 100;
         int y = 100;
-        foreach (Room room in building.roomList) {
+        foreach (Room room in building.RoomList) {
             CreateRoom(room, new Vector2(x, y));
 
             x += 30;

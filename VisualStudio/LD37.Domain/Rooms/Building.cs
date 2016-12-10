@@ -11,20 +11,26 @@ namespace LD37.Domain.Rooms
     public class Building
     {
         private readonly IDictionary<Point, Room> rooms;
-        public List<Room> roomList { get; private set; }
         private readonly Room[] itemSpawnableRooms;
         private readonly ItemToSpawnSelector itemToSpawnSelector;
         private readonly Random random;
 
+        public IEnumerable<Room> RoomList
+        {
+            get
+            {
+                return this.rooms.Select(x => x.Value);
+            }
+        }
+
         public Building()
         {
-            roomList = new List<Room>();
             this.rooms = new Dictionary<Point, Room>();
             this.random = new Random();
         }
 
         public Building(
-            CousinsToAddToBuilding cousinsToAddToBuilding, 
+            CousinsToAddToBuilding cousinsToAddToBuilding,
             ItemToSpawnSelector itemToSpawnSelector)
             : this()
         {
@@ -42,7 +48,7 @@ namespace LD37.Domain.Rooms
                     var shouldSpawn = randomNum == 0;
                     chance--;
 
-                    if (shouldSpawn)
+                    if(shouldSpawn)
                     {
                         var cousin = cousinsToAddToBuilding.GetRandomAndRemoveCousin();
 
@@ -60,15 +66,13 @@ namespace LD37.Domain.Rooms
                 }
 
                 this.rooms[coordinate] = new Room();
-
-                this.roomList.Add(this.rooms[coordinate]);
             }
 
             this.itemSpawnableRooms = this.rooms
                 .Where(x => !(x.Value is SpawnRoom) && !(x.Value is BekerRoom))
                 .Select(x => x.Value).ToArray();
 
-            if (cousinsToAddToBuilding.CousinsLeftCount > 0)
+            if(cousinsToAddToBuilding.CousinsLeftCount > 0)
             {
                 throw new Exception("Not all cousins have been placed inside the building!");
             }
