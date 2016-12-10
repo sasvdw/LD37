@@ -3,20 +3,20 @@ using Rewired;
 using RewiredConsts;
 using System;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerControl : MonoBehaviour {
 
     public int rewiredPlayerId = 0;
     public float moveSpeed = 3.0f;
 
     private Player rewiredPlayer;
-    private CharacterController character;
+    private Rigidbody2D character;
     private Vector2 moveVector;
 
 	void Start () {
         rewiredPlayer = ReInput.players.GetPlayer(rewiredPlayerId);
 
-        character = GetComponent<CharacterController>();
+        character = GetComponent<Rigidbody2D>();
 	}
 	
 	void Update () {
@@ -31,7 +31,9 @@ public class PlayerControl : MonoBehaviour {
 
     private void ProcessInput() {
         if (moveVector.magnitude > 0) {
-            character.Move(moveVector * moveSpeed * Time.deltaTime);
+            character.velocity = moveVector * moveSpeed;
+        } else {
+            character.velocity = new Vector3(0, 0, 0);
         }
     }
 }
