@@ -21,13 +21,13 @@ namespace LD37.Domain.Cousins
         private readonly Fists fists;
         private Item currentItem;
 
-        public EventHandler<RoomChangedEventArgs> RoomChanged;
-
         public Room SpawnRoom => this.spawnRoom;
 
         public Room CurrentRoom { get; private set; }
 
         public string Name { get; }
+
+        public event EventHandler<RoomChangedEventArgs> RoomChanged;
 
         private Cousin()
         {
