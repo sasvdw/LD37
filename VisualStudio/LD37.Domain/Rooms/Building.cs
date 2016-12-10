@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using LD37.Domain.Cousins;
 using LD37.Domain.Movement;
 
 namespace LD37.Domain.Rooms
@@ -8,19 +11,44 @@ namespace LD37.Domain.Rooms
     {
         private readonly IDictionary<Point, Room> rooms;
 
-        public Building()
+        public Building(CousinsToAddToBuilding cousinsToAddToBuilding)
         {
+            var chance = 4;
             this.rooms = new Dictionary<Point, Room>();
 
-            foreach(var coordinate in RoomCoordinates.GetCoordinates)
+            var spawnCoordinates = RoomCoordinates.SpawnCoordinates.ToList();
+
+            var random = new Random();
+
+            foreach(var coordinate in RoomCoordinates.Coordinates)
             {
+                var randomNum = random.Next(0, chance + 1 - cousinsToAddToBuilding.CousinsLeftCount);
+                var shouldSpawn = randomNum == 0;
+
+                if(spawnCoordinates.Contains(coordinate))
+                {
+                    if(shouldSpawn)
+                    {
+                        var cousin = cousinsToAddToBuilding.GetRandomAndRemoveCousin();
+
+                        this.rooms[coordinate] = cousin.SpawnRoom;
+                    }
+                    this.rooms[coordinate] = new Room();
+                    chance--;
+                    continue;
+                }
+
+                if(RoomCoordinates.BekerSpawnCoordinate == coordinate)
+                {
+                    this.rooms[coordinate] = new BekerRoom();
+                }
+
                 this.rooms[coordinate] = new Room();
             }
 
             foreach(var roomCoordinate in this.rooms.Keys)
             {
                 var coordinatesAroundRoom = this.GetPointsAround(roomCoordinate);
-
 
                 foreach(var coordinateToLink in coordinatesAroundRoom)
                 {
@@ -62,57 +90,79 @@ namespace LD37.Domain.Rooms
         }
     }
 
-    internal class RoomCoordinates
+    internal static class RoomCoordinates
     {
-        private readonly HashSet<Point> points;
+        private const int edgeCoordinate = 3;
 
-        private RoomCoordinates()
+        public static IEnumerable<Point> Coordinates = coordinates;
+
+        public static IEnumerable<Point> SpawnCoordinates = spawnCoordinates;
+
+        public static Point BekerSpawnCoordinate = new Point(0, 0);
+
+        private static IEnumerable<Point> coordinates
         {
-            this.points = new HashSet<Point>();
-
-            for(var x = 0; x < 3; x++)
+            get
             {
-                for(var y = 0 ; y < 3; y++)
+                var points = new HashSet<Point>();
+
+                for(var x = 0; x < edgeCoordinate; x++)
                 {
-                    if(x == 3 && y != 0)
+                    for(var y = 0; y < edgeCoordinate; y++)
                     {
-                        continue;
-                    }
-                    if(x != 0 && y != 0)
-                    {
-                        continue;
-                    }
+                        if(x == edgeCoordinate && y != 0)
+                        {
+                            continue;
+                        }
+                        if(x != 0 && y == edgeCoordinate)
+                        {
+                            continue;
+                        }
 
-                    if((x > 1 && y > 2) || (x > 2 && y > 1))
-                    {
-                        continue;
-                    }
+                        if((x > 1 && y > 2) || (x > 2 && y > 1))
+                        {
+                            continue;
+                        }
 
-                    if(x == 0 && y != 0)
-                    {
-                        var point2 = new Point(x, -y);
-                        this.points.Add(point2);
-                    }
-                    if(x != 0 && y == 0)
-                    {
-                        var point3 = new Point(-x, y);
-                        this.points.Add(point3);
-                    }
-                    if(x != 0 && y != 0)
-                    {
-                        var point4 = new Point(-x, -y);
-                        this.points.Add(point4);
-                    }
+                        if(x == 0 && y != 0)
+                        {
+                            var point2 = new Point(x, -y);
+                            points.Add(point2);
+                        }
+                        if(x != 0 && y == 0)
+                        {
+                            var point3 = new Point(-x, y);
+                            points.Add(point3);
+                        }
+                        if(x != 0 && y != 0)
+                        {
+                            var point4 = new Point(-x, -y);
+                            points.Add(point4);
+                        }
 
-
-                    var point1 = new Point(x, y);
-                    this.points.Add(point1);
+                        var point1 = new Point(x, y);
+                        points.Add(point1);
+                    }
                 }
+
+                return points;
             }
         }
 
-        private static readonly RoomCoordinates roomCoordinates = new RoomCoordinates();
+        private static IEnumerable<Point> spawnCoordinates
+        {
+            get
+            {
+                var points = new HashSet<Point>
+                             {
+                                 new Point(0, edgeCoordinate),
+                                 new Point(0, -edgeCoordinate),
+                                 new Point(edgeCoordinate, 0),
+                                 new Point(-edgeCoordinate, 0)
+                             };
 
-        public static IEnumerable<Point> GetCoordinates => roomCoordinates.points;
+                return points;
+            }
+        }
     }
 }

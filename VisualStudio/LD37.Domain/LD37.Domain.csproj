@@ -41,9 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cousins\Cousin.cs" />
+    <Compile Include="Cousins\CousinsToAddToBuilding.cs" />
+    <Compile Include="Items\Beker.cs" />
+    <Compile Include="Items\Fists.cs" />
+    <Compile Include="Items\Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rooms\BekerRoom.cs" />
     <Compile Include="Rooms\Building.cs" />
     <Compile Include="Movement\Direction.cs" />
+    <Compile Include="Rooms\SpawnRoom.cs" />
     <Compile Include="Rooms\Door.cs" />
     <Compile Include="Rooms\Room.cs" />
   </ItemGroup>
