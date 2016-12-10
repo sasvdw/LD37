@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD37", "LD37.csproj", "{138A0C40-A030-78D7-2E8B-86CCE14B44E0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD37.Editor", "LD37.Editor.csproj", "{6DC186F4-8BE0-D150-0145-D890DA21A797}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD37.Domain", "..\..\VisualStudio\LD37.Domain\LD37.Domain.csproj", "{442E71C2-1304-4177-A9CA-42CA8D9723E1}"
 EndProject
@@ -17,10 +17,6 @@ Global
 		{138A0C40-A030-78D7-2E8B-86CCE14B44E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{138A0C40-A030-78D7-2E8B-86CCE14B44E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{138A0C40-A030-78D7-2E8B-86CCE14B44E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DC186F4-8BE0-D150-0145-D890DA21A797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DC186F4-8BE0-D150-0145-D890DA21A797}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DC186F4-8BE0-D150-0145-D890DA21A797}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DC186F4-8BE0-D150-0145-D890DA21A797}.Release|Any CPU.Build.0 = Release|Any CPU
 		{442E71C2-1304-4177-A9CA-42CA8D9723E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{442E71C2-1304-4177-A9CA-42CA8D9723E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{442E71C2-1304-4177-A9CA-42CA8D9723E1}.Release|Any CPU.ActiveCfg = Release|Any CPU

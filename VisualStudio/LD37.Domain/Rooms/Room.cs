@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LD37.Domain.Items;
 using LD37.Domain.Movement;
 
 namespace LD37.Domain.Rooms
@@ -7,10 +8,13 @@ namespace LD37.Domain.Rooms
     public class Room
     {
         private readonly Dictionary<Direction, Door> doors;
+        protected readonly HashSet<Item> items;
+
 
         public Room()
         {
             this.doors = new Dictionary<Direction, Door>();
+            this.items = new HashSet<Item>();
         }
 
         internal void ConnectRoom(Room room, Direction directionToRoom)
@@ -27,8 +31,8 @@ namespace LD37.Domain.Rooms
 
             var door = new Door(room);
             this.doors.Add(directionToRoom, door);
-            var otherRoomDoor = new Door(this);
-            room.doors.Add(directionToRoom.Opposite, otherRoomDoor);
+
+            room.ConnectRoom(this, directionToRoom.Opposite);
         }
     }
 }
