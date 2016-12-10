@@ -17,6 +17,8 @@ ExportedObj/
 *.pidb
 *.booproj
 *.svd
+*.orig
+*.Editor.csproj
 
 
 # Unity3D generated meta files
@@ -31,3 +33,6 @@ sysinfo.txt
 
 # ReWired input
 Assets/Rewired*
+
+#Texture Packer
+Assets/codeandweb.com*
