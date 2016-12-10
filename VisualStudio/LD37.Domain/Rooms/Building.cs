@@ -33,6 +33,7 @@ namespace LD37.Domain.Rooms
 
                         this.rooms[coordinate] = cousin.SpawnRoom;
                     }
+                    
                     this.rooms[coordinate] = new Room();
                     chance--;
                     continue;
