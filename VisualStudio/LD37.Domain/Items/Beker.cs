@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-
-namespace LD37.Domain.Items
+﻿namespace LD37.Domain.Items
 {
     public sealed class Beker : Item
     {

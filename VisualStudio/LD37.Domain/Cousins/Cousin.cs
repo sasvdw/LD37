@@ -1,11 +1,14 @@
-﻿using LD37.Domain.Rooms;
+﻿using LD37.Domain.Items;
+using LD37.Domain.Movement;
+using LD37.Domain.Rooms;
 
 namespace LD37.Domain.Cousins
 {
     public class Cousin
     {
-        private readonly string name;
         private readonly SpawnRoom spawnRoom;
+        private Room currentRoom;
+        private Item currentItem;
 
         public static Cousin Sas => new Cousin("Sas");
         public static Cousin Matt => new Cousin("Matt");
@@ -15,11 +18,28 @@ namespace LD37.Domain.Cousins
         public static Cousin Sias => new Cousin("Sias");
         public static Cousin Pieter => new Cousin("Pieter");
         public Room SpawnRoom => this.spawnRoom;
+        public string Name { get; }
 
-        public Cousin(string name)
+        private Cousin()
         {
-            this.name = name;
+            this.currentItem = Item.Default;
+        }
+        public Cousin(string name) : this()
+        {
+            this.Name = name;
             this.spawnRoom = new SpawnRoom(this);
+            this.currentRoom = this.spawnRoom;
+        }
+
+        public void Move(Direction direction)
+        {
+            this.currentRoom.MoveCousin(this, direction);
+        }
+
+        internal void SetCurrentRoom(Room room)
+        {
+            room.MoveInto(this);
+            this.currentRoom = room;
         }
     }
 }
