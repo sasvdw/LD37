@@ -1,4 +1,6 @@
-﻿namespace LD37.Domain.Rooms
+﻿using LD37.Domain.Cousins;
+
+namespace LD37.Domain.Rooms
 {
     public class Door
     {
@@ -8,5 +10,10 @@
         }
 
         public Room ToRoom { get; }
+
+        public void MoveCousin(Cousin cousin)
+        {
+            cousin.SetCurrentRoom(this.ToRoom);
+        }
     }
 }
