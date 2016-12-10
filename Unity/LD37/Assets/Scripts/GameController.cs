@@ -4,6 +4,7 @@ using UnityEngine;
 using LD37.Domain.Cousins;
 using LD37.Domain.Rooms;
 using System;
+using LD37.Domain.Items;
 
 public class GameController : MonoBehaviour {
 
@@ -20,7 +21,7 @@ public class GameController : MonoBehaviour {
 
         List<Cousin> cousins = CreateCousinsForPlayers();
         CousinsToAddToBuilding cousinsToAdd = new CousinsToAddToBuilding(cousins);
-        Building building = new Building(cousinsToAdd);
+        Building building = new Building(cousinsToAdd, new ItemToSpawnSelector());
 
         int x = 100;
         int y = 100;

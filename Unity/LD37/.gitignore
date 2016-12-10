@@ -20,6 +20,9 @@ ExportedObj/
 *.orig
 *.Editor.csproj
 
+#Visual Studio created DLL's
+/Assets/lib/LD37.*
+
 
 # Unity3D generated meta files
 *.pidb.meta
