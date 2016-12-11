@@ -5,15 +5,17 @@ using LD37.Domain.Items;
 using LD37.Domain.Rooms;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameController : Singleton<GameController>
 {
     private readonly Dictionary<Room, Transform> rooms;
     private readonly Dictionary<Cousin, Transform> players;
+    private readonly Dictionary<Item, Transform> items;
     private readonly List<Cousin> cousins;
 
     private Transform playerContainer;
     private Transform roomContainer;
     private Transform camerasContainer;
+    private Transform itemsContainer;
 
     private bool initialSpawnCompleted = false;
 
@@ -22,12 +24,24 @@ public class GameController : MonoBehaviour
     public Transform PlayerPrefab;
     public Transform RoomPrefab;
     public Transform PlayerCameraPrefab;
+    public Transform BekerPrefab;
+
+    public Building Building { get; set; }
+    public IEnumerable<Cousin> Cousins { get {
+            return this.cousins;
+        }
+    }
 
     public GameController()
     {
         this.rooms = new Dictionary<Room, Transform>();
         this.players = new Dictionary<Cousin, Transform>();
+        this.items = new Dictionary<Item, Transform>();
         this.cousins = new List<Cousin>();
+    }
+
+    public Color GetCousinColor(Cousin cousin) {
+        return players[cousin].GetComponent<PlayerControl>().Color;
     }
 
     private void Awake()
@@ -35,10 +49,28 @@ public class GameController : MonoBehaviour
         this.playerContainer = transform.Find("Players");
         this.roomContainer = transform.Find("Rooms");
         this.camerasContainer = transform.Find("Cameras");
+        this.itemsContainer = transform.Find("Items");
 
         this.cousins.AddRange(this.CreateCousinsForPlayers());
-        var building = new Building(this.cousins, new ItemToSpawnSelector());
-        this.CreateRooms(building);
+        Building = new Building(this.cousins, new ItemToSpawnSelector());
+        this.CreateRooms(Building);
+        this.SpawnBeker();
+    }
+
+    private void SpawnBeker()
+    {
+        var bekerRoom = this.Building.Rooms.Single(x => x is BekerRoom);
+
+        var bekerRoomTransform = this.rooms[bekerRoom];
+
+        var beker = Instantiate(
+                this.BekerPrefab,
+                bekerRoomTransform.position,
+                Quaternion.identity,
+                this.itemsContainer
+            );
+
+        this.items.Add(Beker.Instance, beker);
     }
 
     private void Start() {}
@@ -63,7 +95,7 @@ public class GameController : MonoBehaviour
             this.PlayerPrefab,
             new Vector2(playerNumber * 2, 0),
             Quaternion.identity,
-            playerContainer
+            this.playerContainer
         );
 
         var playerControl = player.GetComponent<PlayerControl>();

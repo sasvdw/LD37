@@ -11,6 +11,9 @@ namespace LD37.Domain.Rooms
         private readonly Dictionary<Direction, Door> doors;
         protected readonly HashSet<Cousin> cousinsInRoom;
         protected readonly HashSet<Item> items;
+
+        public IEnumerable<Cousin> Cousins => this.cousinsInRoom;
+
         public Room()
         {
             this.doors = new Dictionary<Direction, Door>();

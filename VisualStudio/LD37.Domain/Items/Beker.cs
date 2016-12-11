@@ -9,14 +9,16 @@
         {
             get
             {
-                if(instance == null)
+                if(instance != null)
                 {
-                    lock(syncRoot)
+                    return instance;
+                }
+
+                lock(syncRoot)
+                {
+                    if(instance == null)
                     {
-                        if(instance == null)
-                        {
-                            instance = new Beker();
-                        }
+                        instance = new Beker();
                     }
                 }
 

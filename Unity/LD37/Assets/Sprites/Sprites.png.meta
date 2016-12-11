@@ -17,6 +17,8 @@ TextureImporter:
     21300020: Rooms-Floors-PlaceholderTile
     21300022: Rooms-Walls-Wall
     21300024: Items-DieBeker
+    21300026: Map-MiniMaptile
+    21300028: Map-MiniMapBackground
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -157,6 +159,32 @@ TextureImporter:
         height: 63
       alignment: 9
       pivot: {x: 0.5, y: 0.50793654}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Map-MiniMapBackground
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 41
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Map-MiniMaptile
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 23
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
