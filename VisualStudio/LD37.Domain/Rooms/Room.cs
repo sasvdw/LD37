@@ -57,6 +57,14 @@ namespace LD37.Domain.Rooms
             door.MoveCousin(cousin);
         }
 
+        internal void RemoveCousin(Cousin cousin) {
+            if (!this.cousinsInRoom.Contains(cousin)) {
+                throw new InvalidOperationException($"{cousin.Name} is not in this room");
+            }
+
+            this.cousinsInRoom.Remove(cousin);
+        }
+
         internal void MoveInto(Cousin cousin)
         {
             this.cousinsInRoom.Add(cousin);

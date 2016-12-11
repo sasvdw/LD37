@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4423163549070570}
   - component: {fileID: 212930487686266598}
-  - component: {fileID: 114807268100329772}
   - component: {fileID: 61710247289137482}
   m_Layer: 0
   m_Name: DieBeker
@@ -56,17 +55,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.6, y: 1}
---- !u!114 &114807268100329772
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1723538220347130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 450975b6d94071f4e9d6952d562f9650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212930487686266598
 SpriteRenderer:
   m_ObjectHideFlags: 1
