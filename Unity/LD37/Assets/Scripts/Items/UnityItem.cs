@@ -4,13 +4,11 @@ using UnityEngine;
 
 public abstract class UnityItem : MonoBehaviour {
 
-	void Start () {
+	public virtual void Start () {
 	}
 	
-	void Update () {
+	public virtual void Update () {
 	}
 
-    public abstract void Fire();
-
-    public abstract void Drop();
+    public abstract bool Fire();
 }

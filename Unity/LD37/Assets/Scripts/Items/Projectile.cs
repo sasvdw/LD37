@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour {
 
     public float duration = 1.0f;
     public int damage = 1;
+    public bool destroyOnHit = false;
 
 	void Start () {
 		
@@ -24,6 +25,10 @@ public class Projectile : MonoBehaviour {
         if (playerController != null && this.damage > 0) {
             playerController.Damage(damage);
             damage = 0;
+
+            if (destroyOnHit) {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

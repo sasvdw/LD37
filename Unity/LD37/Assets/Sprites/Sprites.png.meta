@@ -28,6 +28,8 @@ TextureImporter:
     21300042: Actors-Placeholder-RunSide
     21300044: Actors-Placeholder-RunUp
     21300046: Items-Punch
+    21300048: Items-PopGun
+    21300050: Items-Bullet
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -136,7 +138,7 @@ TextureImporter:
       name: Actors-Placeholder-RunDown
       rect:
         serializedVersion: 2
-        x: 67
+        x: 79
         y: 191
         width: 64
         height: 64
@@ -149,7 +151,7 @@ TextureImporter:
       name: Actors-Placeholder-RunSide
       rect:
         serializedVersion: 2
-        x: 133
+        x: 145
         y: 191
         width: 64
         height: 64
@@ -172,6 +174,19 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
+      name: Items-Bullet
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 226
+        width: 11
+        height: 11
+      alignment: 9
+      pivot: {x: 0.36363637, y: 0.54545456}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
       name: Items-DieBeker
       rect:
         serializedVersion: 2
@@ -181,6 +196,19 @@ TextureImporter:
         height: 63
       alignment: 9
       pivot: {x: 0.5, y: 0.50793654}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Items-PopGun
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 12
+        width: 54
+        height: 45
+      alignment: 9
+      pivot: {x: 0.46296296, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -201,8 +229,8 @@ TextureImporter:
       name: Map-MiniMapBackground
       rect:
         serializedVersion: 2
-        x: 23
-        y: 41
+        x: 211
+        y: 239
         width: 16
         height: 16
       alignment: 0
@@ -214,8 +242,8 @@ TextureImporter:
       name: Map-MiniMaptile
       rect:
         serializedVersion: 2
-        x: 23
-        y: 23
+        x: 229
+        y: 239
         width: 16
         height: 16
       alignment: 0

@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.3.1</string>
         <key>fileName</key>
-        <string>C:/GameDev/LD37/Art/UnitySprites.tps</string>
+        <string>C:/GameDev/LD37/Art/LD37_Sprites.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -197,11 +197,18 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">Actors/Placeholder/ActorPlaceholder_Down.png</key>
-            <key type="filename">Actors/Placeholder/ActorPlaceholder_Left.png</key>
-            <key type="filename">Actors/Placeholder/ActorPlaceholder_Right.png</key>
-            <key type="filename">Actors/Placeholder/ActorPlaceholder_Standing.png</key>
-            <key type="filename">Actors/Placeholder/ActorPlaceholder_Up.png</key>
+            <key type="filename">Actors/Placeholder/IdleDown.png</key>
+            <key type="filename">Actors/Placeholder/IdleSide.png</key>
+            <key type="filename">Actors/Placeholder/IdleUp.png</key>
+            <key type="filename">Actors/Placeholder/RunDown.png</key>
+            <key type="filename">Actors/Placeholder/RunSide.png</key>
+            <key type="filename">Actors/Placeholder/RunUp.png</key>
+            <key type="filename">Items/Bullet.png</key>
+            <key type="filename">Items/DieBeker.png</key>
+            <key type="filename">Items/PopGun.png</key>
+            <key type="filename">Items/Punch.png</key>
+            <key type="filename">Rooms/Floors/PlaceholderTile.png</key>
+            <key type="filename">Rooms/Walls/Wall.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -211,6 +218,20 @@
                 <rect>16,16,32,32</rect>
                 <key>scale9Paddings</key>
                 <rect>16,16,32,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">Map/MiniMapBackground.png</key>
+            <key type="filename">Map/MiniMaptile.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,4,8,8</rect>
+                <key>scale9Paddings</key>
+                <rect>4,4,8,8</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

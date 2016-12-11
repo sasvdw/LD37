@@ -25,6 +25,7 @@ public class GameController : Singleton<GameController>
     public Transform RoomPrefab;
     public Transform PlayerCameraPrefab;
     public Transform FistsItemPrefab;
+    public Transform PopGunPrefab;
     public float respawnDelay = 3.0f;
 
     public Building Building { get; set; }

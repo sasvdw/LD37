@@ -152,6 +152,8 @@ MonoBehaviour:
     type: 2}
   FistsItemPrefab: {fileID: 4257391410437170, guid: 04ce712315d1760439ac32d0514638e8,
     type: 2}
+  PopGunPrefab: {fileID: 4715364135801994, guid: c61cb581e0387e44eaf46cfb8c9938ae,
+    type: 2}
   respawnDelay: 3
 --- !u!114 &114962625311699618
 MonoBehaviour:
