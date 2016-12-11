@@ -21,28 +21,30 @@ namespace LD37.Domain.Cousins
         public static IEnumerable<Cousin> All = new List<Cousin> { Sas, Matt, Lida, Tharina, Gallie, Sias, Pieter };
         private readonly SpawnRoom spawnRoom;
         private readonly Fists fists;
-        private Item currentItem;
+        private byte score;
         private int health = DEFAULT_HEALTH;
 
         public Room SpawnRoom => this.spawnRoom;
 
         public Room CurrentRoom { get; private set; }
 
-        public Item CurrentItem => this.currentItem;
+        public Item CurrentItem { get; private set; }
 
         public string Name { get; }
 
-        public event EventHandler<RoomChangedEventArgs> RoomChanged;
         public event EventHandler<DiedEventArgs> Died;
-        public event EventHandler<RespawnEventArgs> Respawned;
+        public event EventHandler<ItemDestroyedEventArgs> ItemDestroyed;
         public event EventHandler<ItemDroppedEventArgs> ItemDropped;
         public event EventHandler<ItemPickedUpEventArgs> ItemPickedUp;
-        public event EventHandler<ItemDestroyedEventArgs> ItemDestroyed;
-
+        public event EventHandler<RespawnEventArgs> Respawned;
+        public event EventHandler<RoomChangedEventArgs> RoomChanged;
+        public event EventHandler<CousinScoreChangeEventArgs> ScoreChanged;
+        public event EventHandler<CousinScoredEventArgs> CousinScored;
         private Cousin()
         {
             this.fists = new Fists();
-            this.currentItem = this.fists;
+            this.CurrentItem = this.fists;
+            this.score = 0;
         }
 
         public Cousin(string name) : this()
@@ -68,46 +70,53 @@ namespace LD37.Domain.Cousins
         {
             this.CurrentRoom.CousinPickUpItem(this, item);
 
-            if (this.ItemPickedUp != null)
+            if(this.ItemPickedUp != null)
             {
                 var itemPickedUpEventArgs = new ItemPickedUpEventArgs(item);
                 this.ItemPickedUp(this, itemPickedUpEventArgs);
             }
 
-            if (this.currentItem != this.fists)
+            if(this.CurrentItem != this.fists)
             {
                 this.DropItem();
             }
 
-            this.currentItem = item;
+            this.CurrentItem = item;
         }
 
         public void DropItem()
         {
-            var itemToDrop = this.currentItem;
+            var itemToDrop = this.CurrentItem;
             if(itemToDrop == this.fists)
             {
                 return;
             }
 
-            this.CurrentRoom.DropItem(this, itemToDrop);
+            this.CurrentRoom.DropItem(this, this.CurrentItem);
 
-            if (this.ItemDropped != null)
+            if (this.ItemDropped != null && (!this.IsInOwnSpawn || (this.IsInOwnSpawn && !(this.CurrentItem is Beker))))
             {
-                var itemDroppedEventArgs = new ItemDroppedEventArgs(itemToDrop);
+                var itemDroppedEventArgs = new ItemDroppedEventArgs(this.CurrentItem);
                 this.ItemDropped(this, itemDroppedEventArgs);
             }
 
-            this.currentItem = this.fists;
+            if(this.IsInOwnSpawn && this.CurrentItem is Beker)
+            {
+                this.IncrementScore();
+                if (this.CousinScored != null)
+                {
+                    var cousinScoredEventArgs = new CousinScoredEventArgs((Beker)this.CurrentItem);
+                    this.CousinScored(this, cousinScoredEventArgs);
+                }
+            }
+
+            this.CurrentItem = this.fists;
         }
 
-        internal void SetCurrentRoom(Room room)
+        public bool IsInOwnSpawn => this.CurrentRoom == this.spawnRoom;
+
+        public void Damage(int damage)
         {
-            room.MoveInto(this);
-            this.CurrentRoom = room;
-        }
-
-        public void Damage(int damage) {
             this.health -= damage;
 
             if(this.health > 0)
@@ -120,37 +129,76 @@ namespace LD37.Domain.Cousins
             this.CurrentRoom.RemoveCousin(this);
             this.CurrentRoom = null;
 
-            if (this.Died != null) {
+            if(this.Died != null)
+            {
                 this.Died(this, new DiedEventArgs());
             }
+
+            this.DecrementScore();
         }
 
-        public void Respawn() {
+        public void Respawn()
+        {
             this.health = DEFAULT_HEALTH;
             SetCurrentRoom(this.spawnRoom);
 
-            if (Respawned != null) {
+            if(Respawned != null)
+            {
                 Respawned(this, new RespawnEventArgs());
             }
         }
 
+        internal void IncrementScore()
+        {
+            this.score++;
+
+            this.RaiseScoreChangedEvent();
+        }
+
+        private void RaiseScoreChangedEvent()
+        {
+            if(this.ScoreChanged != null)
+            {
+                this.ScoreChanged(this, new CousinScoreChangeEventArgs());
+            }
+        }
+
+        internal void SetCurrentRoom(Room room)
+        {
+            room.MoveInto(this);
+            this.CurrentRoom = room;
+        }
+
         internal void DestroyCurrentItem()
         {
-            if(this.currentItem == this.fists)
+            if(this.CurrentItem == this.fists)
             {
                 return;
             }
 
-            var itemToDestroy = this.currentItem;
+            var itemToDestroy = this.CurrentItem;
 
-            this.currentItem = this.fists;
+            this.CurrentItem = this.fists;
 
             if(this.ItemDestroyed != null)
             {
                 this.ItemDestroyed(this, new ItemDestroyedEventArgs(itemToDestroy));
             }
         }
+
+        private void DecrementScore()
+        {
+            if(this.score == 0)
+            {
+                return;
+            }
+
+            this.score--;
+            this.RaiseScoreChangedEvent();
+        }
     }
+
+    public class CousinScoreChangeEventArgs : EventArgs {}
 
     public class ItemDestroyedEventArgs : EventArgs
     {
@@ -164,12 +212,12 @@ namespace LD37.Domain.Cousins
 
     public class ItemPickedUpEventArgs : EventArgs
     {
+        public Item Item { get; }
+
         public ItemPickedUpEventArgs(Item item)
         {
             this.Item = item;
         }
-
-        public Item Item { get; }
     }
 
     public class ItemDroppedEventArgs : EventArgs
@@ -198,9 +246,17 @@ namespace LD37.Domain.Cousins
         }
     }
 
-    public class DiedEventArgs : EventArgs {
-    }
+    public class DiedEventArgs : EventArgs {}
 
-    public class RespawnEventArgs : EventArgs {
+    public class RespawnEventArgs : EventArgs { }
+
+    public class CousinScoredEventArgs : EventArgs
+    {
+        public Beker Beker { get; }
+
+        public CousinScoredEventArgs(Beker beker)
+        {
+            this.Beker = beker;
+        }
     }
 }

@@ -176,6 +176,7 @@ public class GameController : Singleton<GameController>
         cousin.ItemDropped += this.HandleCousinItemDropped;
         cousin.ItemPickedUp += this.HandleCousinItemPickedUp;
         cousin.ItemDestroyed += this.HandleCousinItemDestroyed;
+        cousin.CousinScored += this.HandleCousinScored;
     }
 
     private Transform CreateCameraForPlayer(int playerNumber)
@@ -293,6 +294,25 @@ public class GameController : Singleton<GameController>
         }
 
         unityItem.transform.position = player.transform.position;
+        unityItem.transform.SetParent(this.itemsContainer);
+    }
+
+    private void HandleCousinScored(object sender, CousinScoredEventArgs e)
+    {
+        var cousin = (Cousin)sender;
+        var player = this.players[cousin];
+        var unityItem = this.unityItemLookup[e.Beker];
+        var playerControl = player.GetComponent<PlayerControl>();
+
+        if (playerControl.CurrentItem == unityItem.transform)
+        {
+            playerControl.CurrentItem = playerControl.Fists;
+        }
+
+        var bekerRoom = this.Building.BekerRoom;
+        var bekerRoomTransform = this.rooms[bekerRoom];
+
+        unityItem.transform.position = bekerRoomTransform.transform.position;
         unityItem.transform.SetParent(this.itemsContainer);
     }
 

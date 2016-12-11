@@ -25,7 +25,7 @@ namespace LD37.Domain.Rooms
             this.cousinsInRoom = new HashSet<Cousin>();
         }
 
-        public void ConnectRoom(Room room, Direction directionToRoom) // TODO: Make internal again
+        internal void ConnectRoom(Room room, Direction directionToRoom)
         {
             if(this.doors.ContainsKey(directionToRoom) && this.doors[directionToRoom].ToRoom != room)
             {
@@ -102,7 +102,7 @@ namespace LD37.Domain.Rooms
             this.items.Remove(item);
         }
 
-        internal void DropItem(Cousin cousin, Item item)
+        internal virtual void DropItem(Cousin cousin, Item item)
         {
             this.GuardAgainstInvalidCousinOperations(cousin);
 

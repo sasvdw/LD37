@@ -21,6 +21,8 @@ namespace LD37.Domain.Rooms
 
         public IEnumerable<Item> Items => this.items;
 
+        public BekerRoom BekerRoom { get; }
+
         public Building()
         {
             this.RoomsWithPoints = new Dictionary<Point, Room>();
@@ -67,7 +69,8 @@ namespace LD37.Domain.Rooms
 
                 if(RoomCoordinates.BekerSpawnCoordinate == coordinate)
                 {
-                    this.RoomsWithPoints[coordinate] = new BekerRoom();
+                    this.BekerRoom = new BekerRoom();
+                    this.RoomsWithPoints[coordinate] = this.BekerRoom;
                     continue;
                 }
 
@@ -118,6 +121,20 @@ namespace LD37.Domain.Rooms
             this.items.Add(item);
         }
 
+        public void Destroy(Item itemToDestroy)
+        {
+            if(!this.items.Contains(itemToDestroy))
+            {
+                throw new InvalidOperationException($"{itemToDestroy.Name} is not in building!");
+            }
+
+            this.items.Remove(itemToDestroy);
+
+            var cousin = this.cousins.Single(x => x.CurrentItem == itemToDestroy);
+
+            cousin.DestroyCurrentItem();
+        }
+
         private Dictionary<Point, Direction> GetPointsAround(Point point)
         {
             var pointList = new Dictionary<Point, Direction>();
@@ -145,20 +162,6 @@ namespace LD37.Domain.Rooms
             }
 
             return pointList;
-        }
-
-        public void Destroy(Item itemToDestroy)
-        {
-            if(!this.items.Contains(itemToDestroy))
-            {
-                throw new InvalidOperationException($"{itemToDestroy.Name} is not in building!");
-            }
-
-            this.items.Remove(itemToDestroy);
-
-            var cousin = this.cousins.Single(x => x.CurrentItem == itemToDestroy);
-
-            cousin.DestroyCurrentItem();
         }
     }
 
