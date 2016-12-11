@@ -10,12 +10,15 @@ public class GameController : Singleton<GameController>
 {
     private readonly Dictionary<Room, Transform> rooms;
     private readonly Dictionary<Cousin, Transform> players;
+    private readonly Dictionary<UnityItem, Item> itemLookup;
+    private readonly Dictionary<Item, UnityItem> unityItemLookup;
     private readonly List<Cousin> cousins;
-    private readonly Dictionary<Cousin, Double> respawning;
+    private readonly Vector3 offScreenPosition;
 
     private Transform playerContainer;
     private Transform roomContainer;
     private Transform camerasContainer;
+    private Transform itemsContainer;
 
     private bool initialSpawnCompleted = false;
 
@@ -24,12 +27,17 @@ public class GameController : Singleton<GameController>
     public Transform PlayerPrefab;
     public Transform RoomPrefab;
     public Transform PlayerCameraPrefab;
+    public Transform BekerPrefab;
     public Transform FistsItemPrefab;
     public Transform PopGunPrefab;
     public float respawnDelay = 3.0f;
 
     public Building Building { get; set; }
-    public IEnumerable<Cousin> Cousins { get {
+
+    public IEnumerable<Cousin> Cousins
+    {
+        get
+        {
             return this.cousins;
         }
     }
@@ -38,10 +46,19 @@ public class GameController : Singleton<GameController>
     {
         this.rooms = new Dictionary<Room, Transform>();
         this.players = new Dictionary<Cousin, Transform>();
+        this.itemLookup = new Dictionary<UnityItem, Item>();
+        this.unityItemLookup = new Dictionary<Item, UnityItem>();
         this.cousins = new List<Cousin>();
+        this.offScreenPosition = new Vector3(-100.0f, 0f, 0f);
     }
 
-    public Color GetCousinColor(Cousin cousin) {
+    public Item GetDomainItem(UnityItem item)
+    {
+        return this.itemLookup[item];
+    }
+
+    public Color GetCousinColor(Cousin cousin)
+    {
         return players[cousin].GetComponent<PlayerControl>().Color;
     }
 
@@ -50,12 +67,32 @@ public class GameController : Singleton<GameController>
         this.playerContainer = transform.Find("Players");
         this.roomContainer = transform.Find("Rooms");
         this.camerasContainer = transform.Find("Cameras");
+        this.itemsContainer = transform.Find("Items");
 
         this.cousins.AddRange(this.CreateCousinsForPlayers());
         Building = new Building(this.cousins, new ItemToSpawnSelector());
         this.CreateRooms(Building);
+        this.SpawnBeker();
     }
-    
+
+    private void SpawnBeker()
+    {
+        var bekerRoom = this.Building.Rooms.Single(x => x is BekerRoom);
+
+        var bekerRoomTransform = this.rooms[bekerRoom];
+
+        var bekerTransform = Instantiate(
+            this.BekerPrefab,
+            bekerRoomTransform.position,
+            Quaternion.identity,
+            this.itemsContainer
+        );
+
+        var unityItem = bekerTransform.GetComponent<UnityItem>();
+        this.itemLookup.Add(unityItem, LD37.Domain.Items.Beker.Instance);
+        this.unityItemLookup.Add(LD37.Domain.Items.Beker.Instance, unityItem);
+    }
+
     private void Start() {}
 
     private IEnumerable<Cousin> CreateCousinsForPlayers()
@@ -78,7 +115,7 @@ public class GameController : Singleton<GameController>
             this.PlayerPrefab,
             new Vector2(playerNumber * 2, 0),
             Quaternion.identity,
-            playerContainer
+            this.playerContainer
         );
 
         var playerControl = player.GetComponent<PlayerControl>();
@@ -99,9 +136,12 @@ public class GameController : Singleton<GameController>
         cousin.RoomChanged += this.HandleCousinRoomChanged;
         cousin.Died += this.HandleCousinDied;
         cousin.Respawned += this.HandleCousinRespawned;
+        cousin.ItemDropped += this.HandleCousinItemDropped;
+        cousin.ItemPickedUp += this.HandleCousinItemPickedUp;
     }
 
-    private Transform CreateCameraForPlayer(int playerNumber) {
+    private Transform CreateCameraForPlayer(int playerNumber)
+    {
         Transform cameraTransform = Instantiate(
             PlayerCameraPrefab,
             new Vector3(0f, 0f, -10.0f),
@@ -113,13 +153,20 @@ public class GameController : Singleton<GameController>
         Camera camera = cameraTransform.GetComponent<Camera>();
         camera.backgroundColor = PlayerColors[playerNumber];
 
-        if (playerNumber == 0) {
+        if(playerNumber == 0)
+        {
             camera.rect = new Rect(0f, 0.5f, 0.5f, 0.5f);
-        } else if (playerNumber == 1) {
+        }
+        else if(playerNumber == 1)
+        {
             camera.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-        } else if (playerNumber == 2) {
+        }
+        else if(playerNumber == 2)
+        {
             camera.rect = new Rect(0.0f, 0.0f, 0.5f, 0.5f);
-        } else if (playerNumber == 3) {
+        }
+        else if(playerNumber == 3)
+        {
             camera.rect = new Rect(0.5f, 0.0f, 0.5f, 0.5f);
         }
 
@@ -144,7 +191,7 @@ public class GameController : Singleton<GameController>
     {
         var x = 100;
         var y = 100;
-        foreach(var room in building.RoomList)
+        foreach(var room in building.Rooms)
         {
             this.CreateRoom(room, new Vector2(x, y));
 
@@ -187,15 +234,38 @@ public class GameController : Singleton<GameController>
         camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
     }
 
-    private void HandleCousinDied(object sender, DiedEventArgs args) {
-        Transform playerTransform = players[(Cousin) sender];
-        playerTransform.position = new Vector3(-100.0f, 0f, 0f);
+    private void HandleCousinDied(object sender, DiedEventArgs args)
+    {
+        Transform playerTransform = players[(Cousin)sender];
+        playerTransform.position = this.offScreenPosition;
 
-        RespawnManager.Instance.RespawnInSeconds((Cousin) sender, respawnDelay);
+        RespawnManager.Instance.RespawnInSeconds((Cousin)sender, respawnDelay);
     }
 
-    private void HandleCousinRespawned(object sender, RespawnEventArgs args) {
-        var cousin = (Cousin) sender;
+    private void HandleCousinItemDropped(object sender, ItemDroppedEventArgs e)
+    {
+        var cousin = (Cousin)sender;
+        var player = this.players[cousin];
+        var unityItem = this.unityItemLookup[e.Item];
+        var playerControl = player.GetComponent<PlayerControl>();
+        playerControl.CurrentItem = playerControl.Fists;
+
+        unityItem.transform.position = player.transform.position;
+    }
+
+    private void HandleCousinItemPickedUp(object sender, ItemPickedUpEventArgs e)
+    {
+        var cousin = (Cousin)sender;
+        var player = this.players[cousin];
+        var unityItem = this.unityItemLookup[e.Item];
+        player.GetComponent<PlayerControl>().CurrentItem = unityItem.transform;
+
+        unityItem.transform.position = this.offScreenPosition;
+    }
+
+    private void HandleCousinRespawned(object sender, RespawnEventArgs args)
+    {
+        var cousin = (Cousin)sender;
         var player = players[cousin];
         var camera = player.GetComponent<PlayerControl>().Camera;
         var room = rooms[cousin.SpawnRoom];

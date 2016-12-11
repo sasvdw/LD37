@@ -1,9 +1,10 @@
 ﻿using LD37.Domain.Cousins;
 using Rewired;
-using RewiredConsts;
 using UnityEngine;
+using Action = RewiredConsts.Action;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
 public class PlayerControl : MonoBehaviour
 {
     private Player rewiredPlayer;
@@ -15,6 +16,8 @@ public class PlayerControl : MonoBehaviour
 
     public int RewiredPlayerId = 0;
     public float MoveSpeed = 3.0f;
+    private GameController gameController;
+    private UnityItem itemInProximity;
 
     public Cousin Cousin { get; private set; }
 
@@ -46,6 +49,7 @@ public class PlayerControl : MonoBehaviour
     {
         this.character = GetComponent<Rigidbody2D>();
         this.rewiredPlayer = ReInput.players.GetPlayer(this.RewiredPlayerId);
+        this.gameController = GameController.Instance;
         this.animator = GetComponent<Animator>();
     }
 
@@ -68,6 +72,19 @@ public class PlayerControl : MonoBehaviour
 
         if (this.rewiredPlayer.GetButton(Action.Activate)) {
             CurrentItem.GetComponent<UnityItem>().Fire();
+        }
+
+        var pickupOrDrop = this.rewiredPlayer.GetButton(Action.PickupOrDrop);
+        if(pickupOrDrop && this.itemInProximity)
+        {
+            var itemToPickup = this.gameController.GetDomainItem(this.itemInProximity);
+            this.Cousin.PickUp(itemToPickup);
+
+            Debug.Log(string.Format("{0} picked up the {1}", this.Cousin.Name, itemToPickup.Name));
+        }
+        if(pickupOrDrop && !this.itemInProximity)
+        {
+            this.Cousin.DropItem();
         }
     }
 
@@ -131,5 +148,23 @@ public class PlayerControl : MonoBehaviour
 
     public void Damage(int damage) {
         Cousin.Damage(damage);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        this.itemInProximity = collision.gameObject.GetComponent<UnityItem>();
+        Debug.Log("enter");
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        var itemLeaving = collision.gameObject.GetComponent<UnityItem>();
+
+        if(itemLeaving)
+        {
+            this.itemInProximity = null;
+        }
+
+        Debug.Log("exit");
     }
 }

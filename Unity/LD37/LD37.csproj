@@ -137,6 +137,7 @@
     <Compile Include="Assets\Scripts\Controls\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Controls\RewiredConsts.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\Items\Beker.cs" />
     <Compile Include="Assets\Scripts\Items\FistsWeapon.cs" />
     <Compile Include="Assets\Scripts\Items\PopGunWeapon.cs" />
     <Compile Include="Assets\Scripts\Items\Projectile.cs" />

@@ -35,6 +35,8 @@ namespace LD37.Domain.Cousins
         public event EventHandler<RoomChangedEventArgs> RoomChanged;
         public event EventHandler<DiedEventArgs> Died;
         public event EventHandler<RespawnEventArgs> Respawned;
+        public event EventHandler<ItemDroppedEventArgs> ItemDropped;
+        public event EventHandler<ItemPickedUpEventArgs> ItemPickedUp; 
 
         private Cousin()
         {
@@ -63,24 +65,37 @@ namespace LD37.Domain.Cousins
 
         public void PickUp(Item item)
         {
-            if(this.currentItem == this.fists)
+            this.CurrentRoom.CousinPickUpItem(this, item);
+
+            if (this.ItemPickedUp != null)
+            {
+                var itemPickedUpEventArgs = new ItemPickedUpEventArgs(item);
+                this.ItemPickedUp(this, itemPickedUpEventArgs);
+            }
+
+            if (this.currentItem != this.fists)
             {
                 this.DropItem();
             }
-
-            this.CurrentRoom.CousinPickUpItem(this, item);
 
             this.currentItem = item;
         }
 
         public void DropItem()
         {
-            if(this.currentItem == this.fists)
+            var itemToDrop = this.currentItem;
+            if(itemToDrop == this.fists)
             {
                 return;
             }
 
-            this.CurrentRoom.DropItem(this, this.currentItem);
+            this.CurrentRoom.DropItem(this, itemToDrop);
+
+            if (this.ItemDropped != null)
+            {
+                var itemDroppedEventArgs = new ItemDroppedEventArgs(itemToDrop);
+                this.ItemDropped(this, itemDroppedEventArgs);
+            }
 
             this.currentItem = this.fists;
         }
@@ -111,6 +126,26 @@ namespace LD37.Domain.Cousins
             if (Respawned != null) {
                 Respawned(this, new RespawnEventArgs());
             }
+        }
+    }
+
+    public class ItemPickedUpEventArgs : EventArgs
+    {
+        public ItemPickedUpEventArgs(Item item)
+        {
+            this.Item = item;
+        }
+
+        public Item Item { get; }
+    }
+
+    public class ItemDroppedEventArgs : EventArgs
+    {
+        public Item Item { get; }
+
+        public ItemDroppedEventArgs(Item item)
+        {
+            this.Item = item;
         }
     }
 
