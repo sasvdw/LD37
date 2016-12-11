@@ -36,7 +36,8 @@ namespace LD37.Domain.Cousins
         public event EventHandler<DiedEventArgs> Died;
         public event EventHandler<RespawnEventArgs> Respawned;
         public event EventHandler<ItemDroppedEventArgs> ItemDropped;
-        public event EventHandler<ItemPickedUpEventArgs> ItemPickedUp; 
+        public event EventHandler<ItemPickedUpEventArgs> ItemPickedUp;
+        public event EventHandler<ItemDestroyedEventArgs> ItemDestroyed;
 
         private Cousin()
         {
@@ -109,13 +110,18 @@ namespace LD37.Domain.Cousins
         public void Damage(int damage) {
             this.health -= damage;
 
-            if (health <= 0) {
-                this.CurrentRoom.RemoveCousin(this);
-                this.CurrentRoom = null;
+            if(this.health > 0)
+            {
+                return;
+            }
 
-                if (Died != null) {
-                    Died(this, new DiedEventArgs());
-                }
+            this.DropItem();
+
+            this.CurrentRoom.RemoveCousin(this);
+            this.CurrentRoom = null;
+
+            if (this.Died != null) {
+                this.Died(this, new DiedEventArgs());
             }
         }
 
@@ -126,6 +132,33 @@ namespace LD37.Domain.Cousins
             if (Respawned != null) {
                 Respawned(this, new RespawnEventArgs());
             }
+        }
+
+        internal void DestroyCurrentItem()
+        {
+            if(this.currentItem == this.fists)
+            {
+                return;
+            }
+
+            var itemToDestroy = this.currentItem;
+
+            this.currentItem = this.fists;
+
+            if(this.ItemDestroyed != null)
+            {
+                this.ItemDestroyed(this, new ItemDestroyedEventArgs(itemToDestroy));
+            }
+        }
+    }
+
+    public class ItemDestroyedEventArgs : EventArgs
+    {
+        public Item Item { get; }
+
+        public ItemDestroyedEventArgs(Item item)
+        {
+            this.Item = item;
         }
     }
 

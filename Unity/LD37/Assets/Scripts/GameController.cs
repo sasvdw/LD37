@@ -32,7 +32,7 @@ public class GameController : Singleton<GameController>
     public Transform PopGunPrefab;
     public float respawnDelay = 3.0f;
 
-    public Building Building { get; set; }
+    public Building Building { get; private set; }
 
     public IEnumerable<Cousin> Cousins
     {
@@ -49,7 +49,7 @@ public class GameController : Singleton<GameController>
         this.itemLookup = new Dictionary<UnityItem, Item>();
         this.unityItemLookup = new Dictionary<Item, UnityItem>();
         this.cousins = new List<Cousin>();
-        this.offScreenPosition = new Vector3(-100.0f, 0f, 0f);
+        this.offScreenPosition = new Vector3(-1000.0f, -1000.0f, 0f);
     }
 
     public Item GetDomainItem(UnityItem item)
@@ -70,9 +70,38 @@ public class GameController : Singleton<GameController>
         this.itemsContainer = transform.Find("Items");
 
         this.cousins.AddRange(this.CreateCousinsForPlayers());
-        Building = new Building(this.cousins, new ItemToSpawnSelector());
+        this.Building = new Building(this.cousins, new ItemToSpawnSelector(this.SpawnPopGun));
         this.CreateRooms(Building);
         this.SpawnBeker();
+
+        Room.ItemSpawned += HandleItemSpawned;
+    }
+
+    private void HandleItemSpawned(object sender, ItemSpawnedEventArgs e)
+    {
+        var room = (Room)sender;
+        var roomTransform = this.rooms[room];
+        var unityItem = this.unityItemLookup[e.Item];
+
+        unityItem.transform.position = roomTransform.transform.position;
+    }
+
+    private Item SpawnPopGun()
+    {
+        var popGunTransform = Instantiate(
+            this.PopGunPrefab,
+            Vector3.zero,
+            Quaternion.identity,
+            this.itemsContainer
+        );
+        var popGunUnity = popGunTransform.GetComponent<UnityItem>();
+
+        var popGun = new PopGun();
+
+        this.itemLookup.Add(popGunUnity, popGun);
+        this.unityItemLookup.Add(popGun, popGunUnity);
+
+        return popGun;
     }
 
     private void SpawnBeker()
@@ -138,6 +167,7 @@ public class GameController : Singleton<GameController>
         cousin.Respawned += this.HandleCousinRespawned;
         cousin.ItemDropped += this.HandleCousinItemDropped;
         cousin.ItemPickedUp += this.HandleCousinItemPickedUp;
+        cousin.ItemDestroyed += this.HandleCousinItemDestroyed;
     }
 
     private Transform CreateCameraForPlayer(int playerNumber)
@@ -251,6 +281,7 @@ public class GameController : Singleton<GameController>
         playerControl.CurrentItem = playerControl.Fists;
 
         unityItem.transform.position = player.transform.position;
+        unityItem.transform.SetParent(this.itemsContainer);
     }
 
     private void HandleCousinItemPickedUp(object sender, ItemPickedUpEventArgs e)
@@ -261,6 +292,7 @@ public class GameController : Singleton<GameController>
         player.GetComponent<PlayerControl>().CurrentItem = unityItem.transform;
 
         unityItem.transform.position = this.offScreenPosition;
+        unityItem.transform.SetParent(player);
     }
 
     private void HandleCousinRespawned(object sender, RespawnEventArgs args)
@@ -272,5 +304,26 @@ public class GameController : Singleton<GameController>
 
         player.position = room.gameObject.transform.position;
         camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
+    }
+
+    private void HandleCousinItemDestroyed(object sender, ItemDestroyedEventArgs args)
+    {
+        var cousin = (Cousin)sender;
+        var player = this.players[cousin];
+        var unityItem = this.unityItemLookup[args.Item];
+        var playerControl = player.GetComponent<PlayerControl>();
+        playerControl.CurrentItem = playerControl.Fists;
+
+        this.unityItemLookup.Remove(args.Item);
+        this.itemLookup.Remove(unityItem);
+
+        Destroy(unityItem);
+    }
+
+    public void DestroyUnityItem(UnityItem unityItem)
+    {
+        var itemToDestroy = this.itemLookup[unityItem];
+
+        this.Building.Destroy(itemToDestroy);
     }
 }

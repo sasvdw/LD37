@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using LD37.Domain.Cousins;
 using LD37.Domain.Items;
 using LD37.Domain.Movement;
@@ -13,6 +14,9 @@ namespace LD37.Domain.Rooms
         protected readonly HashSet<Item> items;
 
         public IEnumerable<Cousin> Cousins => this.cousinsInRoom;
+        public bool HasNoItems => !this.items.Any();
+
+        public static event EventHandler<ItemSpawnedEventArgs> ItemSpawned; 
 
         public Room()
         {
@@ -77,6 +81,12 @@ namespace LD37.Domain.Rooms
             var item = itemToSpawnSelector.SpawnRandomItem();
             this.items.Add(item);
 
+            if(ItemSpawned != null)
+            {
+                var itemSpawnedEventArgs = new ItemSpawnedEventArgs(item);
+                ItemSpawned(this, itemSpawnedEventArgs);
+            }
+
             return item;
         }
 
@@ -110,6 +120,16 @@ namespace LD37.Domain.Rooms
             {
                 throw new InvalidOperationException($"{cousin.Name} is not in this room");
             }
+        }
+    }
+
+    public class ItemSpawnedEventArgs : EventArgs
+    {
+        public Item Item { get; }
+
+        public ItemSpawnedEventArgs(Item item)
+        {
+            this.Item = item;
         }
     }
 }

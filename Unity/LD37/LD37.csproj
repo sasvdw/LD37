@@ -52,6 +52,9 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -66,6 +69,9 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -137,11 +143,12 @@
     <Compile Include="Assets\Scripts\Controls\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Controls\RewiredConsts.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
-    <Compile Include="Assets\Scripts\Items\Beker.cs" />
+    <Compile Include="Assets\Scripts\ItemSpawnManager.cs" />
     <Compile Include="Assets\Scripts\Items\FistsWeapon.cs" />
     <Compile Include="Assets\Scripts\Items\PopGunWeapon.cs" />
     <Compile Include="Assets\Scripts\Items\Projectile.cs" />
     <Compile Include="Assets\Scripts\Items\ProjectileWeapon.cs" />
+    <Compile Include="Assets\Scripts\Items\UnityBeker.cs" />
     <Compile Include="Assets\Scripts\Items\UnityItem.cs" />
     <Compile Include="Assets\Scripts\MiniMap\MiniMap.cs" />
     <Compile Include="Assets\Scripts\MiniMap\MiniMapTile.cs" />
@@ -154,7 +161,6 @@
     <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\BrokenVector\FastGrid\readme.txt" />
     <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
     <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
     <None Include="Assets\Rewired\Documentation\licences.txt" />

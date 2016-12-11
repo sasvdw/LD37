@@ -12,7 +12,7 @@
 
     public sealed class PopGun : Item
     {
-        internal PopGun() : base("PopGun") {}
+        public PopGun() : base("PopGun") {}
     }
 
     public sealed class Bomb : Item

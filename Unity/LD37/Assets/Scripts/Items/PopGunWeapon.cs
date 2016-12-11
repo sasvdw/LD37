@@ -19,9 +19,9 @@ public class PopGunWeapon : ProjectileWeapon {
             this.ammunitionLeft -= 1;
         }
 
-        if (this.ammunitionLeft == 0) {
-            Destroy(this.gameObject);
-            // TODO: Somehow let the domain know so the player reverts back to fists
+        if (this.ammunitionLeft == 0)
+        {
+            GameController.Instance.DestroyUnityItem(this);
         }
 
         return fired;
