@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using LD37.Domain.Cousins;
 using LD37.Domain.Items;
@@ -121,7 +120,7 @@ public class GameController : MonoBehaviour
     {
         var x = 100;
         var y = 100;
-        foreach(var room in building.RoomList)
+        foreach(var room in building.Rooms)
         {
             this.CreateRoom(room, new Vector2(x, y));
 

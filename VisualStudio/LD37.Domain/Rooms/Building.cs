@@ -10,22 +10,20 @@ namespace LD37.Domain.Rooms
 {
     public class Building
     {
-        private readonly IDictionary<Point, Room> rooms;
+        private readonly IDictionary<Point, Room> roomsWithPoints;
         private readonly Room[] itemSpawnableRooms;
         private readonly ItemToSpawnSelector itemToSpawnSelector;
         private readonly Random random;
+        private readonly HashSet<Item> items;
 
-        public IEnumerable<Room> RoomList
-        {
-            get
-            {
-                return this.rooms.Select(x => x.Value);
-            }
-        }
+        public IEnumerable<Room> Rooms => this.roomsWithPoints.Select(x => x.Value);
+
+        public IEnumerable<Item> Items => this.items;
 
         public Building()
         {
-            this.rooms = new Dictionary<Point, Room>();
+            this.roomsWithPoints = new Dictionary<Point, Room>();
+            this.items = new HashSet<Item> {Beker.Instance};
             this.random = new Random();
         }
 
@@ -43,7 +41,7 @@ namespace LD37.Domain.Rooms
             var coordinates = RoomCoordinates.Coordinates.ToList();
             foreach(var coordinate in coordinates)
             {
-                if(spawnCoordinates.Contains(coordinate) && cousinsToAddToBuilding.CousinsLeftCount > 0)
+                if(cousinsToAddToBuilding.CousinsLeftCount > 0 && spawnCoordinates.Contains(coordinate))
                 {
                     var randomNum = this.random.Next(0, chance + 1 - cousinsToAddToBuilding.CousinsLeftCount);
                     var shouldSpawn = randomNum == 0;
@@ -53,23 +51,24 @@ namespace LD37.Domain.Rooms
                     {
                         var cousin = cousinsToAddToBuilding.GetRandomAndRemoveCousin();
 
-                        this.rooms[coordinate] = cousin.SpawnRoom;
+                        this.roomsWithPoints[coordinate] = cousin.SpawnRoom;
                         continue;
                     }
 
-                    this.rooms[coordinate] = new Room();
+                    this.roomsWithPoints[coordinate] = new Room();
                     continue;
                 }
 
                 if(RoomCoordinates.BekerSpawnCoordinate == coordinate)
                 {
-                    this.rooms[coordinate] = new BekerRoom();
+                    this.roomsWithPoints[coordinate] = new BekerRoom();
+                    continue;
                 }
 
-                this.rooms[coordinate] = new Room();
+                this.roomsWithPoints[coordinate] = new Room();
             }
 
-            this.itemSpawnableRooms = this.rooms
+            this.itemSpawnableRooms = this.roomsWithPoints
                 .Where(x => !(x.Value is SpawnRoom) && !(x.Value is BekerRoom))
                 .Select(x => x.Value).ToArray();
 
@@ -78,14 +77,14 @@ namespace LD37.Domain.Rooms
                 throw new Exception("Not all cousins have been placed inside the building!");
             }
 
-            foreach(var roomCoordinate in this.rooms.Keys)
+            foreach(var roomCoordinate in this.roomsWithPoints.Keys)
             {
                 var coordinatesAroundRoom = this.GetPointsAround(roomCoordinate);
 
                 foreach(var coordinateToLink in coordinatesAroundRoom)
                 {
-                    var room = this.rooms[roomCoordinate];
-                    var roomToLink = this.rooms[coordinateToLink.Key];
+                    var room = this.roomsWithPoints[roomCoordinate];
+                    var roomToLink = this.roomsWithPoints[coordinateToLink.Key];
 
                     room.ConnectRoom(roomToLink, coordinateToLink.Value);
                 }
@@ -96,7 +95,9 @@ namespace LD37.Domain.Rooms
         {
             var index = this.random.Next(0, this.itemSpawnableRooms.Length);
 
-            this.itemSpawnableRooms[index].SpawnItem(itemToSpawnSelector);
+            var item = this.itemSpawnableRooms[index].SpawnItem(this.itemToSpawnSelector);
+
+            this.items.Add(item);
         }
 
         private Dictionary<Point, Direction> GetPointsAround(Point point)
@@ -108,19 +109,19 @@ namespace LD37.Domain.Rooms
             var south = point + new Size(0, -1);
             var west = point + new Size(1, 0);
 
-            if(this.rooms.ContainsKey(north))
+            if(this.roomsWithPoints.ContainsKey(north))
             {
                 pointList.Add(north, Direction.North);
             }
-            if(this.rooms.ContainsKey(east))
+            if(this.roomsWithPoints.ContainsKey(east))
             {
                 pointList.Add(east, Direction.East);
             }
-            if(this.rooms.ContainsKey(south))
+            if(this.roomsWithPoints.ContainsKey(south))
             {
                 pointList.Add(south, Direction.South);
             }
-            if(this.rooms.ContainsKey(west))
+            if(this.roomsWithPoints.ContainsKey(west))
             {
                 pointList.Add(west, Direction.West);
             }

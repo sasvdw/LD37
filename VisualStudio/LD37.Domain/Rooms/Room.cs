@@ -63,9 +63,12 @@ namespace LD37.Domain.Rooms
             return doors.ContainsKey(direction);
         }
 
-        internal void SpawnItem(ItemToSpawnSelector itemToSpawnSelector)
+        internal Item SpawnItem(ItemToSpawnSelector itemToSpawnSelector)
         {
-            this.items.Add(itemToSpawnSelector.SpawnRandomItem());
+            var item = itemToSpawnSelector.SpawnRandomItem();
+            this.items.Add(item);
+
+            return item;
         }
 
         internal void CousinPickUpItem(Cousin cousin, Item item)
