@@ -118,8 +118,8 @@ public class GameController : Singleton<GameController>
         );
 
         var unityItem = bekerTransform.GetComponent<UnityItem>();
-        this.itemLookup.Add(unityItem, LD37.Domain.Items.Beker.Instance);
-        this.unityItemLookup.Add(LD37.Domain.Items.Beker.Instance, unityItem);
+        this.itemLookup.Add(unityItem, Beker.Instance);
+        this.unityItemLookup.Add(Beker.Instance, unityItem);
     }
 
     private void Start() {}
@@ -278,7 +278,11 @@ public class GameController : Singleton<GameController>
         var player = this.players[cousin];
         var unityItem = this.unityItemLookup[e.Item];
         var playerControl = player.GetComponent<PlayerControl>();
-        playerControl.CurrentItem = playerControl.Fists;
+
+        if(playerControl.CurrentItem == unityItem.transform)
+        {
+            playerControl.CurrentItem = playerControl.Fists;
+        }
 
         unityItem.transform.position = player.transform.position;
         unityItem.transform.SetParent(this.itemsContainer);

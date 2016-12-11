@@ -164,7 +164,7 @@ namespace LD37.Domain.Rooms
 
     internal static class RoomCoordinates
     {
-        private const int edgeCoordinate = 2;
+        private const int edgeCoordinate = 4;
 
         public static IEnumerable<Point> Coordinates = coordinates;
 
