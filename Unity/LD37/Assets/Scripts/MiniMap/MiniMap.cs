@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using LD37.Domain.Cousins;
 using LD37.Domain.Rooms;
-using System.Drawing;
 using System.Linq;
 
 public class MiniMap : MonoBehaviour {
@@ -11,8 +9,13 @@ public class MiniMap : MonoBehaviour {
     public Transform miniMapRoomPrefab;
 
     private GameController gameController;
-    private Dictionary<Room, Transform> miniMapTiles = new Dictionary<Room, Transform>();
+    private readonly Dictionary<Room, Transform> miniMapTiles;
     private bool initialised = false;
+
+    public MiniMap()
+    {
+        this.miniMapTiles = new Dictionary<Room, Transform>();
+    }
 
 	void Start () {
         gameController = GameController.Instance;
@@ -27,10 +30,10 @@ public class MiniMap : MonoBehaviour {
             return;
         }
 
-        Building building = gameController.Building;
-        foreach (Point point in building.rooms.Keys) {
-            Room room = building.rooms[point];
-            Transform tileTransform = Instantiate(
+        var building = gameController.Building;
+        foreach (var point in building.RoomsWithPoints.Keys) {
+            var room = building.RoomsWithPoints[point];
+            var tileTransform = Instantiate(
                 miniMapRoomPrefab,
                 point.ToVector2() * 0.25f,
                 Quaternion.identity,
@@ -59,7 +62,7 @@ public class MiniMap : MonoBehaviour {
         var oldRoomTile = miniMapTiles[args.OldRoom].GetComponent<MiniMapTile>();
 
         if (args.OldRoom.Cousins.Any()) {
-            Cousin remainingCousin = args.OldRoom.Cousins.First<Cousin>();
+            var remainingCousin = args.OldRoom.Cousins.First();
             oldRoomTile.SetOccupied(gameController.GetCousinColor(remainingCousin));
         } else {
             oldRoomTile.SetUnoccupied();

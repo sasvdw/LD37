@@ -11,7 +11,7 @@ namespace LD37.Domain.Rooms
 
         public Room ToRoom { get; }
 
-        public void MoveCousin(Cousin cousin)
+        internal void MoveCousin(Cousin cousin)
         {
             cousin.SetCurrentRoom(this.ToRoom);
         }

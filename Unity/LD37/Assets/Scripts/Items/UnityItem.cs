@@ -11,6 +11,4 @@ public abstract class UnityItem : MonoBehaviour {
 	}
 
     public abstract void Fire();
-
-    public abstract void Drop();
 }
