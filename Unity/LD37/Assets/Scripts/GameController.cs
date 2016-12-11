@@ -25,12 +25,20 @@ public class GameController : Singleton<GameController>
     public Transform PlayerCameraPrefab;
 
     public Building Building { get; set; }
+    public IEnumerable<Cousin> Cousins { get {
+            return this.cousins;
+        }
+    }
 
     public GameController()
     {
         this.rooms = new Dictionary<Room, Transform>();
         this.players = new Dictionary<Cousin, Transform>();
         this.cousins = new List<Cousin>();
+    }
+
+    public Color GetCousinColor(Cousin cousin) {
+        return players[cousin].GetComponent<PlayerControl>().Color;
     }
 
     private void Awake()
@@ -43,7 +51,7 @@ public class GameController : Singleton<GameController>
         Building = new Building(this.cousins, new ItemToSpawnSelector());
         this.CreateRooms(Building);
     }
-
+    
     private void Start() {}
 
     private IEnumerable<Cousin> CreateCousinsForPlayers()
