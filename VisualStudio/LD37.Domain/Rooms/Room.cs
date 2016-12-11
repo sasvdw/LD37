@@ -84,28 +84,33 @@ namespace LD37.Domain.Rooms
 
         internal void CousinPickUpItem(Cousin cousin, Item item)
         {
-            this.GuardAgainstCousinItemOperations(cousin, item);
+            this.GuardAgainstCousinItemOperations(cousin);
+
+            if (!this.items.Contains(item))
+            {
+                throw new InvalidOperationException($"Cannot pick up {item.Name} as it's not in this room");
+            }
 
             this.items.Remove(item);
         }
 
         internal void DropItem(Cousin cousin, Item item)
         {
-            this.GuardAgainstCousinItemOperations(cousin, item);
+            this.GuardAgainstCousinItemOperations(cousin);
+
+            if (this.items.Contains(item))
+            {
+                throw new InvalidOperationException($"Cannot drop {item.Name} that's already in this room");
+            }
 
             this.items.Add(item);
         }
 
-        private void GuardAgainstCousinItemOperations(Cousin cousin, Item item)
+        private void GuardAgainstCousinItemOperations(Cousin cousin)
         {
             if(!this.cousinsInRoom.Contains(cousin))
             {
                 throw new InvalidOperationException($"{cousin.Name} is not in this room");
-            }
-
-            if(!this.items.Contains(item))
-            {
-                throw new InvalidOperationException($"Cannot pick up {item.Name} as it's not in this room");
             }
         }
     }

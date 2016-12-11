@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class Beker : MonoBehaviour {
+﻿public class Beker : UnityItem {
 
 	// Use this for initialization
 	void Start () {
@@ -11,4 +9,9 @@ public class Beker : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public override void Fire()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -17,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     public int RewiredPlayerId = 0;
     public float MoveSpeed = 3.0f;
     private GameController gameController;
+    private UnityItem itemInProximity;
 
     public Cousin Cousin { get; private set; }
 
@@ -71,6 +72,19 @@ public class PlayerControl : MonoBehaviour
 
         if (this.rewiredPlayer.GetButton(Action.Activate)) {
             CurrentItem.GetComponent<UnityItem>().Fire();
+        }
+
+        var pickupOrDrop = this.rewiredPlayer.GetButton(Action.PickupOrDrop);
+        if(pickupOrDrop && this.itemInProximity)
+        {
+            var itemToPickup = this.gameController.GetDomainItem(this.itemInProximity);
+            this.Cousin.PickUp(itemToPickup);
+
+            Debug.Log(string.Format("{0} picked up the {1}", this.Cousin.Name, itemToPickup.Name));
+        }
+        if(pickupOrDrop && !this.itemInProximity)
+        {
+            this.Cousin.DropItem();
         }
     }
 
@@ -138,16 +152,19 @@ public class PlayerControl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!this.gameController.TransformIsItem(collision.gameObject.transform))
-        {
-            return;
-        }
+        this.itemInProximity = collision.gameObject.GetComponent<UnityItem>();
+        Debug.Log("enter");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Trigger Exit");
+        var itemLeaving = collision.gameObject.GetComponent<UnityItem>();
+
+        if(itemLeaving)
+        {
+            this.itemInProximity = null;
+        }
+
+        Debug.Log("exit");
     }
-
-
 }

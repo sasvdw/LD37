@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LD37.Domain.Cousins;
 using LD37.Domain.Items;
@@ -9,8 +10,10 @@ public class GameController : Singleton<GameController>
 {
     private readonly Dictionary<Room, Transform> rooms;
     private readonly Dictionary<Cousin, Transform> players;
-    private readonly Dictionary<Transform, Item> items;
+    private readonly Dictionary<UnityItem, Item> itemLookup;
+    private readonly Dictionary<Item, UnityItem> unityItemLookup;
     private readonly List<Cousin> cousins;
+    private readonly Vector3 offScreenPosition;
 
     private Transform playerContainer;
     private Transform roomContainer;
@@ -42,13 +45,15 @@ public class GameController : Singleton<GameController>
     {
         this.rooms = new Dictionary<Room, Transform>();
         this.players = new Dictionary<Cousin, Transform>();
-        this.items = new Dictionary<Transform, Item>();
+        this.itemLookup = new Dictionary<UnityItem, Item>();
+        this.unityItemLookup = new Dictionary<Item, UnityItem>();
         this.cousins = new List<Cousin>();
+        this.offScreenPosition = new Vector3(-100.0f, 0f, 0f);
     }
 
-    public Item GetDomainItem(Transform item)
+    public Item GetDomainItem(UnityItem item)
     {
-        return this.items[item];
+        return this.itemLookup[item];
     }
 
     public Color GetCousinColor(Cousin cousin)
@@ -75,14 +80,16 @@ public class GameController : Singleton<GameController>
 
         var bekerRoomTransform = this.rooms[bekerRoom];
 
-        var beker = Instantiate(
+        var bekerTransform = Instantiate(
             this.BekerPrefab,
             bekerRoomTransform.position,
             Quaternion.identity,
             this.itemsContainer
         );
 
-        this.items.Add(beker, LD37.Domain.Items.Beker.Instance);
+        var unityItem = bekerTransform.GetComponent<UnityItem>();
+        this.itemLookup.Add(unityItem, LD37.Domain.Items.Beker.Instance);
+        this.unityItemLookup.Add(LD37.Domain.Items.Beker.Instance, unityItem);
     }
 
     private void Start() {}
@@ -128,6 +135,8 @@ public class GameController : Singleton<GameController>
         cousin.RoomChanged += this.HandleCousinRoomChanged;
         cousin.Died += this.HandleCousinDied;
         cousin.Respawned += this.HandleCousinRespawned;
+        cousin.ItemDropped += this.HandleCousinItemDropped;
+        cousin.ItemPickedUp += this.HandleCousinItemPickedUp;
     }
 
     private Transform CreateCameraForPlayer(int playerNumber)
@@ -224,20 +233,38 @@ public class GameController : Singleton<GameController>
         camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
     }
 
-    public bool TransformIsItem(Transform transformToCheck)
+    private void HandleCousinDied(object sender, DiedEventArgs args)
     {
-        return this.items.ContainsKey(transformToCheck);
+        Transform playerTransform = players[(Cousin)sender];
+        playerTransform.position = this.offScreenPosition;
+
+        RespawnManager.Instance.RespawnInSeconds((Cousin)sender, respawnDelay);
     }
 
-    private void HandleCousinDied(object sender, DiedEventArgs args) {
-        Transform playerTransform = players[(Cousin) sender];
-        playerTransform.position = new Vector3(-100.0f, 0f, 0f);
+    private void HandleCousinItemDropped(object sender, ItemDroppedEventArgs e)
+    {
+        var cousin = (Cousin)sender;
+        var player = this.players[cousin];
+        var unityItem = this.unityItemLookup[e.Item];
+        var playerControl = player.GetComponent<PlayerControl>();
+        playerControl.CurrentItem = playerControl.Fists;
 
-        RespawnManager.Instance.RespawnInSeconds((Cousin) sender, respawnDelay);
+        unityItem.transform.position = player.transform.position;
     }
 
-    private void HandleCousinRespawned(object sender, RespawnEventArgs args) {
-        var cousin = (Cousin) sender;
+    private void HandleCousinItemPickedUp(object sender, ItemPickedUpEventArgs e)
+    {
+        var cousin = (Cousin)sender;
+        var player = this.players[cousin];
+        var unityItem = this.unityItemLookup[e.Item];
+        player.GetComponent<PlayerControl>().CurrentItem = unityItem.transform;
+
+        unityItem.transform.position = this.offScreenPosition;
+    }
+
+    private void HandleCousinRespawned(object sender, RespawnEventArgs args)
+    {
+        var cousin = (Cousin)sender;
         var player = players[cousin];
         var camera = player.GetComponent<PlayerControl>().Camera;
         var room = rooms[cousin.SpawnRoom];

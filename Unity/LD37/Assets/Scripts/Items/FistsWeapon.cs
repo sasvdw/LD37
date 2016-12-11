@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FistsWeapon : UnityItem {
 
@@ -46,9 +44,5 @@ public class FistsWeapon : UnityItem {
         projectile.duration = duration;
 
         coolDownRemaining = coolDown;
-    }
-    
-    public override void Drop() {
-        // Cannot drop your fists...
     }
 }
