@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4689562767062390}
   - component: {fileID: 114184134561161558}
+  - component: {fileID: 114962625311699618}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -149,3 +150,17 @@ MonoBehaviour:
   RoomPrefab: {fileID: 4648465373526952, guid: 1eff71f7ff246e345b756782f61261dd, type: 2}
   PlayerCameraPrefab: {fileID: 4458488544312836, guid: c0a7cbc7770600a46a758c41a6065460,
     type: 2}
+  FistsItemPrefab: {fileID: 4257391410437170, guid: 04ce712315d1760439ac32d0514638e8,
+    type: 2}
+  respawnDelay: 3
+--- !u!114 &114962625311699618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1729135990508796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d5a97adc7f3524cb481d518ca664c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,6 +11,7 @@ public class GameController : Singleton<GameController>
     private readonly Dictionary<Room, Transform> rooms;
     private readonly Dictionary<Cousin, Transform> players;
     private readonly List<Cousin> cousins;
+    private readonly Dictionary<Cousin, Double> respawning;
 
     private Transform playerContainer;
     private Transform roomContainer;
@@ -23,6 +24,8 @@ public class GameController : Singleton<GameController>
     public Transform PlayerPrefab;
     public Transform RoomPrefab;
     public Transform PlayerCameraPrefab;
+    public Transform FistsItemPrefab;
+    public float respawnDelay = 3.0f;
 
     public Building Building { get; set; }
     public IEnumerable<Cousin> Cousins { get {
@@ -82,10 +85,19 @@ public class GameController : Singleton<GameController>
         playerControl.RewiredPlayerId = playerNumber;
         playerControl.Color = PlayerColors[playerNumber];
         playerControl.Camera = CreateCameraForPlayer(playerNumber);
+        playerControl.Fists = Instantiate(
+            FistsItemPrefab,
+            player.transform.position,
+            Quaternion.identity,
+            player
+        );
+        playerControl.CurrentItem = playerControl.Fists;
 
         players.Add(cousin, player);
 
         cousin.RoomChanged += this.HandleCousinRoomChanged;
+        cousin.Died += this.HandleCousinDied;
+        cousin.Respawned += this.HandleCousinRespawned;
     }
 
     private Transform CreateCameraForPlayer(int playerNumber) {
@@ -171,6 +183,23 @@ public class GameController : Singleton<GameController>
             .Single(x => x.Direction == args.SpawnDirection.DirectionEnum);
 
         player.position = entrance.gameObject.transform.position;
+        camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
+    }
+
+    private void HandleCousinDied(object sender, DiedEventArgs args) {
+        Transform playerTransform = players[(Cousin) sender];
+        playerTransform.position = new Vector3(-100.0f, 0f, 0f);
+
+        RespawnManager.Instance.RespawnInSeconds((Cousin) sender, respawnDelay);
+    }
+
+    private void HandleCousinRespawned(object sender, RespawnEventArgs args) {
+        var cousin = (Cousin) sender;
+        var player = players[cousin];
+        var camera = player.GetComponent<PlayerControl>().Camera;
+        var room = rooms[cousin.SpawnRoom];
+
+        player.position = room.gameObject.transform.position;
         camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
     }
 }

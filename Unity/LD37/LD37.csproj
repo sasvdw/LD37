@@ -137,8 +137,12 @@
     <Compile Include="Assets\Scripts\Controls\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Controls\RewiredConsts.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\Items\FistsWeapon.cs" />
+    <Compile Include="Assets\Scripts\Items\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Items\UnityItem.cs" />
     <Compile Include="Assets\Scripts\MiniMap\MiniMap.cs" />
     <Compile Include="Assets\Scripts\MiniMap\MiniMapTile.cs" />
+    <Compile Include="Assets\Scripts\RespawnManager.cs" />
     <Compile Include="Assets\Scripts\Rooms\EnterRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\ExitRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\TileFloors.cs" />

@@ -22,6 +22,14 @@ public class PlayerControl : MonoBehaviour
 
     public Color Color { get; set; }
 
+    public Transform CurrentItem { get; set; }
+    public Transform Fists { get; set; }
+
+    public Vector2 Facing { get {
+            return this.facing;
+        }
+    }
+
     public PlayerControl()
     {
         this.moveVector = Vector2.zero;
@@ -56,8 +64,11 @@ public class PlayerControl : MonoBehaviour
     {
         var x = this.rewiredPlayer.GetAxis(Action.MoveHorizontal);
         var y = this.rewiredPlayer.GetAxis(Action.MoveVertical);
-
         this.moveVector.Set(x, y);
+
+        if (this.rewiredPlayer.GetButton(Action.Activate)) {
+            CurrentItem.GetComponent<UnityItem>().Fire();
+        }
     }
 
     private void ProcessInput()
@@ -78,9 +89,9 @@ public class PlayerControl : MonoBehaviour
 
         this.animator.SetFloat("speed", this.character.velocity.magnitude);
         if (System.Math.Abs(this.character.velocity.x) >= System.Math.Abs(this.character.velocity.y)) {
-            SetAnimatorBooltIfNotSet("faceSide", true);
-            SetAnimatorBooltIfNotSet("faceUp", false);
-            SetAnimatorBooltIfNotSet("faceDown", false);
+            SetAnimatorBoolIfNotSet("faceSide", true);
+            SetAnimatorBoolIfNotSet("faceUp", false);
+            SetAnimatorBoolIfNotSet("faceDown", false);
 
             if (this.character.velocity.x < 0) {
                 this.facing = new Vector2(-1.0f, 0.0f);
@@ -96,25 +107,29 @@ public class PlayerControl : MonoBehaviour
                 transform.localScale = scale;
             }
         } else {
-            SetAnimatorBooltIfNotSet("faceSide", false);
+            SetAnimatorBoolIfNotSet("faceSide", false);
 
             if (this.character.velocity.y < 0) {
                 this.facing = new Vector2(0.0f, -1.0f);
 
-                SetAnimatorBooltIfNotSet("faceUp", false);
-                SetAnimatorBooltIfNotSet("faceDown", true);
+                SetAnimatorBoolIfNotSet("faceUp", false);
+                SetAnimatorBoolIfNotSet("faceDown", true);
             } else {
                 this.facing = new Vector2(0.0f, 1.0f);
 
-                SetAnimatorBooltIfNotSet("faceUp", true);
-                SetAnimatorBooltIfNotSet("faceDown", false);
+                SetAnimatorBoolIfNotSet("faceUp", true);
+                SetAnimatorBoolIfNotSet("faceDown", false);
             }
         }
     }
 
-    private void SetAnimatorBooltIfNotSet(string name, bool value) {
+    private void SetAnimatorBoolIfNotSet(string name, bool value) {
         if (this.animator.GetBool(name) != value) {
             this.animator.SetBool(name, value);
         }
+    }
+
+    public void Damage(int damage) {
+        Cousin.Damage(damage);
     }
 }

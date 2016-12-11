@@ -8,6 +8,8 @@ namespace LD37.Domain.Cousins
 {
     public class Cousin
     {
+        public const int DEFAULT_HEALTH = 3;
+
         public static Cousin Sas = new Cousin("Sas");
         public static Cousin Matt = new Cousin("Matt");
         public static Cousin Lida = new Cousin("Lida");
@@ -20,14 +22,19 @@ namespace LD37.Domain.Cousins
         private readonly SpawnRoom spawnRoom;
         private readonly Fists fists;
         private Item currentItem;
+        private int health = DEFAULT_HEALTH;
 
         public Room SpawnRoom => this.spawnRoom;
 
         public Room CurrentRoom { get; private set; }
 
+        public Item CurrentItem => this.currentItem;
+
         public string Name { get; }
 
         public event EventHandler<RoomChangedEventArgs> RoomChanged;
+        public event EventHandler<DiedEventArgs> Died;
+        public event EventHandler<RespawnEventArgs> Respawned;
 
         private Cousin()
         {
@@ -83,6 +90,28 @@ namespace LD37.Domain.Cousins
             room.MoveInto(this);
             this.CurrentRoom = room;
         }
+
+        public void Damage(int damage) {
+            this.health -= damage;
+
+            if (health <= 0) {
+                this.CurrentRoom.RemoveCousin(this);
+                this.CurrentRoom = null;
+
+                if (Died != null) {
+                    Died(this, new DiedEventArgs());
+                }
+            }
+        }
+
+        public void Respawn() {
+            this.health = DEFAULT_HEALTH;
+            SetCurrentRoom(this.spawnRoom);
+
+            if (Respawned != null) {
+                Respawned(this, new RespawnEventArgs());
+            }
+        }
     }
 
     public class RoomChangedEventArgs : EventArgs
@@ -99,5 +128,11 @@ namespace LD37.Domain.Cousins
             this.SpawnDirection = spawnDirection;
             this.NewRoom = newRoom;
         }
+    }
+
+    public class DiedEventArgs : EventArgs {
+    }
+
+    public class RespawnEventArgs : EventArgs {
     }
 }
