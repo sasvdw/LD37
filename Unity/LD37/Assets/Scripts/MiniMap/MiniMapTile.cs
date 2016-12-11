@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MiniMapTile : MonoBehaviour {
 
-    public Color emptyColor = new Color(1, 1, 1, 1);
-    private Color occupiedColor = new Color(1, 1, 1, 1);
+    public Color emptyColor = Color.white;
+    private Color occupiedColor = Color.white;
 
     private SpriteRenderer spriteRenderer;
 

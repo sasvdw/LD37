@@ -19,6 +19,11 @@ public class PlayerControl : MonoBehaviour
 
     public Color Color { get; set; }
 
+    public PlayerControl()
+    {
+        this.moveVector = Vector2.zero;
+    }
+
     public void SetCousin(Cousin cousin, int playerNumber)
     {
         this.Cousin = cousin;
@@ -29,6 +34,7 @@ public class PlayerControl : MonoBehaviour
     private void Start()
     {
         this.character = GetComponent<Rigidbody2D>();
+        this.rewiredPlayer = ReInput.players.GetPlayer(this.RewiredPlayerId);
     }
 
     private void Update()
@@ -43,8 +49,10 @@ public class PlayerControl : MonoBehaviour
 
     private void GetInput()
     {
-        this.moveVector.x = this.rewiredPlayer.GetAxis(Action.MoveHorizontal);
-        this.moveVector.y = this.rewiredPlayer.GetAxis(Action.MoveVertical);
+        var x = this.rewiredPlayer.GetAxis(Action.MoveHorizontal);
+        var y = this.rewiredPlayer.GetAxis(Action.MoveVertical);
+
+        this.moveVector.Set(x, y);
     }
 
     private void ProcessInput()
@@ -54,6 +62,6 @@ public class PlayerControl : MonoBehaviour
             this.character.velocity = this.moveVector * this.MoveSpeed;
             return;
         }
-        this.character.velocity = new Vector3(0, 0, 0);
+        this.character.velocity = Vector2.zero;
     }
 }

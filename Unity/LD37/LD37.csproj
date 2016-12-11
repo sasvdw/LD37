@@ -142,6 +142,7 @@
     <Compile Include="Assets\Scripts\Rooms\EnterRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\ExitRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\TileFloors.cs" />
+    <Compile Include="Assets\Scripts\TestScript.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions.cs" />
     <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
   </ItemGroup>

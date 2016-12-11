@@ -37,7 +37,7 @@ public class TileFloors : MonoBehaviour
         {
             for(var y = minY; y <= maxY; y++)
             {
-                if(this.IsWallLocation(x, y) && !this.IsDoorLocation(x, y, this.Room))
+                if(this.IsWallLocation(x, y) && !this.IsDoorLocation(x, y))
                 {
                     this.CreateWallTile(x, y);
                 }
@@ -51,13 +51,13 @@ public class TileFloors : MonoBehaviour
         this.built = true;
     }
 
-    private bool IsDoorLocation(int x, int y, Room room)
+    private bool IsDoorLocation(int x, int y)
     {
-        if((x == this.minX && room.HasDoor(Direction.West)) || (x == this.maxX && room.HasDoor(Direction.East)))
+        if((x == this.minX && this.Room.HasDoor(Direction.West)) || (x == this.maxX && this.Room.HasDoor(Direction.East)))
         {
             return y == -1 || y == 0;
         }
-        if((y == this.minY && room.HasDoor(Direction.South)) || (y == this.maxY && room.HasDoor(Direction.North)))
+        if((y == this.minY && this.Room.HasDoor(Direction.South)) || (y == this.maxY && this.Room.HasDoor(Direction.North)))
         {
             return x == -1 || x == 0;
         }
