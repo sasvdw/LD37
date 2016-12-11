@@ -51,7 +51,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0.033114508, y: -0.046073556}
   serializedVersion: 2
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1149972515
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300048, guid: eaa36e047f5fee142b062b11f05f1053, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

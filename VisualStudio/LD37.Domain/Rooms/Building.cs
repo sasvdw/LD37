@@ -14,6 +14,7 @@ namespace LD37.Domain.Rooms
         private readonly ItemToSpawnSelector itemToSpawnSelector;
         private readonly Random random;
         private readonly HashSet<Item> items;
+        private readonly HashSet<Cousin> cousins;
         public IDictionary<Point, Room> RoomsWithPoints { get; }
 
         public IEnumerable<Room> Rooms => this.RoomsWithPoints.Select(x => x.Value);
@@ -23,16 +24,21 @@ namespace LD37.Domain.Rooms
         public Building()
         {
             this.RoomsWithPoints = new Dictionary<Point, Room>();
+            this.cousins = new HashSet<Cousin>();
             this.items = new HashSet<Item> { Beker.Instance };
             this.random = new Random();
         }
 
         public Building(
-            IEnumerable<Cousin> cousins,
+            IEnumerable<Cousin> cousinsToAdd,
             ItemToSpawnSelector itemToSpawnSelector)
             : this()
         {
-            var cousinsToAddToBuilding = new CousinsToAddToBuilding(cousins);
+            foreach(var cousin in cousinsToAdd)
+            {
+                this.cousins.Add(cousin);
+            }
+            var cousinsToAddToBuilding = new CousinsToAddToBuilding(cousinsToAdd);
             this.itemToSpawnSelector = itemToSpawnSelector;
             var chance = 4;
 
@@ -93,9 +99,21 @@ namespace LD37.Domain.Rooms
 
         public void SpawnItem()
         {
-            var index = this.random.Next(0, this.itemSpawnableRooms.Length);
+            if(this.items.Count == 5)
+            {
+                return;
+            }
 
-            var item = this.itemSpawnableRooms[index].SpawnItem(this.itemToSpawnSelector);
+            var emptyRooms = this.itemSpawnableRooms.Where(x => x.HasNoItems).ToArray();
+
+            if(emptyRooms.Length == 0)
+            {
+                return;
+            }
+
+            var index = this.random.Next(0, emptyRooms.Length);
+
+            var item = emptyRooms[index].SpawnItem(this.itemToSpawnSelector);
 
             this.items.Add(item);
         }
@@ -128,11 +146,25 @@ namespace LD37.Domain.Rooms
 
             return pointList;
         }
+
+        public void Destroy(Item itemToDestroy)
+        {
+            if(!this.items.Contains(itemToDestroy))
+            {
+                throw new InvalidOperationException($"{itemToDestroy.Name} is not in building!");
+            }
+
+            this.items.Remove(itemToDestroy);
+
+            var cousin = this.cousins.Single(x => x.CurrentItem == itemToDestroy);
+
+            cousin.DestroyCurrentItem();
+        }
     }
 
     internal static class RoomCoordinates
     {
-        private const int edgeCoordinate = 1;
+        private const int edgeCoordinate = 4;
 
         public static IEnumerable<Point> Coordinates = coordinates;
 

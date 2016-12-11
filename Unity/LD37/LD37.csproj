@@ -137,11 +137,12 @@
     <Compile Include="Assets\Scripts\Controls\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Controls\RewiredConsts.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
-    <Compile Include="Assets\Scripts\Items\Beker.cs" />
+    <Compile Include="Assets\Scripts\ItemSpawnManager.cs" />
     <Compile Include="Assets\Scripts\Items\FistsWeapon.cs" />
     <Compile Include="Assets\Scripts\Items\PopGunWeapon.cs" />
     <Compile Include="Assets\Scripts\Items\Projectile.cs" />
     <Compile Include="Assets\Scripts\Items\ProjectileWeapon.cs" />
+    <Compile Include="Assets\Scripts\Items\UnityBeker.cs" />
     <Compile Include="Assets\Scripts\Items\UnityItem.cs" />
     <Compile Include="Assets\Scripts\MiniMap\MiniMap.cs" />
     <Compile Include="Assets\Scripts\MiniMap\MiniMapTile.cs" />
@@ -154,7 +155,6 @@
     <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\BrokenVector\FastGrid\readme.txt" />
     <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
     <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
     <None Include="Assets\Rewired\Documentation\licences.txt" />

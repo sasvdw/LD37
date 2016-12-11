@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class ProjectileWeapon : UnityItem {
+public abstract class ProjectileWeapon : UnityItem
+{
+    protected float coolDownRemaining = 0.0f;
 
     public Transform bulletPrefab = null;
     public int damage = 1;
@@ -10,25 +10,29 @@ public abstract class ProjectileWeapon : UnityItem {
     public float speed = 0.5f;
     public float coolDown = 1.5f;
 
-    private PlayerControl playerControl;
-    private float coolDownRemaining = 0.0f;
-
-    public override void Start() {
-        this.playerControl = GetComponentInParent<PlayerControl>();
-    }
-
-    public override void Update() {
-        if (coolDownRemaining > 0.0f) {
+    public override void Update()
+    {
+        if(coolDownRemaining > 0.0f)
+        {
             coolDownRemaining -= Time.deltaTime;
         }
     }
 
-    public override bool Fire() {
-        if (coolDownRemaining > 0.0f) {
+    public override bool Fire()
+    {
+        var playerControl = GetComponentInParent<PlayerControl>();
+
+        if(!playerControl)
+        {
             return false;
         }
 
-        Vector3 spawnPosition = transform.position;
+        if(coolDownRemaining > 0.0f)
+        {
+            return false;
+        }
+
+        Vector3 spawnPosition = playerControl.transform.position;
         spawnPosition.x += playerControl.Facing.x * 0.6f;
         spawnPosition.y += playerControl.Facing.y * 0.6f;
         Transform projectileTransform = Instantiate(
