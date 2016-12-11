@@ -19,6 +19,14 @@ TextureImporter:
     21300024: Items-DieBeker
     21300026: Map-MiniMaptile
     21300028: Map-MiniMapBackground
+    21300030: Actors-Placeholder-IdleDown
+    21300032: Actors-Placeholder-IdleLeft
+    21300034: Actors-Placeholder-IdleRight
+    21300036: Actors-Placeholder-IdleUp
+    21300038: Actors-Placeholder-IdleSide
+    21300040: Actors-Placeholder-RunDown
+    21300042: Actors-Placeholder-RunSide
+    21300044: Actors-Placeholder-RunUp
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -85,7 +93,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Actors-Placeholder-Down
+      name: Actors-Placeholder-IdleDown
       rect:
         serializedVersion: 2
         x: 1
@@ -98,7 +106,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Actors-Placeholder-Left
+      name: Actors-Placeholder-IdleSide
       rect:
         serializedVersion: 2
         x: 1
@@ -111,7 +119,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Actors-Placeholder-Right
+      name: Actors-Placeholder-IdleUp
       rect:
         serializedVersion: 2
         x: 1
@@ -124,7 +132,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Actors-Placeholder-Standing
+      name: Actors-Placeholder-RunDown
       rect:
         serializedVersion: 2
         x: 67
@@ -137,7 +145,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Actors-Placeholder-Up
+      name: Actors-Placeholder-RunSide
       rect:
         serializedVersion: 2
         x: 133
@@ -150,11 +158,24 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
+      name: Actors-Placeholder-RunUp
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 125
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
       name: Items-DieBeker
       rect:
         serializedVersion: 2
         x: 133
-        y: 126
+        y: 60
         width: 64
         height: 63
       alignment: 9
@@ -193,7 +214,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 67
-        y: 125
+        y: 59
         width: 64
         height: 64
       alignment: 0
@@ -205,8 +226,8 @@ TextureImporter:
       name: Rooms-Walls-Wall
       rect:
         serializedVersion: 2
-        x: 67
-        y: 59
+        x: 133
+        y: 125
         width: 64
         height: 64
       alignment: 0
