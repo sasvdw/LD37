@@ -1,9 +1,10 @@
 ﻿using LD37.Domain.Cousins;
 using Rewired;
-using RewiredConsts;
 using UnityEngine;
+using Action = RewiredConsts.Action;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
 public class PlayerControl : MonoBehaviour
 {
     private Player rewiredPlayer;
@@ -12,6 +13,7 @@ public class PlayerControl : MonoBehaviour
 
     public int RewiredPlayerId = 0;
     public float MoveSpeed = 3.0f;
+    private GameController gameController;
 
     public Cousin Cousin { get; private set; }
 
@@ -35,6 +37,7 @@ public class PlayerControl : MonoBehaviour
     {
         this.character = GetComponent<Rigidbody2D>();
         this.rewiredPlayer = ReInput.players.GetPlayer(this.RewiredPlayerId);
+        this.gameController = GameController.Instance;
     }
 
     private void Update()
@@ -64,4 +67,19 @@ public class PlayerControl : MonoBehaviour
         }
         this.character.velocity = Vector2.zero;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(!this.gameController.TransformIsItem(collision.gameObject.transform))
+        {
+            return;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("Trigger Exit");
+    }
+
+
 }

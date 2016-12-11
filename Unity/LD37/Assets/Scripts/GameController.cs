@@ -9,7 +9,7 @@ public class GameController : Singleton<GameController>
 {
     private readonly Dictionary<Room, Transform> rooms;
     private readonly Dictionary<Cousin, Transform> players;
-    private readonly Dictionary<Item, Transform> items;
+    private readonly Dictionary<Transform, Item> items;
     private readonly List<Cousin> cousins;
 
     private Transform playerContainer;
@@ -27,7 +27,11 @@ public class GameController : Singleton<GameController>
     public Transform BekerPrefab;
 
     public Building Building { get; set; }
-    public IEnumerable<Cousin> Cousins { get {
+
+    public IEnumerable<Cousin> Cousins
+    {
+        get
+        {
             return this.cousins;
         }
     }
@@ -36,11 +40,17 @@ public class GameController : Singleton<GameController>
     {
         this.rooms = new Dictionary<Room, Transform>();
         this.players = new Dictionary<Cousin, Transform>();
-        this.items = new Dictionary<Item, Transform>();
+        this.items = new Dictionary<Transform, Item>();
         this.cousins = new List<Cousin>();
     }
 
-    public Color GetCousinColor(Cousin cousin) {
+    public Item GetDomainItem(Transform item)
+    {
+        return this.items[item];
+    }
+
+    public Color GetCousinColor(Cousin cousin)
+    {
         return players[cousin].GetComponent<PlayerControl>().Color;
     }
 
@@ -64,13 +74,13 @@ public class GameController : Singleton<GameController>
         var bekerRoomTransform = this.rooms[bekerRoom];
 
         var beker = Instantiate(
-                this.BekerPrefab,
-                bekerRoomTransform.position,
-                Quaternion.identity,
-                this.itemsContainer
-            );
+            this.BekerPrefab,
+            bekerRoomTransform.position,
+            Quaternion.identity,
+            this.itemsContainer
+        );
 
-        this.items.Add(Beker.Instance, beker);
+        this.items.Add(beker, Beker.Instance);
     }
 
     private void Start() {}
@@ -109,7 +119,8 @@ public class GameController : Singleton<GameController>
         cousin.RoomChanged += this.HandleCousinRoomChanged;
     }
 
-    private Transform CreateCameraForPlayer(int playerNumber) {
+    private Transform CreateCameraForPlayer(int playerNumber)
+    {
         Transform cameraTransform = Instantiate(
             PlayerCameraPrefab,
             new Vector3(0f, 0f, -10.0f),
@@ -121,13 +132,20 @@ public class GameController : Singleton<GameController>
         Camera camera = cameraTransform.GetComponent<Camera>();
         camera.backgroundColor = PlayerColors[playerNumber];
 
-        if (playerNumber == 0) {
+        if(playerNumber == 0)
+        {
             camera.rect = new Rect(0f, 0.5f, 0.5f, 0.5f);
-        } else if (playerNumber == 1) {
+        }
+        else if(playerNumber == 1)
+        {
             camera.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-        } else if (playerNumber == 2) {
+        }
+        else if(playerNumber == 2)
+        {
             camera.rect = new Rect(0.0f, 0.0f, 0.5f, 0.5f);
-        } else if (playerNumber == 3) {
+        }
+        else if(playerNumber == 3)
+        {
             camera.rect = new Rect(0.5f, 0.0f, 0.5f, 0.5f);
         }
 
@@ -193,5 +211,10 @@ public class GameController : Singleton<GameController>
 
         player.position = entrance.gameObject.transform.position;
         camera.position = new Vector3(room.position.x, room.position.y, camera.position.z);
+    }
+
+    public bool TransformIsItem(Transform transformToCheck)
+    {
+        return this.items.ContainsKey(transformToCheck);
     }
 }
