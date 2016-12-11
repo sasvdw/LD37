@@ -159,7 +159,8 @@ namespace LD37.Domain.Cousins
         {
             if(this.ScoreChanged != null)
             {
-                this.ScoreChanged(this, new CousinScoreChangeEventArgs());
+                var cousinScoreChangeEventArgs = new CousinScoreChangeEventArgs(this.score);
+                this.ScoreChanged(this, cousinScoreChangeEventArgs);
             }
         }
 
@@ -198,7 +199,15 @@ namespace LD37.Domain.Cousins
         }
     }
 
-    public class CousinScoreChangeEventArgs : EventArgs {}
+    public class CousinScoreChangeEventArgs : EventArgs
+    {
+        public int NewScore { get; }
+
+        public CousinScoreChangeEventArgs(int newScore)
+        {
+            this.NewScore = newScore;
+        }
+    }
 
     public class ItemDestroyedEventArgs : EventArgs
     {

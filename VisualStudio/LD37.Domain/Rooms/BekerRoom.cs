@@ -8,5 +8,10 @@ namespace LD37.Domain.Rooms
         {
             this.items.Add(Beker.Instance);
         }
+
+        public void Move(Beker beker)
+        {
+            this.items.Add(beker);
+        }
     }
 }

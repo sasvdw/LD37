@@ -38,16 +38,19 @@ namespace LD37.Domain.Rooms
         {
             foreach(var cousin in cousinsToAdd)
             {
+                cousin.CousinScored += this.HandleCousinScored;
                 this.cousins.Add(cousin);
             }
             var cousinsToAddToBuilding = new CousinsToAddToBuilding(cousinsToAdd);
             this.itemToSpawnSelector = itemToSpawnSelector;
             var chance = 4;
 
-            var spawnCoordinates = RoomCoordinates.SpawnCoordinates.ToList();
+            this.BekerRoom = new BekerRoom();
+            this.RoomsWithPoints[RoomCoordinates.BekerSpawnCoordinate] = this.BekerRoom;
 
+            var spawnCoordinates = RoomCoordinates.SpawnCoordinates.ToList();
             var coordinates = RoomCoordinates.Coordinates.ToList();
-            foreach(var coordinate in coordinates)
+            foreach(var coordinate in coordinates.Except(new [] { RoomCoordinates.BekerSpawnCoordinate}))
             {
                 if(cousinsToAddToBuilding.CousinsLeftCount > 0 && spawnCoordinates.Contains(coordinate))
                 {
@@ -62,16 +65,6 @@ namespace LD37.Domain.Rooms
                         this.RoomsWithPoints[coordinate] = cousin.SpawnRoom;
                         continue;
                     }
-
-                    this.RoomsWithPoints[coordinate] = new Room();
-                    continue;
-                }
-
-                if(RoomCoordinates.BekerSpawnCoordinate == coordinate)
-                {
-                    this.BekerRoom = new BekerRoom();
-                    this.RoomsWithPoints[coordinate] = this.BekerRoom;
-                    continue;
                 }
 
                 this.RoomsWithPoints[coordinate] = new Room();
@@ -98,6 +91,11 @@ namespace LD37.Domain.Rooms
                     room.ConnectRoom(roomToLink, coordinateToLink.Value);
                 }
             }
+        }
+
+        private void HandleCousinScored(object sender, CousinScoredEventArgs e)
+        {
+            this.BekerRoom.Move(e.Beker);
         }
 
         public void SpawnItem()
@@ -167,7 +165,7 @@ namespace LD37.Domain.Rooms
 
     internal static class RoomCoordinates
     {
-        private const int edgeCoordinate = 4;
+        private const int edgeCoordinate = 1;
 
         public static IEnumerable<Point> Coordinates = coordinates;
 

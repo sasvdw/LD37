@@ -177,6 +177,16 @@ public class GameController : Singleton<GameController>
         cousin.ItemPickedUp += this.HandleCousinItemPickedUp;
         cousin.ItemDestroyed += this.HandleCousinItemDestroyed;
         cousin.CousinScored += this.HandleCousinScored;
+        cousin.ScoreChanged += this.HandleCousinScoreChanged;
+    }
+
+    private void HandleCousinScoreChanged(object sender, CousinScoreChangeEventArgs e)
+    {
+        var cousin = (Cousin)sender;
+        var playerUI = this.playerUIs[cousin];
+        var scoreText = playerUI.FindChild("ScoreText");
+        var text = scoreText.GetComponentInChildren<Text>();
+        text.text = e.NewScore.ToString();
     }
 
     private Transform CreateCameraForPlayer(int playerNumber)
