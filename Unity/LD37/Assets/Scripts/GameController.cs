@@ -6,7 +6,7 @@ using LD37.Domain.Items;
 using LD37.Domain.Rooms;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameController : Singleton<GameController>
 {
     private readonly Dictionary<Room, Transform> rooms;
     private readonly Dictionary<Cousin, Transform> players;
@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
     public Transform RoomPrefab;
     public Transform PlayerCameraPrefab;
 
+    public Building Building { get; set; }
+
     public GameController()
     {
         this.rooms = new Dictionary<Room, Transform>();
@@ -38,8 +40,8 @@ public class GameController : MonoBehaviour
         this.camerasContainer = transform.Find("Cameras");
 
         this.cousins.AddRange(this.CreateCousinsForPlayers());
-        var building = new Building(this.cousins, new ItemToSpawnSelector());
-        this.CreateRooms(building);
+        Building = new Building(this.cousins, new ItemToSpawnSelector());
+        this.CreateRooms(Building);
     }
 
     private void Start() {}

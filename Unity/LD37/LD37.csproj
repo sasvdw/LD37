@@ -137,9 +137,13 @@
     <Compile Include="Assets\Scripts\Controls\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Controls\RewiredConsts.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\MiniMap\MiniMap.cs" />
+    <Compile Include="Assets\Scripts\MiniMap\MiniMapTile.cs" />
     <Compile Include="Assets\Scripts\Rooms\EnterRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\ExitRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\TileFloors.cs" />
+    <Compile Include="Assets\Scripts\Utils\Extensions.cs" />
+    <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\BrokenVector\FastGrid\readme.txt" />

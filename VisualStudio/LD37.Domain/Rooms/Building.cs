@@ -10,7 +10,7 @@ namespace LD37.Domain.Rooms
 {
     public class Building
     {
-        private readonly IDictionary<Point, Room> rooms;
+        public readonly IDictionary<Point, Room> rooms;
         private readonly Room[] itemSpawnableRooms;
         private readonly ItemToSpawnSelector itemToSpawnSelector;
         private readonly Random random;
