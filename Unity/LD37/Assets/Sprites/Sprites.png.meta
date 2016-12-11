@@ -1,0 +1,284 @@
+fileFormatVersion: 2
+guid: eaa36e047f5fee142b062b11f05f1053
+timeCreated: 1481356453
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Actors-Placeholder-ActorPlaceholder_Down
+    21300002: Actors-Placeholder-ActorPlaceholder_Left
+    21300004: Actors-Placeholder-ActorPlaceholder_Right
+    21300006: Actors-Placeholder-ActorPlaceholder_Standing
+    21300008: Actors-Placeholder-ActorPlaceholder_Up
+    21300010: Actors-Placeholder-Down
+    21300012: Actors-Placeholder-Left
+    21300014: Actors-Placeholder-Right
+    21300016: Actors-Placeholder-Standing
+    21300018: Actors-Placeholder-Up
+    21300020: Rooms-Floors-PlaceholderTile
+    21300022: Rooms-Walls-Wall
+    21300024: Items-DieBeker
+    21300026: Map-MiniMaptile
+    21300028: Map-MiniMapBackground
+    21300030: Actors-Placeholder-IdleDown
+    21300032: Actors-Placeholder-IdleLeft
+    21300034: Actors-Placeholder-IdleRight
+    21300036: Actors-Placeholder-IdleUp
+    21300038: Actors-Placeholder-IdleSide
+    21300040: Actors-Placeholder-RunDown
+    21300042: Actors-Placeholder-RunSide
+    21300044: Actors-Placeholder-RunUp
+    21300046: Items-Punch
+    21300048: Items-PopGun
+    21300050: Items-Bullet
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 64
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Actors-Placeholder-IdleDown
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 191
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-Placeholder-IdleSide
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 125
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-Placeholder-IdleUp
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 59
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-Placeholder-RunDown
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 191
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-Placeholder-RunSide
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 191
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-Placeholder-RunUp
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 125
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Items-Bullet
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 226
+        width: 11
+        height: 11
+      alignment: 9
+      pivot: {x: 0.36363637, y: 0.54545456}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Items-DieBeker
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 60
+        width: 64
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5, y: 0.50793654}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Items-PopGun
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 12
+        width: 54
+        height: 45
+      alignment: 9
+      pivot: {x: 0.46296296, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Items-Punch
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 20
+        height: 56
+      alignment: 9
+      pivot: {x: -0.6, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Map-MiniMapBackground
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 239
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Map-MiniMaptile
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 239
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rooms-Floors-PlaceholderTile
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 59
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rooms-Walls-Wall
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 125
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

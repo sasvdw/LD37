@@ -4,9 +4,9 @@
         <key>fileFormatVersion</key>
         <int>4</int>
         <key>texturePackerVersion</key>
-        <string>4.2.1</string>
+        <string>4.3.0</string>
         <key>fileName</key>
-        <string>/Users/joachim/Programming/texturepacker2/framework_utils/Unity/AssetStore/PublishTexturePackerImporter/Assets/codeandweb.com/Example/SpriteSheet.tps</string>
+        <string>/Users/joachim/Programming/texturepacker/framework_utils/Unity/AssetStore/PublishTexturePackerImporter/Assets/codeandweb.com/Example/SpriteSheet.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -47,6 +47,8 @@
         <uint>32768</uint>
         <key>etc1CompressionQuality</key>
         <enum type="SettingsBase::Etc1CompressionQuality">ETC1_QUALITY_LOW_PERCEPTUAL</enum>
+        <key>etc2CompressionQuality</key>
+        <enum type="SettingsBase::Etc2CompressionQuality">ETC2_QUALITY_LOW_PERCEPTUAL</enum>
         <key>dxtCompressionMode</key>
         <enum type="SettingsBase::DxtCompressionMode">DXT_PERCEPTUAL</enum>
         <key>jxrColorFormat</key>
@@ -79,6 +81,8 @@
         <uint>101</uint>
         <key>textureSubPath</key>
         <string></string>
+        <key>atfFormats</key>
+        <string></string>
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
@@ -100,7 +104,7 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">Polygon</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
@@ -181,7 +185,7 @@
             <key>trimMargin</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">CropKeepPos</enum>
+            <enum type="SpriteSettings::TrimMode">Polygon</enum>
             <key>tracerTolerance</key>
             <int>200</int>
             <key>heuristicMask</key>
@@ -217,6 +221,18 @@
             <key type="filename">Sprites/capguy/turn/0011_n.png</key>
             <key type="filename">Sprites/capguy/turn/0012.png</key>
             <key type="filename">Sprites/capguy/turn/0012_n.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>52,82,104,165</rect>
+                <key>scale9Paddings</key>
+                <rect>52,82,104,165</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">Sprites/capguy/walk/0001.png</key>
             <key type="filename">Sprites/capguy/walk/0001_n.png</key>
             <key type="filename">Sprites/capguy/walk/0002.png</key>
@@ -252,6 +268,14 @@
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>47,81,94,162</rect>
+                <key>scale9Paddings</key>
+                <rect>47,81,94,162</rect>
+                <key>scale9FromFile</key>
+                <false/>
             </struct>
         </map>
         <key>fileList</key>
@@ -278,5 +302,7 @@
         <string></string>
         <key>normalMapSheetFileName</key>
         <filename></filename>
+        <key>exporterProperties</key>
+        <map type="ExporterProperties"/>
     </struct>
 </data>
