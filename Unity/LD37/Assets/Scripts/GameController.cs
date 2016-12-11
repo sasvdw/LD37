@@ -5,11 +5,13 @@ using LD37.Domain.Cousins;
 using LD37.Domain.Items;
 using LD37.Domain.Rooms;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : Singleton<GameController>
 {
     private readonly Dictionary<Room, Transform> rooms;
     private readonly Dictionary<Cousin, Transform> players;
+    private readonly Dictionary<Cousin, Transform> playerUIs;
     private readonly Dictionary<UnityItem, Item> itemLookup;
     private readonly Dictionary<Item, UnityItem> unityItemLookup;
     private readonly List<Cousin> cousins;
@@ -46,6 +48,7 @@ public class GameController : Singleton<GameController>
     {
         this.rooms = new Dictionary<Room, Transform>();
         this.players = new Dictionary<Cousin, Transform>();
+        this.playerUIs = new Dictionary<Cousin, Transform>();
         this.itemLookup = new Dictionary<UnityItem, Item>();
         this.unityItemLookup = new Dictionary<Item, UnityItem>();
         this.cousins = new List<Cousin>();
@@ -161,6 +164,11 @@ public class GameController : Singleton<GameController>
         playerControl.CurrentItem = playerControl.Fists;
 
         players.Add(cousin, player);
+
+        Transform playerUI = GameObject.Find("ScorePanel" + playerNumber).transform;
+        Transform uiNameText = playerUI.FindChild("NameText");
+        uiNameText.GetComponentInChildren<Text>().text = cousin.Name;
+        playerUIs.Add(cousin, playerUI);
 
         cousin.RoomChanged += this.HandleCousinRoomChanged;
         cousin.Died += this.HandleCousinDied;
