@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LD37.Domain.Cousins;
 using LD37.Domain.Items;
@@ -13,12 +14,15 @@ public class GameController : MonoBehaviour
 
     private Transform playerContainer;
     private Transform roomContainer;
+    private Transform camerasContainer;
 
     private bool initialSpawnCompleted = false;
 
+    public Color[] PlayerColors;
     public int NumPlayers;
     public Transform PlayerPrefab;
     public Transform RoomPrefab;
+    public Transform PlayerCameraPrefab;
 
     public GameController()
     {
@@ -31,6 +35,7 @@ public class GameController : MonoBehaviour
     {
         this.playerContainer = transform.Find("Players");
         this.roomContainer = transform.Find("Rooms");
+        this.camerasContainer = transform.Find("Cameras");
 
         this.cousins.AddRange(this.CreateCousinsForPlayers());
         var building = new Building(this.cousins, new ItemToSpawnSelector());
@@ -65,10 +70,37 @@ public class GameController : MonoBehaviour
         var playerControl = player.GetComponent<PlayerControl>();
         playerControl.SetCousin(cousin, playerNumber);
         playerControl.RewiredPlayerId = playerNumber;
+        playerControl.Color = PlayerColors[playerNumber];
+        playerControl.Camera = CreateCameraForPlayer(playerNumber);
 
         players.Add(cousin, player);
 
         cousin.RoomChanged += this.HandleCousinRoomChanged;
+    }
+
+    private Transform CreateCameraForPlayer(int playerNumber) {
+        Transform cameraTransform = Instantiate(
+            PlayerCameraPrefab,
+            new Vector3(0f, 0f, -10.0f),
+            Quaternion.identity,
+            camerasContainer
+        );
+
+        cameraTransform.name = cameraTransform.name + " " + playerNumber;
+        Camera camera = cameraTransform.GetComponent<Camera>();
+        camera.backgroundColor = PlayerColors[playerNumber];
+
+        if (playerNumber == 0) {
+            camera.rect = new Rect(0f, 0.5f, 0.5f, 0.5f);
+        } else if (playerNumber == 1) {
+            camera.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+        } else if (playerNumber == 2) {
+            camera.rect = new Rect(0.0f, 0.0f, 0.5f, 0.5f);
+        } else if (playerNumber == 3) {
+            camera.rect = new Rect(0.5f, 0.0f, 0.5f, 0.5f);
+        }
+
+        return cameraTransform;
     }
 
     private void CreateRoom(Room room, Vector2 position)

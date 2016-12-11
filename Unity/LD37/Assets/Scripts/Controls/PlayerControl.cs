@@ -15,7 +15,9 @@ public class PlayerControl : MonoBehaviour
 
     public Cousin Cousin { get; private set; }
 
-    public Transform Camera { get; private set; }
+    public Transform Camera { get; set; }
+
+    public Color Color { get; set; }
 
     public void SetCousin(Cousin cousin, int playerNumber)
     {
@@ -27,14 +29,6 @@ public class PlayerControl : MonoBehaviour
     private void Start()
     {
         this.character = GetComponent<Rigidbody2D>();
-
-        foreach(Camera camera in FindObjectsOfType<Camera>())
-        {
-            if(camera.gameObject.name.Equals("Camera Player" + this.RewiredPlayerId))
-            {
-                this.Camera = camera.gameObject.transform;
-            }
-        }
     }
 
     private void Update()
