@@ -67,6 +67,30 @@ public class GameController : Singleton<GameController> {
         return players[cousin].GetComponent<PlayerControl>().Color;
     }
 
+    public void Reset() {
+        this.gamePlayers = new List<GamePlayer>();
+        this.rooms.Clear();
+        this.players.Clear();
+        this.playerUIs.Clear();
+        this.itemLookup.Clear();
+        this.unityItemLookup.Clear();
+        this.cousins.Clear();
+
+        DestroyChildren(this.playerContainer);
+        DestroyChildren(this.roomContainer);
+        DestroyChildren(this.camerasContainer);
+        DestroyChildren(this.itemsContainer);
+
+        this.running = false;
+        this.initialSpawnCompleted = false;
+    }
+
+    private void DestroyChildren(Transform transform) {
+        for (int i = 0; i < transform.childCount; i++) {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
     private void Awake()
     {
         
@@ -91,7 +115,7 @@ public class GameController : Singleton<GameController> {
         this.gamePlayers.Add(new GamePlayer(cousin, rewiredPlayer));
     }
 
-    public void BeginGame() { // TODO: Call this at an appropriate time...
+    public void BeginGame() {
         SetupPlayers();
         this.Building = new Building(this.cousins, new ItemToSpawnSelector(this.SpawnPopGun));
         this.CreateRooms(Building);

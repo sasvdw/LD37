@@ -26,6 +26,7 @@ public class WinnerScene : MonoBehaviour {
         GameObject.Find("Canvas").transform.FindChild("AnyKeyLabel").gameObject.SetActive(true);
 
         if (Input.anyKey) {
+            GameController.Instance.Reset();
             SceneManager.LoadScene("MainMenu");
         }
     }
