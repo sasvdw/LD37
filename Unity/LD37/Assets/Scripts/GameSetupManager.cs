@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Rewired;
 using RewiredConsts;
 using LD37.Domain.Cousins;
 using System;
 
-public class GameSetupManager : Singleton<GameSetupManager> {
+public class GameSetupManager : MonoBehaviour {
 
     private List<Player> playersToRemoveFromUnused;
     private List<Player> unusedPlayers;
@@ -17,6 +18,7 @@ public class GameSetupManager : Singleton<GameSetupManager> {
     private List<bool> ready;
     private List<Transform> playerUIs;
     private List<float> switchCoolDown;
+    private bool setupCompleted = false;
 
     private const float SWITCH_COOLDOWN = 0.75f;
     
@@ -33,6 +35,7 @@ public class GameSetupManager : Singleton<GameSetupManager> {
         for (int i = 0; i < 4; i++) {
             unusedPlayers.Add(ReInput.players.GetPlayer(i));
             switchCoolDown.Add(0.0f);
+            ready.Add(false);
         }
 
         allCousins.AddRange(Cousin.All);
@@ -44,6 +47,10 @@ public class GameSetupManager : Singleton<GameSetupManager> {
     }
 	
 	void Update () {
+        if (setupCompleted) {
+            return;
+        }
+
         for (int i = 0; i < switchCoolDown.Count; i++) {
             switchCoolDown[i] -= Time.deltaTime;
         }
@@ -69,8 +76,10 @@ public class GameSetupManager : Singleton<GameSetupManager> {
             playersToRemoveFromUnused.Clear();
         }
 
+        bool allReady = true;
         foreach (Player player in players) {
             int playerIndex = players.IndexOf(player);
+            allReady = allReady && ready[playerIndex];
 
             if (ready[playerIndex]) {
                 continue;
@@ -93,6 +102,17 @@ public class GameSetupManager : Singleton<GameSetupManager> {
                 cousins[playerIndex] = GetNextAvailableCousin(cousins[playerIndex]);
                 UpdateUIForPlayer(playerIndex);
             }
+        }
+
+        if (players.Count > 0 && allReady) {
+            for (int i = 0; i < players.Count; i++) {
+                GameController.Instance.AddGamePlayer(allCousins[cousins[i]], players[i]);
+            }
+
+            GameObject.Find("Canvas").transform.FindChild("Fade").gameObject.SetActive(true);
+
+            setupCompleted = true;
+            SceneManager.LoadScene("Test");
         }
     }
 
