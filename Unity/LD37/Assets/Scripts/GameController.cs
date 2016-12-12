@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class GameController : Singleton<GameController>
 {
+    private List<GamePlayer> gamePlayers;
     private readonly Dictionary<Room, Transform> rooms;
     private readonly Dictionary<Cousin, Transform> players;
     private readonly Dictionary<Cousin, Transform> playerUIs;
@@ -22,17 +23,9 @@ public class GameController : Singleton<GameController>
     private Transform camerasContainer;
     private Transform itemsContainer;
 
-    private bool initialSpawnCompleted = false;
+    private InternalSettings settings;
 
-    public Color[] PlayerColors;
-    public int NumPlayers;
-    public Transform PlayerPrefab;
-    public Transform RoomPrefab;
-    public Transform PlayerCameraPrefab;
-    public Transform BekerPrefab;
-    public Transform FistsItemPrefab;
-    public Transform PopGunPrefab;
-    public float respawnDelay = 3.0f;
+    private bool initialSpawnCompleted = false;
     private bool running = false;
 
     public Building Building { get; private set; }
@@ -47,6 +40,7 @@ public class GameController : Singleton<GameController>
 
     public GameController()
     {
+        this.gamePlayers = new List<GamePlayer>();
         this.rooms = new Dictionary<Room, Transform>();
         this.players = new Dictionary<Cousin, Transform>();
         this.playerUIs = new Dictionary<Cousin, Transform>();
@@ -74,16 +68,30 @@ public class GameController : Singleton<GameController>
 
     private void Awake()
     {
-        this.playerContainer = transform.Find("Players");
-        this.roomContainer = transform.Find("Rooms");
-        this.camerasContainer = transform.Find("Cameras");
-        this.itemsContainer = transform.Find("Items");
+        
+        this.playerContainer = CreateGameObjectFolder("Players").transform;
+        this.roomContainer = CreateGameObjectFolder("Rooms").transform;
+        this.camerasContainer = CreateGameObjectFolder("Cameras").transform;
+        this.itemsContainer = CreateGameObjectFolder("Items").transform;
+
+        settings = GameObject.Find("InternalSettings").GetComponent<InternalSettings>();
 
         Room.ItemSpawned += HandleItemSpawned;
     }
 
+    private GameObject CreateGameObjectFolder(String name) {
+        GameObject obj = new GameObject();
+        obj.name = name;
+        obj.transform.parent = this.transform;
+        return obj;
+    }
+
+    public void AddGamePlayer(Cousin cousin, Rewired.Player rewiredPlayer) {
+        this.gamePlayers.Add(new GamePlayer(cousin, rewiredPlayer));
+    }
+
     public void BeginGame() { // TODO: Call this at an appropriate time...
-        this.cousins.AddRange(this.CreateCousinsForPlayers());
+        SetupPlayers();
         this.Building = new Building(this.cousins, new ItemToSpawnSelector(this.SpawnPopGun));
         this.CreateRooms(Building);
         this.SpawnBeker();
@@ -103,7 +111,7 @@ public class GameController : Singleton<GameController>
     private Item SpawnPopGun()
     {
         var popGunTransform = Instantiate(
-            this.PopGunPrefab,
+            settings.PopGunPrefab,
             Vector3.zero,
             Quaternion.identity,
             this.itemsContainer
@@ -125,7 +133,7 @@ public class GameController : Singleton<GameController>
         var bekerRoomTransform = this.rooms[bekerRoom];
 
         var bekerTransform = Instantiate(
-            this.BekerPrefab,
+            settings.BekerPrefab,
             bekerRoomTransform.position,
             Quaternion.identity,
             this.itemsContainer
@@ -138,24 +146,38 @@ public class GameController : Singleton<GameController>
 
     private void Start() {}
 
-    private IEnumerable<Cousin> CreateCousinsForPlayers()
-    {
-        var cousinsForPlayers = new List<Cousin>();
-        var allCousins = Cousin.All.ToList();
-        for(var i = 0; i < NumPlayers; i++)
-        {
-            var cousin = allCousins[i];
-            cousinsForPlayers.Add(cousin);
+    private void SetupPlayers() {
+        for (int i = 0; i < settings.NumPlayers; i++) {
+            Cousin cousin = null;
+            int rewiredPlayerId = -1;
 
-            this.CreatePlayer(cousin, i);
+            if (i < gamePlayers.Count) {
+                GamePlayer gamePlayer = gamePlayers[i];
+                cousin = gamePlayer.cousin;
+                rewiredPlayerId = gamePlayer.rewiredPlayer.id;
+            } else {
+                // Make random player
+                // TODO: Make it an AI player
+
+                cousin = GetUnusedCousin();
+                rewiredPlayerId = i;
+            }
+
+            this.CreatePlayer(cousin, rewiredPlayerId, i);
         }
-        return cousinsForPlayers;
+        
     }
 
-    private void CreatePlayer(Cousin cousin, int playerNumber)
+    private Cousin GetUnusedCousin() {
+        return Cousin.All.First<Cousin>(x => !cousins.Contains(x));
+    }
+
+    private void CreatePlayer(Cousin cousin, int rewiredPlayerId, int playerNumber)
     {
+        this.cousins.Add(cousin);
+
         var player = Instantiate(
-            this.PlayerPrefab,
+            settings.PlayerPrefab,
             new Vector2(playerNumber * 2, 0),
             Quaternion.identity,
             this.playerContainer
@@ -163,11 +185,11 @@ public class GameController : Singleton<GameController>
 
         var playerControl = player.GetComponent<PlayerControl>();
         playerControl.SetCousin(cousin, playerNumber);
-        playerControl.RewiredPlayerId = playerNumber;
-        playerControl.Color = PlayerColors[playerNumber];
+        playerControl.RewiredPlayerId = rewiredPlayerId;
+        playerControl.Color = settings.PlayerColors[playerNumber];
         playerControl.Camera = CreateCameraForPlayer(playerNumber);
         playerControl.Fists = Instantiate(
-            FistsItemPrefab,
+            settings.FistsItemPrefab,
             player.transform.position,
             Quaternion.identity,
             player
@@ -203,7 +225,7 @@ public class GameController : Singleton<GameController>
     private Transform CreateCameraForPlayer(int playerNumber)
     {
         Transform cameraTransform = Instantiate(
-            PlayerCameraPrefab,
+            settings.PlayerCameraPrefab,
             new Vector3(0f, 0f, -10.0f),
             Quaternion.identity,
             camerasContainer
@@ -211,7 +233,7 @@ public class GameController : Singleton<GameController>
 
         cameraTransform.name = cameraTransform.name + " " + playerNumber;
         Camera camera = cameraTransform.GetComponent<Camera>();
-        camera.backgroundColor = PlayerColors[playerNumber];
+        camera.backgroundColor = settings.PlayerColors[playerNumber];
 
         if(playerNumber == 0)
         {
@@ -236,7 +258,7 @@ public class GameController : Singleton<GameController>
     private void CreateRoom(Room room, Vector2 position)
     {
         var roomInstance = Instantiate(
-            this.RoomPrefab,
+            settings.RoomPrefab,
             position,
             Quaternion.identity,
             roomContainer
@@ -261,6 +283,10 @@ public class GameController : Singleton<GameController>
 
     private void Update()
     {
+        if (!this.Running) {
+            return;
+        }
+
         if(this.initialSpawnCompleted)
         {
             return;
@@ -299,7 +325,7 @@ public class GameController : Singleton<GameController>
         Transform playerTransform = players[(Cousin)sender];
         playerTransform.position = this.offScreenPosition;
 
-        RespawnManager.Instance.RespawnInSeconds((Cousin)sender, respawnDelay);
+        RespawnManager.Instance.RespawnInSeconds((Cousin)sender, settings.respawnDelay);
     }
 
     private void HandleCousinItemDropped(object sender, ItemDroppedEventArgs e)
@@ -378,5 +404,15 @@ public class GameController : Singleton<GameController>
         var itemToDestroy = this.itemLookup[unityItem];
 
         this.Building.Destroy(itemToDestroy);
+    }
+
+    private class GamePlayer {
+        public Cousin cousin { get; private set; }
+        public Rewired.Player rewiredPlayer { get; private set; }
+
+        public GamePlayer(Cousin cousin, Rewired.Player rewiredPlayer) {
+            this.cousin = cousin;
+            this.rewiredPlayer = rewiredPlayer;
+        }
     }
 }

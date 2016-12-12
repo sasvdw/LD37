@@ -134,7 +134,6 @@
     <Compile Include="Assets\Rewired\Internal\Scripts\InputManager.cs" />
     <Compile Include="Assets\Rewired\Internal\Scripts\Misc\ExternalTools.cs" />
     <Compile Include="Assets\Rewired\Internal\Scripts\Platforms\Ouya\OuyaInputSource.cs" />
-    <Compile Include="Assets\Scripts\BeginGameInMainScene.cs" />
     <Compile Include="Assets\Scripts\Controls\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Controls\RewiredConsts.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
@@ -152,6 +151,9 @@
     <Compile Include="Assets\Scripts\Rooms\EnterRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\ExitRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\TileFloors.cs" />
+    <Compile Include="Assets\Scripts\Scenes\GameScene.cs" />
+    <Compile Include="Assets\Scripts\Scenes\MainMenuScene.cs" />
+    <Compile Include="Assets\Scripts\Settings\InternalSettings.cs" />
     <Compile Include="Assets\Scripts\TestScript.cs" />
     <Compile Include="Assets\Scripts\UI\PanelPlayerSetup.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions.cs" />
