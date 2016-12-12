@@ -6,9 +6,9 @@ using LD37.Domain.Items;
 using LD37.Domain.Rooms;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class GameController : Singleton<GameController>
-{
+public class GameController : Singleton<GameController> {
     private List<GamePlayer> gamePlayers;
     private readonly Dictionary<Room, Transform> rooms;
     private readonly Dictionary<Cousin, Transform> players;
@@ -27,6 +27,7 @@ public class GameController : Singleton<GameController>
 
     private bool initialSpawnCompleted = false;
     private bool running = false;
+    public Cousin Winner { get; private set; }
 
     public Building Building { get; private set; }
 
@@ -351,6 +352,12 @@ public class GameController : Singleton<GameController>
         var unityItem = this.unityItemLookup[e.Beker];
         var playerControl = player.GetComponent<PlayerControl>();
 
+        if (e.Won) {
+            this.Winner = cousin;
+            SceneManager.LoadScene("Victory");
+            return;
+        }
+        
         if (playerControl.CurrentItem == unityItem.transform)
         {
             playerControl.CurrentItem = playerControl.Fists;

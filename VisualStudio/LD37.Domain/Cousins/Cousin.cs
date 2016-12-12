@@ -40,6 +40,7 @@ namespace LD37.Domain.Cousins
         public event EventHandler<RoomChangedEventArgs> RoomChanged;
         public event EventHandler<CousinScoreChangeEventArgs> ScoreChanged;
         public event EventHandler<CousinScoredEventArgs> CousinScored;
+
         private Cousin()
         {
             this.fists = new Fists();
@@ -52,6 +53,12 @@ namespace LD37.Domain.Cousins
             this.Name = name;
             this.spawnRoom = new SpawnRoom(this);
             this.CurrentRoom = this.spawnRoom;
+        }
+
+        public bool Winner {
+            get {
+                return this.score == 3;
+            }
         }
 
         public void Move(Direction direction)
@@ -105,7 +112,7 @@ namespace LD37.Domain.Cousins
                 this.IncrementScore();
                 if (this.CousinScored != null)
                 {
-                    var cousinScoredEventArgs = new CousinScoredEventArgs((Beker)this.CurrentItem);
+                    var cousinScoredEventArgs = new CousinScoredEventArgs((Beker)this.CurrentItem, Winner);
                     this.CousinScored(this, cousinScoredEventArgs);
                 }
             }
@@ -262,10 +269,12 @@ namespace LD37.Domain.Cousins
     public class CousinScoredEventArgs : EventArgs
     {
         public Beker Beker { get; }
+        public bool Won { get; }
 
-        public CousinScoredEventArgs(Beker beker)
+        public CousinScoredEventArgs(Beker beker, bool won)
         {
             this.Beker = beker;
+            this.Won = won;
         }
     }
 }

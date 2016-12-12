@@ -153,6 +153,7 @@
     <Compile Include="Assets\Scripts\Rooms\TileFloors.cs" />
     <Compile Include="Assets\Scripts\Scenes\GameScene.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainMenuScene.cs" />
+    <Compile Include="Assets\Scripts\Scenes\WinnerScene.cs" />
     <Compile Include="Assets\Scripts\Settings\InternalSettings.cs" />
     <Compile Include="Assets\Scripts\TestScript.cs" />
     <Compile Include="Assets\Scripts\UI\PanelPlayerSetup.cs" />
