@@ -134,9 +134,11 @@
     <Compile Include="Assets\Rewired\Internal\Scripts\InputManager.cs" />
     <Compile Include="Assets\Rewired\Internal\Scripts\Misc\ExternalTools.cs" />
     <Compile Include="Assets\Rewired\Internal\Scripts\Platforms\Ouya\OuyaInputSource.cs" />
+    <Compile Include="Assets\Scripts\BeginGameInMainScene.cs" />
     <Compile Include="Assets\Scripts\Controls\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Controls\RewiredConsts.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameSetupManager.cs" />
     <Compile Include="Assets\Scripts\ItemSpawnManager.cs" />
     <Compile Include="Assets\Scripts\Items\FistsWeapon.cs" />
     <Compile Include="Assets\Scripts\Items\PopGunWeapon.cs" />
@@ -151,10 +153,12 @@
     <Compile Include="Assets\Scripts\Rooms\ExitRoom.cs" />
     <Compile Include="Assets\Scripts\Rooms\TileFloors.cs" />
     <Compile Include="Assets\Scripts\TestScript.cs" />
+    <Compile Include="Assets\Scripts\UI\PanelPlayerSetup.cs" />
     <Compile Include="Assets\Scripts\Utils\Extensions.cs" />
     <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\BrokenVector\FastGrid\readme.txt" />
     <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
     <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
     <None Include="Assets\Rewired\Documentation\licences.txt" />

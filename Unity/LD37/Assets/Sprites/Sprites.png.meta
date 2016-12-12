@@ -30,6 +30,10 @@ TextureImporter:
     21300046: Items-Punch
     21300048: Items-PopGun
     21300050: Items-Bullet
+    21300052: UI-OutlinedPhoto
+    21300054: UI-PlayerPanelBG
+    21300056: UI-ArrowLeft
+    21300058: UI-ArrowRight
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -100,7 +104,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 191
+        y: 447
         width: 64
         height: 64
       alignment: 0
@@ -112,8 +116,8 @@ TextureImporter:
       name: Actors-Placeholder-IdleSide
       rect:
         serializedVersion: 2
-        x: 1
-        y: 125
+        x: 67
+        y: 447
         width: 64
         height: 64
       alignment: 0
@@ -125,8 +129,8 @@ TextureImporter:
       name: Actors-Placeholder-IdleUp
       rect:
         serializedVersion: 2
-        x: 1
-        y: 59
+        x: 133
+        y: 447
         width: 64
         height: 64
       alignment: 0
@@ -138,8 +142,8 @@ TextureImporter:
       name: Actors-Placeholder-RunDown
       rect:
         serializedVersion: 2
-        x: 79
-        y: 191
+        x: 1
+        y: 381
         width: 64
         height: 64
       alignment: 0
@@ -151,8 +155,8 @@ TextureImporter:
       name: Actors-Placeholder-RunSide
       rect:
         serializedVersion: 2
-        x: 145
-        y: 191
+        x: 67
+        y: 381
         width: 64
         height: 64
       alignment: 0
@@ -164,8 +168,8 @@ TextureImporter:
       name: Actors-Placeholder-RunUp
       rect:
         serializedVersion: 2
-        x: 67
-        y: 125
+        x: 133
+        y: 381
         width: 64
         height: 64
       alignment: 0
@@ -177,8 +181,8 @@ TextureImporter:
       name: Items-Bullet
       rect:
         serializedVersion: 2
-        x: 211
-        y: 226
+        x: 221
+        y: 417
         width: 11
         height: 11
       alignment: 9
@@ -190,8 +194,8 @@ TextureImporter:
       name: Items-DieBeker
       rect:
         serializedVersion: 2
-        x: 133
-        y: 60
+        x: 67
+        y: 250
         width: 64
         height: 63
       alignment: 9
@@ -203,8 +207,8 @@ TextureImporter:
       name: Items-PopGun
       rect:
         serializedVersion: 2
-        x: 23
-        y: 12
+        x: 199
+        y: 466
         width: 54
         height: 45
       alignment: 9
@@ -216,8 +220,8 @@ TextureImporter:
       name: Items-Punch
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
+        x: 199
+        y: 408
         width: 20
         height: 56
       alignment: 9
@@ -229,8 +233,8 @@ TextureImporter:
       name: Map-MiniMapBackground
       rect:
         serializedVersion: 2
-        x: 211
-        y: 239
+        x: 221
+        y: 448
         width: 16
         height: 16
       alignment: 0
@@ -242,8 +246,8 @@ TextureImporter:
       name: Map-MiniMaptile
       rect:
         serializedVersion: 2
-        x: 229
-        y: 239
+        x: 239
+        y: 448
         width: 16
         height: 16
       alignment: 0
@@ -255,8 +259,8 @@ TextureImporter:
       name: Rooms-Floors-PlaceholderTile
       rect:
         serializedVersion: 2
-        x: 67
-        y: 59
+        x: 1
+        y: 315
         width: 64
         height: 64
       alignment: 0
@@ -268,8 +272,60 @@ TextureImporter:
       name: Rooms-Walls-Wall
       rect:
         serializedVersion: 2
+        x: 67
+        y: 315
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-ArrowLeft
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 430
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-ArrowRight
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 430
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-OutlinedPhoto
+      rect:
+        serializedVersion: 2
         x: 133
-        y: 125
+        y: 315
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-PlayerPanelBG
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 249
         width: 64
         height: 64
       alignment: 0

@@ -33,6 +33,7 @@ public class GameController : Singleton<GameController>
     public Transform FistsItemPrefab;
     public Transform PopGunPrefab;
     public float respawnDelay = 3.0f;
+    private bool running = false;
 
     public Building Building { get; private set; }
 
@@ -55,6 +56,12 @@ public class GameController : Singleton<GameController>
         this.offScreenPosition = new Vector3(-1000.0f, -1000.0f, 0f);
     }
 
+    public bool Running {
+        get {
+            return this.running;
+        }
+    }
+
     public Item GetDomainItem(UnityItem item)
     {
         return this.itemLookup[item];
@@ -72,12 +79,16 @@ public class GameController : Singleton<GameController>
         this.camerasContainer = transform.Find("Cameras");
         this.itemsContainer = transform.Find("Items");
 
+        Room.ItemSpawned += HandleItemSpawned;
+    }
+
+    public void BeginGame() { // TODO: Call this at an appropriate time...
         this.cousins.AddRange(this.CreateCousinsForPlayers());
         this.Building = new Building(this.cousins, new ItemToSpawnSelector(this.SpawnPopGun));
         this.CreateRooms(Building);
         this.SpawnBeker();
 
-        Room.ItemSpawned += HandleItemSpawned;
+        this.running = true;
     }
 
     private void HandleItemSpawned(object sender, ItemSpawnedEventArgs e)

@@ -23,6 +23,10 @@ public class ItemSpawnManager : Singleton<ItemSpawnManager>
 
     private void Update()
     {
+        if (!GameController.Instance.Running) {
+            return;
+        }
+
         this.timeBeforeNextSpawn -= Time.deltaTime;
 
         if(this.timeBeforeNextSpawn > 0.0f)
