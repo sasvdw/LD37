@@ -70,6 +70,9 @@ TextureImporter:
     21300126: Actors-CousinMale-SideRun2
     21300128: Actors-CousinMale-SideRun3
     21300130: Actors-CousinMale-SideRun4
+    21300132: Rooms-Floors-BlueTile
+    21300134: Rooms-Walls-WallWhiteTiled
+    21300136: Rooms-Walls-WallGranite
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -760,7 +763,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Rooms-Floors-PlaceholderTile
+      name: Rooms-Floors-BlueTile
       rect:
         serializedVersion: 2
         x: 265
@@ -773,11 +776,50 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Rooms-Walls-Wall
+      name: Rooms-Floors-PlaceholderTile
       rect:
         serializedVersion: 2
         x: 331
         y: 563
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rooms-Walls-Wall
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 563
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rooms-Walls-WallGranite
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 497
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rooms-Walls-WallWhiteTiled
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 497
         width: 64
         height: 64
       alignment: 0
@@ -815,8 +857,8 @@ TextureImporter:
       name: UI-OutlinedPhoto
       rect:
         serializedVersion: 2
-        x: 397
-        y: 563
+        x: 133
+        y: 497
         width: 64
         height: 64
       alignment: 0
@@ -828,7 +870,7 @@ TextureImporter:
       name: UI-PlayerPanelBG
       rect:
         serializedVersion: 2
-        x: 1
+        x: 199
         y: 497
         width: 64
         height: 64
