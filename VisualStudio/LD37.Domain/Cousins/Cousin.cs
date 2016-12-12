@@ -42,6 +42,7 @@ namespace LD37.Domain.Cousins
         public event EventHandler<RoomChangedEventArgs> RoomChanged;
         public event EventHandler<CousinScoreChangeEventArgs> ScoreChanged;
         public event EventHandler<CousinScoredEventArgs> CousinScored;
+        public event EventHandler<CousinHealthChangedEventArgs> CousinHealthChanged;
 
         private Cousin()
         {
@@ -124,11 +125,15 @@ namespace LD37.Domain.Cousins
 
         public bool IsInOwnSpawn => this.CurrentRoom == this.spawnRoom;
 
-        public void Take(int damage)
+        public void TakeDamage(int damage)
         {
             this.health -= damage;
 
-            if(this.health > 0)
+            if (CousinHealthChanged != null) {
+                CousinHealthChanged(this, new CousinHealthChangedEventArgs(this.health));
+            }
+
+            if (this.health > 0)
             {
                 return;
             }
@@ -149,6 +154,11 @@ namespace LD37.Domain.Cousins
         public void Respawn()
         {
             this.health = DEFAULT_HEALTH;
+
+            if (CousinHealthChanged != null) {
+                CousinHealthChanged(this, new CousinHealthChangedEventArgs(this.health));
+            }
+
             SetCurrentRoom(this.spawnRoom);
 
             if(Respawned != null)
@@ -277,6 +287,14 @@ namespace LD37.Domain.Cousins
         {
             this.Beker = beker;
             this.Won = won;
+        }
+    }
+
+    public class CousinHealthChangedEventArgs : EventArgs {
+        public int Health { get; }
+
+        public CousinHealthChangedEventArgs(int health) {
+            this.Health = health;
         }
     }
 

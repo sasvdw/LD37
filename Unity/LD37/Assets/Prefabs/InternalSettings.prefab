@@ -69,3 +69,19 @@ MonoBehaviour:
   PopGunPrefab: {fileID: 4715364135801994, guid: c61cb581e0387e44eaf46cfb8c9938ae,
     type: 2}
   respawnDelay: 3
+  cousinNames:
+  - Sas
+  - Matt
+  - Lida
+  - Tharina
+  - Gallie
+  - Sias
+  - Pieter
+  cousinCaricature:
+  - {fileID: 21300146, guid: eaa36e047f5fee142b062b11f05f1053, type: 3}
+  - {fileID: 21300144, guid: eaa36e047f5fee142b062b11f05f1053, type: 3}
+  - {fileID: 21300142, guid: eaa36e047f5fee142b062b11f05f1053, type: 3}
+  - {fileID: 21300142, guid: eaa36e047f5fee142b062b11f05f1053, type: 3}
+  - {fileID: 21300142, guid: eaa36e047f5fee142b062b11f05f1053, type: 3}
+  - {fileID: 21300142, guid: eaa36e047f5fee142b062b11f05f1053, type: 3}
+  - {fileID: 21300142, guid: eaa36e047f5fee142b062b11f05f1053, type: 3}

@@ -73,6 +73,13 @@ TextureImporter:
     21300132: Rooms-Floors-BlueTile
     21300134: Rooms-Walls-WallWhiteTiled
     21300136: Rooms-Walls-WallGranite
+    21300138: UI-Heart
+    21300140: UI-HeartBroken
+    21300142: UI-CaricatureBase
+    21300144: UI-CaricatureMatt
+    21300146: UI-CaricatureSas
+    21300148: UI-Glow
+    21300150: Items-DieGlowingBeker
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -142,7 +149,7 @@ TextureImporter:
       name: Actors-CousinMale-CousinMaleDown
       rect:
         serializedVersion: 2
-        x: 1
+        x: 131
         y: 959
         width: 64
         height: 64
@@ -155,7 +162,7 @@ TextureImporter:
       name: Actors-CousinMale-DownIdle0
       rect:
         serializedVersion: 2
-        x: 67
+        x: 197
         y: 959
         width: 64
         height: 64
@@ -168,7 +175,7 @@ TextureImporter:
       name: Actors-CousinMale-DownIdle1
       rect:
         serializedVersion: 2
-        x: 133
+        x: 263
         y: 959
         width: 64
         height: 64
@@ -181,7 +188,7 @@ TextureImporter:
       name: Actors-CousinMale-DownIdle2
       rect:
         serializedVersion: 2
-        x: 199
+        x: 329
         y: 959
         width: 64
         height: 64
@@ -194,7 +201,7 @@ TextureImporter:
       name: Actors-CousinMale-DownIdle3
       rect:
         serializedVersion: 2
-        x: 265
+        x: 395
         y: 959
         width: 64
         height: 64
@@ -207,8 +214,8 @@ TextureImporter:
       name: Actors-CousinMale-DownRun0
       rect:
         serializedVersion: 2
-        x: 331
-        y: 959
+        x: 131
+        y: 893
         width: 64
         height: 64
       alignment: 0
@@ -220,8 +227,8 @@ TextureImporter:
       name: Actors-CousinMale-DownRun1
       rect:
         serializedVersion: 2
-        x: 397
-        y: 959
+        x: 1
+        y: 829
         width: 64
         height: 64
       alignment: 0
@@ -233,7 +240,7 @@ TextureImporter:
       name: Actors-CousinMale-DownRun2
       rect:
         serializedVersion: 2
-        x: 1
+        x: 197
         y: 893
         width: 64
         height: 64
@@ -246,7 +253,7 @@ TextureImporter:
       name: Actors-CousinMale-DownRun3
       rect:
         serializedVersion: 2
-        x: 67
+        x: 263
         y: 893
         width: 64
         height: 64
@@ -259,7 +266,7 @@ TextureImporter:
       name: Actors-CousinMale-DownRun4
       rect:
         serializedVersion: 2
-        x: 133
+        x: 329
         y: 893
         width: 64
         height: 64
@@ -272,7 +279,7 @@ TextureImporter:
       name: Actors-CousinMale-DownRun5
       rect:
         serializedVersion: 2
-        x: 199
+        x: 395
         y: 893
         width: 64
         height: 64
@@ -285,8 +292,8 @@ TextureImporter:
       name: Actors-CousinMale-DownRun6
       rect:
         serializedVersion: 2
-        x: 265
-        y: 893
+        x: 67
+        y: 827
         width: 64
         height: 64
       alignment: 0
@@ -298,8 +305,8 @@ TextureImporter:
       name: Actors-CousinMale-DownRun7
       rect:
         serializedVersion: 2
-        x: 331
-        y: 893
+        x: 1
+        y: 763
         width: 64
         height: 64
       alignment: 0
@@ -311,8 +318,8 @@ TextureImporter:
       name: Actors-CousinMale-DownRun8
       rect:
         serializedVersion: 2
-        x: 397
-        y: 893
+        x: 133
+        y: 827
         width: 64
         height: 64
       alignment: 0
@@ -324,7 +331,7 @@ TextureImporter:
       name: Actors-CousinMale-SideIdle0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 199
         y: 827
         width: 64
         height: 64
@@ -337,7 +344,7 @@ TextureImporter:
       name: Actors-CousinMale-SideIdle1
       rect:
         serializedVersion: 2
-        x: 67
+        x: 265
         y: 827
         width: 64
         height: 64
@@ -350,7 +357,7 @@ TextureImporter:
       name: Actors-CousinMale-SideIdle2
       rect:
         serializedVersion: 2
-        x: 133
+        x: 331
         y: 827
         width: 64
         height: 64
@@ -363,7 +370,7 @@ TextureImporter:
       name: Actors-CousinMale-SideIdle3
       rect:
         serializedVersion: 2
-        x: 199
+        x: 397
         y: 827
         width: 64
         height: 64
@@ -376,8 +383,8 @@ TextureImporter:
       name: Actors-CousinMale-SideRun0
       rect:
         serializedVersion: 2
-        x: 265
-        y: 827
+        x: 67
+        y: 761
         width: 64
         height: 64
       alignment: 0
@@ -389,8 +396,8 @@ TextureImporter:
       name: Actors-CousinMale-SideRun1
       rect:
         serializedVersion: 2
-        x: 331
-        y: 827
+        x: 1
+        y: 697
         width: 64
         height: 64
       alignment: 0
@@ -402,8 +409,8 @@ TextureImporter:
       name: Actors-CousinMale-SideRun2
       rect:
         serializedVersion: 2
-        x: 397
-        y: 827
+        x: 133
+        y: 761
         width: 64
         height: 64
       alignment: 0
@@ -415,7 +422,7 @@ TextureImporter:
       name: Actors-CousinMale-SideRun3
       rect:
         serializedVersion: 2
-        x: 1
+        x: 199
         y: 761
         width: 64
         height: 64
@@ -428,7 +435,7 @@ TextureImporter:
       name: Actors-CousinMale-SideRun4
       rect:
         serializedVersion: 2
-        x: 67
+        x: 265
         y: 761
         width: 64
         height: 64
@@ -441,7 +448,7 @@ TextureImporter:
       name: Actors-CousinMale-UpIdle0
       rect:
         serializedVersion: 2
-        x: 133
+        x: 331
         y: 761
         width: 64
         height: 64
@@ -454,7 +461,7 @@ TextureImporter:
       name: Actors-CousinMale-UpIdle1
       rect:
         serializedVersion: 2
-        x: 199
+        x: 397
         y: 761
         width: 64
         height: 64
@@ -467,8 +474,8 @@ TextureImporter:
       name: Actors-CousinMale-UpIdle2
       rect:
         serializedVersion: 2
-        x: 265
-        y: 761
+        x: 67
+        y: 695
         width: 64
         height: 64
       alignment: 0
@@ -480,8 +487,8 @@ TextureImporter:
       name: Actors-CousinMale-UpIdle3
       rect:
         serializedVersion: 2
-        x: 331
-        y: 761
+        x: 1
+        y: 631
         width: 64
         height: 64
       alignment: 0
@@ -493,8 +500,8 @@ TextureImporter:
       name: Actors-CousinMale-UpRun0
       rect:
         serializedVersion: 2
-        x: 397
-        y: 761
+        x: 133
+        y: 695
         width: 64
         height: 64
       alignment: 0
@@ -506,7 +513,7 @@ TextureImporter:
       name: Actors-CousinMale-UpRun1
       rect:
         serializedVersion: 2
-        x: 1
+        x: 199
         y: 695
         width: 64
         height: 64
@@ -519,7 +526,7 @@ TextureImporter:
       name: Actors-CousinMale-UpRun2
       rect:
         serializedVersion: 2
-        x: 67
+        x: 265
         y: 695
         width: 64
         height: 64
@@ -532,7 +539,7 @@ TextureImporter:
       name: Actors-CousinMale-UpRun3
       rect:
         serializedVersion: 2
-        x: 133
+        x: 331
         y: 695
         width: 64
         height: 64
@@ -545,7 +552,7 @@ TextureImporter:
       name: Actors-CousinMale-UpRun4
       rect:
         serializedVersion: 2
-        x: 199
+        x: 397
         y: 695
         width: 64
         height: 64
@@ -558,8 +565,8 @@ TextureImporter:
       name: Actors-CousinMale-UpRun5
       rect:
         serializedVersion: 2
-        x: 265
-        y: 695
+        x: 67
+        y: 629
         width: 64
         height: 64
       alignment: 0
@@ -571,8 +578,8 @@ TextureImporter:
       name: Actors-CousinMale-UpRun6
       rect:
         serializedVersion: 2
-        x: 331
-        y: 695
+        x: 1
+        y: 565
         width: 64
         height: 64
       alignment: 0
@@ -584,8 +591,8 @@ TextureImporter:
       name: Actors-CousinMale-UpRun7
       rect:
         serializedVersion: 2
-        x: 397
-        y: 695
+        x: 133
+        y: 629
         width: 64
         height: 64
       alignment: 0
@@ -597,7 +604,7 @@ TextureImporter:
       name: Actors-CousinMale-UpRun8
       rect:
         serializedVersion: 2
-        x: 1
+        x: 199
         y: 629
         width: 64
         height: 64
@@ -610,7 +617,7 @@ TextureImporter:
       name: Actors-Placeholder-IdleDown
       rect:
         serializedVersion: 2
-        x: 67
+        x: 265
         y: 629
         width: 64
         height: 64
@@ -623,7 +630,7 @@ TextureImporter:
       name: Actors-Placeholder-IdleSide
       rect:
         serializedVersion: 2
-        x: 133
+        x: 331
         y: 629
         width: 64
         height: 64
@@ -636,7 +643,7 @@ TextureImporter:
       name: Actors-Placeholder-IdleUp
       rect:
         serializedVersion: 2
-        x: 199
+        x: 397
         y: 629
         width: 64
         height: 64
@@ -649,8 +656,8 @@ TextureImporter:
       name: Actors-Placeholder-RunDown
       rect:
         serializedVersion: 2
-        x: 265
-        y: 629
+        x: 67
+        y: 563
         width: 64
         height: 64
       alignment: 0
@@ -662,8 +669,8 @@ TextureImporter:
       name: Actors-Placeholder-RunSide
       rect:
         serializedVersion: 2
-        x: 331
-        y: 629
+        x: 1
+        y: 499
         width: 64
         height: 64
       alignment: 0
@@ -675,8 +682,8 @@ TextureImporter:
       name: Actors-Placeholder-RunUp
       rect:
         serializedVersion: 2
-        x: 397
-        y: 629
+        x: 133
+        y: 563
         width: 64
         height: 64
       alignment: 0
@@ -688,7 +695,7 @@ TextureImporter:
       name: Items-Bullet
       rect:
         serializedVersion: 2
-        x: 1
+        x: 199
         y: 563
         width: 64
         height: 64
@@ -701,71 +708,6 @@ TextureImporter:
       name: Items-DieBeker
       rect:
         serializedVersion: 2
-        x: 67
-        y: 563
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: Items-PopGun
-      rect:
-        serializedVersion: 2
-        x: 133
-        y: 563
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: Items-Punch
-      rect:
-        serializedVersion: 2
-        x: 199
-        y: 563
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: Map-MiniMapBackground
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 1007
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: Map-MiniMaptile
-      rect:
-        serializedVersion: 2
-        x: 481
-        y: 1007
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: Rooms-Floors-BlueTile
-      rect:
-        serializedVersion: 2
         x: 265
         y: 563
         width: 64
@@ -776,7 +718,20 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Rooms-Floors-PlaceholderTile
+      name: Items-DieGlowingBeker
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 895
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Items-PopGun
       rect:
         serializedVersion: 2
         x: 331
@@ -789,7 +744,7 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Rooms-Walls-Wall
+      name: Items-Punch
       rect:
         serializedVersion: 2
         x: 397
@@ -802,20 +757,33 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Rooms-Walls-WallGranite
+      name: Map-MiniMapBackground
       rect:
         serializedVersion: 2
-        x: 1
-        y: 497
-        width: 64
-        height: 64
+        x: 461
+        y: 1007
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: Rooms-Walls-WallWhiteTiled
+      name: Map-MiniMaptile
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 1007
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Rooms-Floors-BlueTile
       rect:
         serializedVersion: 2
         x: 67
@@ -828,33 +796,20 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: UI-ArrowLeft
+      name: Rooms-Floors-PlaceholderTile
       rect:
         serializedVersion: 2
-        x: 463
-        y: 989
-        width: 16
-        height: 16
+        x: 1
+        y: 433
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: UI-ArrowRight
-      rect:
-        serializedVersion: 2
-        x: 481
-        y: 989
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: UI-OutlinedPhoto
+      name: Rooms-Walls-Wall
       rect:
         serializedVersion: 2
         x: 133
@@ -867,11 +822,141 @@ TextureImporter:
       outline: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: UI-PlayerPanelBG
+      name: Rooms-Walls-WallGranite
       rect:
         serializedVersion: 2
         x: 199
         y: 497
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-ArrowLeft
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 989
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-ArrowRight
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 989
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-CaricatureBase
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 497
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-CaricatureMatt
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 497
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-CaricatureSas
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 497
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-Glow
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 367
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-Heart
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 301
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-HeartBroken
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 235
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-OutlinedPhoto
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 169
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: UI-PlayerPanelBG
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 103
         width: 64
         height: 64
       alignment: 0

@@ -230,6 +230,13 @@ public class GameController : Singleton<GameController> {
         uiNameText.GetComponentInChildren<Text>().text = cousin.Name;
         playerUIs.Add(cousin, playerUI);
 
+        // Setup player caricature on UI
+        int indexOfCaricature = Array.IndexOf(settings.cousinNames, cousin.Name);
+        if (indexOfCaricature >= 0 && indexOfCaricature < settings.cousinCaricature.Count()) {
+            playerUI.FindChild("CaricatureImage").GetComponent<Image>().sprite = settings.cousinCaricature[indexOfCaricature];
+        }
+
+        // Add event handlers
         cousin.RoomChanged += this.HandleCousinRoomChanged;
         cousin.Died += this.HandleCousinDied;
         cousin.Respawned += this.HandleCousinRespawned;
@@ -238,8 +245,9 @@ public class GameController : Singleton<GameController> {
         cousin.ItemDestroyed += this.HandleCousinItemDestroyed;
         cousin.CousinScored += this.HandleCousinScored;
         cousin.ScoreChanged += this.HandleCousinScoreChanged;
+        cousin.CousinHealthChanged += this.HandleCousinHealthChanged;
     }
-
+    
     private void HandleCousinScoreChanged(object sender, CousinScoreChangeEventArgs e)
     {
         var cousin = (Cousin)sender;
@@ -310,6 +318,10 @@ public class GameController : Singleton<GameController> {
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Escape)) {
+            Application.Quit();
+        }
+
         if (!this.Running) {
             return;
         }
@@ -430,6 +442,20 @@ public class GameController : Singleton<GameController> {
         this.itemLookup.Remove(unityItem);
 
         Destroy(unityItem);
+    }
+
+    private void HandleCousinHealthChanged(object sender, CousinHealthChangedEventArgs e) {
+        var cousin = (Cousin)sender;
+        var playerUI = playerUIs[cousin];
+
+        for (int i = 3; i > 0; i--) {
+            GameObject heartObject = playerUI.transform.FindChild("Heart" + i).gameObject;
+            if (i <= e.Health) {
+                heartObject.SetActive(true);
+            } else {
+                heartObject.SetActive(false);
+            }
+        }
     }
 
     public void DestroyUnityItem(UnityItem unityItem)

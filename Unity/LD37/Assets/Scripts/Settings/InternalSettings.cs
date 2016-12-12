@@ -13,6 +13,8 @@ public class InternalSettings : MonoBehaviour {
     public Transform FistsItemPrefab;
     public Transform PopGunPrefab;
     public float respawnDelay = 3.0f;
+    public string[] cousinNames;
+    public Sprite[] cousinCaricature;
 
     void Start () {
 	}

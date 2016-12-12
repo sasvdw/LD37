@@ -53,7 +53,7 @@ public class PlayerControl : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Cousin.Take(damage);
+        Cousin.TakeDamage(damage);
     }
 
     private void Start()
