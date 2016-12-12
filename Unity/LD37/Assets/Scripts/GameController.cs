@@ -76,6 +76,8 @@ public class GameController : Singleton<GameController> {
         this.unityItemLookup.Clear();
         this.cousins.Clear();
 
+        Cousin.All.Reset();
+
         DestroyChildren(this.playerContainer);
         DestroyChildren(this.roomContainer);
         DestroyChildren(this.camerasContainer);

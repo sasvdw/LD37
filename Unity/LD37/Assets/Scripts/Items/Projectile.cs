@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision) {
         PlayerControl playerController = collision.gameObject.GetComponent<PlayerControl>();
         if (playerController != null && this.damage > 0) {
-            playerController.Damage(damage);
+            playerController.TakeDamage(damage);
             damage = 0;
 
             if (destroyOnHit) {
