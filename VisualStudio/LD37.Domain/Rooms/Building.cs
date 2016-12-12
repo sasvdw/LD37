@@ -61,7 +61,6 @@ namespace LD37.Domain.Rooms
                     if(shouldSpawn)
                     {
                         var cousin = cousinsToAddToBuilding.GetRandomAndRemoveCousin();
-
                         this.RoomsWithPoints[coordinate] = cousin.SpawnRoom;
                         continue;
                     }
