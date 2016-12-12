@@ -34,6 +34,42 @@ TextureImporter:
     21300054: UI-PlayerPanelBG
     21300056: UI-ArrowLeft
     21300058: UI-ArrowRight
+    21300060: Actors-CousinMale-CousinMaleDown
+    21300062: Actors-CousinMale-DownIdle0
+    21300064: Actors-CousinMale-DownIdle1
+    21300066: Actors-CousinMale-DownIdle2
+    21300068: Actors-CousinMale-DownIdle3
+    21300070: Actors-CousinMale-UpIdle0
+    21300072: Actors-CousinMale-UpIdle1
+    21300074: Actors-CousinMale-UpIdle2
+    21300076: Actors-CousinMale-UpIdle3
+    21300078: Actors-CousinMale-DownRun0
+    21300080: Actors-CousinMale-DownRun1
+    21300082: Actors-CousinMale-DownRun2
+    21300084: Actors-CousinMale-DownRun3
+    21300086: Actors-CousinMale-DownRun4
+    21300088: Actors-CousinMale-DownRun5
+    21300090: Actors-CousinMale-DownRun6
+    21300092: Actors-CousinMale-DownRun7
+    21300094: Actors-CousinMale-DownRun8
+    21300096: Actors-CousinMale-UpRun0
+    21300098: Actors-CousinMale-UpRun1
+    21300100: Actors-CousinMale-UpRun2
+    21300102: Actors-CousinMale-UpRun3
+    21300104: Actors-CousinMale-UpRun4
+    21300106: Actors-CousinMale-UpRun5
+    21300108: Actors-CousinMale-UpRun6
+    21300110: Actors-CousinMale-UpRun7
+    21300112: Actors-CousinMale-UpRun8
+    21300114: Actors-CousinMale-SideIdle0
+    21300116: Actors-CousinMale-SideIdle1
+    21300118: Actors-CousinMale-SideIdle2
+    21300120: Actors-CousinMale-SideIdle3
+    21300122: Actors-CousinMale-SideRun0
+    21300124: Actors-CousinMale-SideRun1
+    21300126: Actors-CousinMale-SideRun2
+    21300128: Actors-CousinMale-SideRun3
+    21300130: Actors-CousinMale-SideRun4
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -60,7 +96,7 @@ TextureImporter:
     filterMode: 0
     aniso: -1
     mipBias: -1
-    wrapMode: 0
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -90,21 +126,489 @@ TextureImporter:
     overridden: 0
   - buildTarget: Standalone
     maxTextureSize: 2048
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Actors-Placeholder-IdleDown
+      name: Actors-CousinMale-CousinMaleDown
       rect:
         serializedVersion: 2
         x: 1
-        y: 447
+        y: 959
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownIdle0
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 959
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownIdle1
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 959
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownIdle2
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 959
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownIdle3
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 959
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownRun0
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 959
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownRun1
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 959
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownRun2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 893
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownRun3
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 893
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownRun4
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 893
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownRun5
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 893
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownRun6
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 893
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownRun7
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 893
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-DownRun8
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 893
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-SideIdle0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 827
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-SideIdle1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 827
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-SideIdle2
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 827
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-SideIdle3
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 827
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-SideRun0
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 827
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-SideRun1
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 827
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-SideRun2
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 827
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-SideRun3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 761
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-SideRun4
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 761
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpIdle0
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 761
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpIdle1
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 761
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpIdle2
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 761
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpIdle3
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 761
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpRun0
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 761
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpRun1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 695
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpRun2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 695
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpRun3
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 695
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpRun4
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 695
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpRun5
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 695
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpRun6
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 695
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpRun7
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 695
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-CousinMale-UpRun8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 629
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Actors-Placeholder-IdleDown
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 629
         width: 64
         height: 64
       alignment: 0
@@ -116,8 +620,8 @@ TextureImporter:
       name: Actors-Placeholder-IdleSide
       rect:
         serializedVersion: 2
-        x: 67
-        y: 447
+        x: 133
+        y: 629
         width: 64
         height: 64
       alignment: 0
@@ -129,8 +633,8 @@ TextureImporter:
       name: Actors-Placeholder-IdleUp
       rect:
         serializedVersion: 2
-        x: 133
-        y: 447
+        x: 199
+        y: 629
         width: 64
         height: 64
       alignment: 0
@@ -142,8 +646,8 @@ TextureImporter:
       name: Actors-Placeholder-RunDown
       rect:
         serializedVersion: 2
-        x: 1
-        y: 381
+        x: 265
+        y: 629
         width: 64
         height: 64
       alignment: 0
@@ -155,8 +659,8 @@ TextureImporter:
       name: Actors-Placeholder-RunSide
       rect:
         serializedVersion: 2
-        x: 67
-        y: 381
+        x: 331
+        y: 629
         width: 64
         height: 64
       alignment: 0
@@ -168,8 +672,8 @@ TextureImporter:
       name: Actors-Placeholder-RunUp
       rect:
         serializedVersion: 2
-        x: 133
-        y: 381
+        x: 397
+        y: 629
         width: 64
         height: 64
       alignment: 0
@@ -181,12 +685,12 @@ TextureImporter:
       name: Items-Bullet
       rect:
         serializedVersion: 2
-        x: 221
-        y: 417
-        width: 11
-        height: 11
-      alignment: 9
-      pivot: {x: 0.36363637, y: 0.54545456}
+        x: 1
+        y: 563
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -195,11 +699,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 67
-        y: 250
+        y: 563
         width: 64
-        height: 63
-      alignment: 9
-      pivot: {x: 0.5, y: 0.50793654}
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -207,12 +711,12 @@ TextureImporter:
       name: Items-PopGun
       rect:
         serializedVersion: 2
-        x: 199
-        y: 466
-        width: 54
-        height: 45
-      alignment: 9
-      pivot: {x: 0.46296296, y: 0.6}
+        x: 133
+        y: 563
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -221,11 +725,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 199
-        y: 408
-        width: 20
-        height: 56
-      alignment: 9
-      pivot: {x: -0.6, y: 0.5}
+        y: 563
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
@@ -233,8 +737,8 @@ TextureImporter:
       name: Map-MiniMapBackground
       rect:
         serializedVersion: 2
-        x: 221
-        y: 448
+        x: 463
+        y: 1007
         width: 16
         height: 16
       alignment: 0
@@ -246,8 +750,8 @@ TextureImporter:
       name: Map-MiniMaptile
       rect:
         serializedVersion: 2
-        x: 239
-        y: 448
+        x: 481
+        y: 1007
         width: 16
         height: 16
       alignment: 0
@@ -259,8 +763,8 @@ TextureImporter:
       name: Rooms-Floors-PlaceholderTile
       rect:
         serializedVersion: 2
-        x: 1
-        y: 315
+        x: 265
+        y: 563
         width: 64
         height: 64
       alignment: 0
@@ -272,8 +776,8 @@ TextureImporter:
       name: Rooms-Walls-Wall
       rect:
         serializedVersion: 2
-        x: 67
-        y: 315
+        x: 331
+        y: 563
         width: 64
         height: 64
       alignment: 0
@@ -285,8 +789,8 @@ TextureImporter:
       name: UI-ArrowLeft
       rect:
         serializedVersion: 2
-        x: 221
-        y: 430
+        x: 463
+        y: 989
         width: 16
         height: 16
       alignment: 0
@@ -298,8 +802,8 @@ TextureImporter:
       name: UI-ArrowRight
       rect:
         serializedVersion: 2
-        x: 239
-        y: 430
+        x: 481
+        y: 989
         width: 16
         height: 16
       alignment: 0
@@ -311,8 +815,8 @@ TextureImporter:
       name: UI-OutlinedPhoto
       rect:
         serializedVersion: 2
-        x: 133
-        y: 315
+        x: 397
+        y: 563
         width: 64
         height: 64
       alignment: 0
@@ -325,7 +829,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 249
+        y: 497
         width: 64
         height: 64
       alignment: 0
