@@ -243,8 +243,16 @@
             <key type="filename">Items/DieBeker.png</key>
             <key type="filename">Items/PopGun.png</key>
             <key type="filename">Items/Punch.png</key>
+            <key type="filename">Rooms/Floors/BlueTile.png</key>
             <key type="filename">Rooms/Floors/PlaceholderTile.png</key>
             <key type="filename">Rooms/Walls/Wall.png</key>
+            <key type="filename">Rooms/Walls/WallGranite.png</key>
+            <key type="filename">UI/CaricatureBase.png</key>
+            <key type="filename">UI/CaricatureMatt.png</key>
+            <key type="filename">UI/CaricatureSas.png</key>
+            <key type="filename">UI/Glow.png</key>
+            <key type="filename">UI/Heart.png</key>
+            <key type="filename">UI/HeartBroken.png</key>
             <key type="filename">UI/OutlinedPhoto.png</key>
             <key type="filename">UI/PlayerPanelBG.png</key>
             <struct type="IndividualSpriteSettings">
@@ -256,6 +264,19 @@
                 <rect>16,16,32,32</rect>
                 <key>scale9Paddings</key>
                 <rect>16,16,32,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">Items/DieGlowingBeker.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>32,32,64,64</rect>
+                <key>scale9Paddings</key>
+                <rect>32,32,64,64</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
