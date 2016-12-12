@@ -4,7 +4,7 @@
 # To import these sprites into your Unity project, download "TexturePackerImporter":
 # http://www.codeandweb.com/texturepacker/unity
 #
-# $TexturePacker:SmartUpdate:345e0dd3feddcaf5c63113e64f8e6004:d6434b7612f8e581696adb44d48cd22b:8ab4c75ff4b1bbcb67e3b6e53ae23d58$
+# $TexturePacker:SmartUpdate:72fae338a2191819ec722e5c92851bfc:539428d2df177d7b192710ed29eb0c47:8ab4c75ff4b1bbcb67e3b6e53ae23d58$
 #
 :format=40300
 :texture=Sprites.png
@@ -60,9 +60,12 @@ Items/PopGun;133;563;64;64; 0.5;0.5; 0;0;0;0
 Items/Punch;199;563;64;64; 0.5;0.5; 0;0;0;0
 Map/MiniMapBackground;463;1007;16;16; 0.5;0.5; 0;0;0;0
 Map/MiniMaptile;481;1007;16;16; 0.5;0.5; 0;0;0;0
-Rooms/Floors/PlaceholderTile;265;563;64;64; 0.5;0.5; 0;0;0;0
-Rooms/Walls/Wall;331;563;64;64; 0.5;0.5; 0;0;0;0
+Rooms/Floors/BlueTile;265;563;64;64; 0.5;0.5; 0;0;0;0
+Rooms/Floors/PlaceholderTile;331;563;64;64; 0.5;0.5; 0;0;0;0
+Rooms/Walls/Wall;397;563;64;64; 0.5;0.5; 0;0;0;0
+Rooms/Walls/WallGranite;1;497;64;64; 0.5;0.5; 0;0;0;0
+Rooms/Walls/WallWhiteTiled;67;497;64;64; 0.5;0.5; 0;0;0;0
 UI/ArrowLeft;463;989;16;16; 0.5;0.5; 0;0;0;0
 UI/ArrowRight;481;989;16;16; 0.5;0.5; 0;0;0;0
-UI/OutlinedPhoto;397;563;64;64; 0.5;0.5; 0;0;0;0
-UI/PlayerPanelBG;1;497;64;64; 0.5;0.5; 0;0;0;0
+UI/OutlinedPhoto;133;497;64;64; 0.5;0.5; 0;0;0;0
+UI/PlayerPanelBG;199;497;64;64; 0.5;0.5; 0;0;0;0
