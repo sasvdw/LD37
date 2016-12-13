@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using LD37.Domain.Items;
 using LD37.Domain.Movement;
@@ -10,15 +11,16 @@ namespace LD37.Domain.Cousins
     {
         public const int DEFAULT_HEALTH = 3;
 
-        public static Cousin Sas = new Cousin("Sas");
-        public static Cousin Matt = new Cousin("Matt");
-        public static Cousin Lida = new Cousin("Lida");
-        public static Cousin Tharina = new Cousin("Tharina");
-        public static Cousin Gallie = new Cousin("Gallie");
-        public static Cousin Sias = new Cousin("Sias");
-        public static Cousin Pieter = new Cousin("Pieter");
+        internal static Cousin Sas => new Cousin("Sas");
+        internal static Cousin Matt => new Cousin("Matt");
+        internal static Cousin Lida => new Cousin("Lida");
+        internal static Cousin Tharina => new Cousin("Tharina");
+        internal static Cousin Gallie => new Cousin("Gallie");
+        internal static Cousin Sias => new Cousin("Sias");
+        internal static Cousin Pieter => new Cousin("Pieter");
 
-        public static IEnumerable<Cousin> All = new List<Cousin> { Sas, Matt, Lida, Tharina, Gallie, Sias, Pieter };
+        public static AllCousins All => AllCousins.Instance;
+
         private readonly SpawnRoom spawnRoom;
         private readonly Fists fists;
         private byte score;
@@ -40,6 +42,8 @@ namespace LD37.Domain.Cousins
         public event EventHandler<RoomChangedEventArgs> RoomChanged;
         public event EventHandler<CousinScoreChangeEventArgs> ScoreChanged;
         public event EventHandler<CousinScoredEventArgs> CousinScored;
+        public event EventHandler<CousinHealthChangedEventArgs> CousinHealthChanged;
+
         private Cousin()
         {
             this.fists = new Fists();
@@ -52,6 +56,12 @@ namespace LD37.Domain.Cousins
             this.Name = name;
             this.spawnRoom = new SpawnRoom(this);
             this.CurrentRoom = this.spawnRoom;
+        }
+
+        public bool Winner {
+            get {
+                return this.score == 3;
+            }
         }
 
         public void Move(Direction direction)
@@ -105,7 +115,7 @@ namespace LD37.Domain.Cousins
                 this.IncrementScore();
                 if (this.CousinScored != null)
                 {
-                    var cousinScoredEventArgs = new CousinScoredEventArgs((Beker)this.CurrentItem);
+                    var cousinScoredEventArgs = new CousinScoredEventArgs((Beker)this.CurrentItem, Winner);
                     this.CousinScored(this, cousinScoredEventArgs);
                 }
             }
@@ -115,11 +125,15 @@ namespace LD37.Domain.Cousins
 
         public bool IsInOwnSpawn => this.CurrentRoom == this.spawnRoom;
 
-        public void Damage(int damage)
+        public void TakeDamage(int damage)
         {
             this.health -= damage;
 
-            if(this.health > 0)
+            if (CousinHealthChanged != null) {
+                CousinHealthChanged(this, new CousinHealthChangedEventArgs(this.health));
+            }
+
+            if (this.health > 0)
             {
                 return;
             }
@@ -140,6 +154,11 @@ namespace LD37.Domain.Cousins
         public void Respawn()
         {
             this.health = DEFAULT_HEALTH;
+
+            if (CousinHealthChanged != null) {
+                CousinHealthChanged(this, new CousinHealthChangedEventArgs(this.health));
+            }
+
             SetCurrentRoom(this.spawnRoom);
 
             if(Respawned != null)
@@ -262,10 +281,71 @@ namespace LD37.Domain.Cousins
     public class CousinScoredEventArgs : EventArgs
     {
         public Beker Beker { get; }
+        public bool Won { get; }
 
-        public CousinScoredEventArgs(Beker beker)
+        public CousinScoredEventArgs(Beker beker, bool won)
         {
             this.Beker = beker;
+            this.Won = won;
+        }
+    }
+
+    public class CousinHealthChangedEventArgs : EventArgs {
+        public int Health { get; }
+
+        public CousinHealthChangedEventArgs(int health) {
+            this.Health = health;
+        }
+    }
+
+    public class AllCousins : IEnumerable<Cousin>
+    {
+
+        private static volatile AllCousins instance;
+        private static object syncRoot = new object();
+
+        internal static AllCousins Instance
+        {
+            get
+            {
+                if (instance != null)
+                {
+                    return instance;
+                }
+
+                lock (syncRoot)
+                {
+                    if (instance == null)
+                    {
+                        instance = new AllCousins();
+                    }
+                }
+
+                return instance;
+            }
+        }
+
+        private readonly List<Cousin> cousins;
+
+        internal AllCousins()
+        {
+            this.cousins = new List<Cousin>();
+            this.Reset();
+        }
+
+        public void Reset()
+        {
+            this.cousins.Clear();
+            this.cousins.AddRange(new[] { Cousin.Sas, Cousin.Matt, Cousin.Lida, Cousin.Tharina, Cousin.Gallie, Cousin.Sias, Cousin.Pieter });
+        }
+        public IEnumerator<Cousin> GetEnumerator()
+        {
+            return this.cousins.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

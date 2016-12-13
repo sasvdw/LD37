@@ -51,9 +51,9 @@ public class PlayerControl : MonoBehaviour
         this.rewiredPlayer = ReInput.players.GetPlayer(playerNumber);
     }
 
-    public void Damage(int damage)
+    public void TakeDamage(int damage)
     {
-        Cousin.Damage(damage);
+        Cousin.TakeDamage(damage);
     }
 
     private void Start()

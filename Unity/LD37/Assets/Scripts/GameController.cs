@@ -6,9 +6,10 @@ using LD37.Domain.Items;
 using LD37.Domain.Rooms;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class GameController : Singleton<GameController>
-{
+public class GameController : Singleton<GameController> {
+    private List<GamePlayer> gamePlayers;
     private readonly Dictionary<Room, Transform> rooms;
     private readonly Dictionary<Cousin, Transform> players;
     private readonly Dictionary<Cousin, Transform> playerUIs;
@@ -22,17 +23,11 @@ public class GameController : Singleton<GameController>
     private Transform camerasContainer;
     private Transform itemsContainer;
 
-    private bool initialSpawnCompleted = false;
+    private InternalSettings settings;
 
-    public Color[] PlayerColors;
-    public int NumPlayers;
-    public Transform PlayerPrefab;
-    public Transform RoomPrefab;
-    public Transform PlayerCameraPrefab;
-    public Transform BekerPrefab;
-    public Transform FistsItemPrefab;
-    public Transform PopGunPrefab;
-    public float respawnDelay = 3.0f;
+    private bool initialSpawnCompleted = false;
+    private bool running = false;
+    public Cousin Winner { get; private set; }
 
     public Building Building { get; private set; }
 
@@ -46,6 +41,7 @@ public class GameController : Singleton<GameController>
 
     public GameController()
     {
+        this.gamePlayers = new List<GamePlayer>();
         this.rooms = new Dictionary<Room, Transform>();
         this.players = new Dictionary<Cousin, Transform>();
         this.playerUIs = new Dictionary<Cousin, Transform>();
@@ -53,6 +49,12 @@ public class GameController : Singleton<GameController>
         this.unityItemLookup = new Dictionary<Item, UnityItem>();
         this.cousins = new List<Cousin>();
         this.offScreenPosition = new Vector3(-1000.0f, -1000.0f, 0f);
+    }
+
+    public bool Running {
+        get {
+            return this.running;
+        }
     }
 
     public Item GetDomainItem(UnityItem item)
@@ -65,19 +67,63 @@ public class GameController : Singleton<GameController>
         return players[cousin].GetComponent<PlayerControl>().Color;
     }
 
+    public void Reset() {
+        this.gamePlayers = new List<GamePlayer>();
+        this.rooms.Clear();
+        this.players.Clear();
+        this.playerUIs.Clear();
+        this.itemLookup.Clear();
+        this.unityItemLookup.Clear();
+        this.cousins.Clear();
+
+        Cousin.All.Reset();
+
+        DestroyChildren(this.playerContainer);
+        DestroyChildren(this.roomContainer);
+        DestroyChildren(this.camerasContainer);
+        DestroyChildren(this.itemsContainer);
+
+        this.running = false;
+        this.initialSpawnCompleted = false;
+    }
+
+    private void DestroyChildren(Transform transform) {
+        for (int i = 0; i < transform.childCount; i++) {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
     private void Awake()
     {
-        this.playerContainer = transform.Find("Players");
-        this.roomContainer = transform.Find("Rooms");
-        this.camerasContainer = transform.Find("Cameras");
-        this.itemsContainer = transform.Find("Items");
+        
+        this.playerContainer = CreateGameObjectFolder("Players").transform;
+        this.roomContainer = CreateGameObjectFolder("Rooms").transform;
+        this.camerasContainer = CreateGameObjectFolder("Cameras").transform;
+        this.itemsContainer = CreateGameObjectFolder("Items").transform;
 
-        this.cousins.AddRange(this.CreateCousinsForPlayers());
+        settings = GameObject.Find("InternalSettings").GetComponent<InternalSettings>();
+
+        Room.ItemSpawned += HandleItemSpawned;
+    }
+
+    private GameObject CreateGameObjectFolder(String name) {
+        GameObject obj = new GameObject();
+        obj.name = name;
+        obj.transform.parent = this.transform;
+        return obj;
+    }
+
+    public void AddGamePlayer(Cousin cousin, Rewired.Player rewiredPlayer) {
+        this.gamePlayers.Add(new GamePlayer(cousin, rewiredPlayer));
+    }
+
+    public void BeginGame() {
+        SetupPlayers();
         this.Building = new Building(this.cousins, new ItemToSpawnSelector(this.SpawnPopGun));
         this.CreateRooms(Building);
         this.SpawnBeker();
 
-        Room.ItemSpawned += HandleItemSpawned;
+        this.running = true;
     }
 
     private void HandleItemSpawned(object sender, ItemSpawnedEventArgs e)
@@ -92,7 +138,7 @@ public class GameController : Singleton<GameController>
     private Item SpawnPopGun()
     {
         var popGunTransform = Instantiate(
-            this.PopGunPrefab,
+            settings.PopGunPrefab,
             Vector3.zero,
             Quaternion.identity,
             this.itemsContainer
@@ -114,7 +160,7 @@ public class GameController : Singleton<GameController>
         var bekerRoomTransform = this.rooms[bekerRoom];
 
         var bekerTransform = Instantiate(
-            this.BekerPrefab,
+            settings.BekerPrefab,
             bekerRoomTransform.position,
             Quaternion.identity,
             this.itemsContainer
@@ -127,24 +173,38 @@ public class GameController : Singleton<GameController>
 
     private void Start() {}
 
-    private IEnumerable<Cousin> CreateCousinsForPlayers()
-    {
-        var cousinsForPlayers = new List<Cousin>();
-        var allCousins = Cousin.All.ToList();
-        for(var i = 0; i < NumPlayers; i++)
-        {
-            var cousin = allCousins[i];
-            cousinsForPlayers.Add(cousin);
+    private void SetupPlayers() {
+        for (int i = 0; i < settings.NumPlayers; i++) {
+            Cousin cousin = null;
+            int rewiredPlayerId = -1;
 
-            this.CreatePlayer(cousin, i);
+            if (i < gamePlayers.Count) {
+                GamePlayer gamePlayer = gamePlayers[i];
+                cousin = gamePlayer.cousin;
+                rewiredPlayerId = gamePlayer.rewiredPlayer.id;
+            } else {
+                // Make random player
+                // TODO: Make it an AI player
+
+                cousin = GetUnusedCousin();
+                rewiredPlayerId = i;
+            }
+
+            this.CreatePlayer(cousin, rewiredPlayerId, i);
         }
-        return cousinsForPlayers;
+        
     }
 
-    private void CreatePlayer(Cousin cousin, int playerNumber)
+    private Cousin GetUnusedCousin() {
+        return Cousin.All.First<Cousin>(x => !cousins.Contains(x));
+    }
+
+    private void CreatePlayer(Cousin cousin, int rewiredPlayerId, int playerNumber)
     {
+        this.cousins.Add(cousin);
+
         var player = Instantiate(
-            this.PlayerPrefab,
+            settings.PlayerPrefab,
             new Vector2(playerNumber * 2, 0),
             Quaternion.identity,
             this.playerContainer
@@ -152,11 +212,11 @@ public class GameController : Singleton<GameController>
 
         var playerControl = player.GetComponent<PlayerControl>();
         playerControl.SetCousin(cousin, playerNumber);
-        playerControl.RewiredPlayerId = playerNumber;
-        playerControl.Color = PlayerColors[playerNumber];
+        playerControl.RewiredPlayerId = rewiredPlayerId;
+        playerControl.Color = settings.PlayerColors[playerNumber];
         playerControl.Camera = CreateCameraForPlayer(playerNumber);
         playerControl.Fists = Instantiate(
-            FistsItemPrefab,
+            settings.FistsItemPrefab,
             player.transform.position,
             Quaternion.identity,
             player
@@ -170,6 +230,13 @@ public class GameController : Singleton<GameController>
         uiNameText.GetComponentInChildren<Text>().text = cousin.Name;
         playerUIs.Add(cousin, playerUI);
 
+        // Setup player caricature on UI
+        int indexOfCaricature = Array.IndexOf(settings.cousinNames, cousin.Name);
+        if (indexOfCaricature >= 0 && indexOfCaricature < settings.cousinCaricature.Count()) {
+            playerUI.FindChild("CaricatureImage").GetComponent<Image>().sprite = settings.cousinCaricature[indexOfCaricature];
+        }
+
+        // Add event handlers
         cousin.RoomChanged += this.HandleCousinRoomChanged;
         cousin.Died += this.HandleCousinDied;
         cousin.Respawned += this.HandleCousinRespawned;
@@ -178,8 +245,9 @@ public class GameController : Singleton<GameController>
         cousin.ItemDestroyed += this.HandleCousinItemDestroyed;
         cousin.CousinScored += this.HandleCousinScored;
         cousin.ScoreChanged += this.HandleCousinScoreChanged;
+        cousin.CousinHealthChanged += this.HandleCousinHealthChanged;
     }
-
+    
     private void HandleCousinScoreChanged(object sender, CousinScoreChangeEventArgs e)
     {
         var cousin = (Cousin)sender;
@@ -192,7 +260,7 @@ public class GameController : Singleton<GameController>
     private Transform CreateCameraForPlayer(int playerNumber)
     {
         Transform cameraTransform = Instantiate(
-            PlayerCameraPrefab,
+            settings.PlayerCameraPrefab,
             new Vector3(0f, 0f, -10.0f),
             Quaternion.identity,
             camerasContainer
@@ -200,7 +268,7 @@ public class GameController : Singleton<GameController>
 
         cameraTransform.name = cameraTransform.name + " " + playerNumber;
         Camera camera = cameraTransform.GetComponent<Camera>();
-        camera.backgroundColor = PlayerColors[playerNumber];
+        camera.backgroundColor = settings.PlayerColors[playerNumber];
 
         if(playerNumber == 0)
         {
@@ -225,7 +293,7 @@ public class GameController : Singleton<GameController>
     private void CreateRoom(Room room, Vector2 position)
     {
         var roomInstance = Instantiate(
-            this.RoomPrefab,
+            settings.RoomPrefab,
             position,
             Quaternion.identity,
             roomContainer
@@ -250,6 +318,14 @@ public class GameController : Singleton<GameController>
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Escape)) {
+            Application.Quit();
+        }
+
+        if (!this.Running) {
+            return;
+        }
+
         if(this.initialSpawnCompleted)
         {
             return;
@@ -288,7 +364,7 @@ public class GameController : Singleton<GameController>
         Transform playerTransform = players[(Cousin)sender];
         playerTransform.position = this.offScreenPosition;
 
-        RespawnManager.Instance.RespawnInSeconds((Cousin)sender, respawnDelay);
+        RespawnManager.Instance.RespawnInSeconds((Cousin)sender, settings.respawnDelay);
     }
 
     private void HandleCousinItemDropped(object sender, ItemDroppedEventArgs e)
@@ -314,6 +390,12 @@ public class GameController : Singleton<GameController>
         var unityItem = this.unityItemLookup[e.Beker];
         var playerControl = player.GetComponent<PlayerControl>();
 
+        if (e.Won) {
+            this.Winner = cousin;
+            SceneManager.LoadScene("Victory");
+            return;
+        }
+        
         if (playerControl.CurrentItem == unityItem.transform)
         {
             playerControl.CurrentItem = playerControl.Fists;
@@ -362,10 +444,34 @@ public class GameController : Singleton<GameController>
         Destroy(unityItem);
     }
 
+    private void HandleCousinHealthChanged(object sender, CousinHealthChangedEventArgs e) {
+        var cousin = (Cousin)sender;
+        var playerUI = playerUIs[cousin];
+
+        for (int i = 3; i > 0; i--) {
+            GameObject heartObject = playerUI.transform.FindChild("Heart" + i).gameObject;
+            if (i <= e.Health) {
+                heartObject.SetActive(true);
+            } else {
+                heartObject.SetActive(false);
+            }
+        }
+    }
+
     public void DestroyUnityItem(UnityItem unityItem)
     {
         var itemToDestroy = this.itemLookup[unityItem];
 
         this.Building.Destroy(itemToDestroy);
+    }
+
+    private class GamePlayer {
+        public Cousin cousin { get; private set; }
+        public Rewired.Player rewiredPlayer { get; private set; }
+
+        public GamePlayer(Cousin cousin, Rewired.Player rewiredPlayer) {
+            this.cousin = cousin;
+            this.rewiredPlayer = rewiredPlayer;
+        }
     }
 }

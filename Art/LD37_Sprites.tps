@@ -160,7 +160,7 @@
         <key>outputFormat</key>
         <enum type="SettingsBase::OutputFormat">RGBA8888</enum>
         <key>alphaHandling</key>
-        <enum type="SettingsBase::AlphaHandling">ClearTransparentPixels</enum>
+        <enum type="SettingsBase::AlphaHandling">ReduceBorderArtifacts</enum>
         <key>contentProtection</key>
         <struct type="ContentProtection">
             <key>key</key>
@@ -185,7 +185,7 @@
             <key>trimMargin</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">Polygon</enum>
+            <enum type="SpriteSettings::TrimMode">None</enum>
             <key>tracerTolerance</key>
             <int>200</int>
             <key>heuristicMask</key>
@@ -197,6 +197,42 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">Actors/CousinMale/CousinMaleDown.png</key>
+            <key type="filename">Actors/CousinMale/DownIdle0.png</key>
+            <key type="filename">Actors/CousinMale/DownIdle1.png</key>
+            <key type="filename">Actors/CousinMale/DownIdle2.png</key>
+            <key type="filename">Actors/CousinMale/DownIdle3.png</key>
+            <key type="filename">Actors/CousinMale/DownRun0.png</key>
+            <key type="filename">Actors/CousinMale/DownRun1.png</key>
+            <key type="filename">Actors/CousinMale/DownRun2.png</key>
+            <key type="filename">Actors/CousinMale/DownRun3.png</key>
+            <key type="filename">Actors/CousinMale/DownRun4.png</key>
+            <key type="filename">Actors/CousinMale/DownRun5.png</key>
+            <key type="filename">Actors/CousinMale/DownRun6.png</key>
+            <key type="filename">Actors/CousinMale/DownRun7.png</key>
+            <key type="filename">Actors/CousinMale/DownRun8.png</key>
+            <key type="filename">Actors/CousinMale/SideIdle0.png</key>
+            <key type="filename">Actors/CousinMale/SideIdle1.png</key>
+            <key type="filename">Actors/CousinMale/SideIdle2.png</key>
+            <key type="filename">Actors/CousinMale/SideIdle3.png</key>
+            <key type="filename">Actors/CousinMale/SideRun0.png</key>
+            <key type="filename">Actors/CousinMale/SideRun1.png</key>
+            <key type="filename">Actors/CousinMale/SideRun2.png</key>
+            <key type="filename">Actors/CousinMale/SideRun3.png</key>
+            <key type="filename">Actors/CousinMale/SideRun4.png</key>
+            <key type="filename">Actors/CousinMale/UpIdle0.png</key>
+            <key type="filename">Actors/CousinMale/UpIdle1.png</key>
+            <key type="filename">Actors/CousinMale/UpIdle2.png</key>
+            <key type="filename">Actors/CousinMale/UpIdle3.png</key>
+            <key type="filename">Actors/CousinMale/UpRun0.png</key>
+            <key type="filename">Actors/CousinMale/UpRun1.png</key>
+            <key type="filename">Actors/CousinMale/UpRun2.png</key>
+            <key type="filename">Actors/CousinMale/UpRun3.png</key>
+            <key type="filename">Actors/CousinMale/UpRun4.png</key>
+            <key type="filename">Actors/CousinMale/UpRun5.png</key>
+            <key type="filename">Actors/CousinMale/UpRun6.png</key>
+            <key type="filename">Actors/CousinMale/UpRun7.png</key>
+            <key type="filename">Actors/CousinMale/UpRun8.png</key>
             <key type="filename">Actors/Placeholder/IdleDown.png</key>
             <key type="filename">Actors/Placeholder/IdleSide.png</key>
             <key type="filename">Actors/Placeholder/IdleUp.png</key>
@@ -207,8 +243,18 @@
             <key type="filename">Items/DieBeker.png</key>
             <key type="filename">Items/PopGun.png</key>
             <key type="filename">Items/Punch.png</key>
+            <key type="filename">Rooms/Floors/BlueTile.png</key>
             <key type="filename">Rooms/Floors/PlaceholderTile.png</key>
             <key type="filename">Rooms/Walls/Wall.png</key>
+            <key type="filename">Rooms/Walls/WallGranite.png</key>
+            <key type="filename">UI/CaricatureBase.png</key>
+            <key type="filename">UI/CaricatureMatt.png</key>
+            <key type="filename">UI/CaricatureSas.png</key>
+            <key type="filename">UI/Glow.png</key>
+            <key type="filename">UI/Heart.png</key>
+            <key type="filename">UI/HeartBroken.png</key>
+            <key type="filename">UI/OutlinedPhoto.png</key>
+            <key type="filename">UI/PlayerPanelBG.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -221,8 +267,23 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">Items/DieGlowingBeker.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>32,32,64,64</rect>
+                <key>scale9Paddings</key>
+                <rect>32,32,64,64</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">Map/MiniMapBackground.png</key>
             <key type="filename">Map/MiniMaptile.png</key>
+            <key type="filename">UI/ArrowLeft.png</key>
+            <key type="filename">UI/ArrowRight.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

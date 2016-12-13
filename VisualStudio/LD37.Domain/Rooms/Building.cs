@@ -61,7 +61,6 @@ namespace LD37.Domain.Rooms
                     if(shouldSpawn)
                     {
                         var cousin = cousinsToAddToBuilding.GetRandomAndRemoveCousin();
-
                         this.RoomsWithPoints[coordinate] = cousin.SpawnRoom;
                         continue;
                     }
@@ -165,7 +164,7 @@ namespace LD37.Domain.Rooms
 
     internal static class RoomCoordinates
     {
-        private const int edgeCoordinate = 1;
+        private const int edgeCoordinate = 2;
 
         public static IEnumerable<Point> Coordinates = coordinates;
 
